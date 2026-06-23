@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Railway Builder | Sticks Tuition</title>
+    <link rel="stylesheet" href="../../styles.css">
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="nav-shell">
+        <a class="brand" href="../../index.html"><span class="brand-mark">ST</span><span>STICKS TUITION<small>Make Maths Stick</small></span></a>
+        <nav class="nav-links" aria-label="Site"><a href="../../index.html">Home</a><a href="../../our-lessons.html">Our Lessons</a><a class="games-link" href="../../maths-games.html" aria-current="page">Game Lab</a><a href="../../pricing-and-packages.html">Pricing</a><a href="../../login.html">Login</a></nav>
+        <a class="nav-cta" href="../../maths-games.html">All games</a>
+      </div>
+    </header>
+
+    <main class="railway-page" data-railway-builder>
+      <section class="railway-shell" aria-label="Railway Builder game">
+        <div class="railway-topbar">
+          <div>
+            <p class="eyebrow">Graphs / Railway Puzzles</p>
+            <h1>Railway Builder</h1>
+          </div>
+          <div class="railway-level-select">
+            <label for="railway-level">Level</label>
+            <select id="railway-level" data-rb-level-select></select>
+          </div>
+        </div>
+
+        <div class="railway-layout">
+          <aside class="railway-panel railway-panel-left">
+            <div>
+              <p class="railway-kicker" data-rb-level-number>Level 1</p>
+              <h2 data-rb-title>Connect two stations</h2>
+              <p data-rb-instruction>Build the railway line.</p>
+            </div>
+
+            <div class="railway-tool-tabs" role="tablist" aria-label="Track input mode">
+              <button type="button" class="is-active" data-rb-mode="points">Drag points</button>
+              <button type="button" data-rb-mode="equation">Equation</button>
+              <button type="button" data-rb-mode="junction">Junction</button>
+            </div>
+
+            <div class="railway-equation-box">
+              <label for="railway-equation">Track equation</label>
+              <div>
+                <input id="railway-equation" data-rb-equation-input spellcheck="false" autocomplete="off" value="y = x">
+                <button type="button" class="button secondary" data-rb-apply-equation>Apply</button>
+              </div>
+            </div>
+
+            <div class="railway-readout">
+              <span>Equation</span>
+              <strong data-rb-equation-readout>y = x</strong>
+              <span>Gradient</span>
+              <strong data-rb-gradient-readout>1</strong>
+              <span>Intercept</span>
+              <strong data-rb-intercept-readout>0</strong>
+            </div>
+
+            <div class="railway-actions">
+              <button type="button" class="button primary" data-rb-launch>Launch train</button>
+              <button type="button" class="button secondary" data-rb-check>Check answer</button>
+              <button type="button" class="button secondary" data-rb-reset>Reset line</button>
+            </div>
+          </aside>
+
+          <section class="railway-board-wrap">
+            <svg class="railway-board" data-rb-board viewBox="0 0 720 560" role="img" aria-label="Coordinate railway grid"></svg>
+            <div class="railway-feedback" data-rb-feedback>Choose a level and build your first track.</div>
+          </section>
+
+          <aside class="railway-panel railway-panel-right">
+            <div class="railway-objective-card">
+              <p class="railway-kicker">Objective</p>
+              <p data-rb-objective>Draw a track that connects the stations.</p>
+            </div>
+            <div class="railway-objective-card">
+              <p class="railway-kicker">Hint</p>
+              <p data-rb-hint>Drag the two red control points onto the stations.</p>
+            </div>
+            <div class="railway-objective-card">
+              <p class="railway-kicker">Tools allowed</p>
+              <p data-rb-tools>Drag points, equation input</p>
+            </div>
+            <div class="railway-objective-card">
+              <p class="railway-kicker">Result</p>
+              <p data-rb-result>Waiting for a track inspection.</p>
+            </div>
+          </aside>
+        </div>
+      </section>
+    </main>
+
+    <script src="railway-builder.js"></script>
+  </body>
+</html>

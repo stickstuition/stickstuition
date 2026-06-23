@@ -1,0 +1,30 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Commit all changes",
+      "type": "shell",
+      "command": "powershell",
+      "args": [
+        "-ExecutionPolicy",
+        "Bypass",
+        "-File",
+        "${workspaceFolder}/scripts/commit-all.ps1"
+      ],
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated"
+      }
+    },
+    {
+      "label": "Build deploy folder",
+      "type": "shell",
+      "command": "node",
+      "args": [
+        "${workspaceFolder}/build-deploy.mjs"
+      ],
+      "problemMatcher": []
+    }
+  ]
+}

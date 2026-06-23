@@ -1,0 +1,149 @@
+I want you to build a 2D maths game prototype called Railway Builder.
+
+Context:
+I already have an existing physics engine from another game. Reuse it where sensible for collision, dragging, object placement, snapping, level detection, and win/loss conditions. Do not rebuild physics from scratch unless absolutely necessary. First inspect the existing project structure and identify the reusable systems before adding new ones.
+
+Game concept:
+Railway Builder is a straight-line graphs puzzle game. The player designs railway tracks between stations on a coordinate grid. Each railway is represented by a straight-line graph. The game should teach gradient, y-intercept, equations of lines, parallel lines, perpendicular lines, intersections, midpoint, distance, and simultaneous equations through gameplay.
+
+Core gameplay:
+The player sees a 2D coordinate grid with stations, obstacles, terrain, and objectives. They must create railway lines that satisfy mathematical constraints. A train then travels along the track if the equation is correct. The level is completed when the train reaches all required stations and avoids hazards.
+
+Main interaction:
+Allow the player to create a railway line in two possible ways:
+
+1. Drag two control points on the grid.
+   - The line updates live.
+   - The equation updates live.
+   - Show gradient calculation where helpful.
+   - Snap points to grid intersections.
+
+2. Enter an equation manually.
+   - Support y = mx + c form.
+   - Support simple integer and fractional gradients.
+   - Example: y = 2x + 1, y = -1/2x + 4.
+   - The line appears on the grid instantly.
+
+Game screen layout:
+- Large coordinate grid in the centre.
+- Toolbar on the side.
+- Equation display panel.
+- Objective panel.
+- Launch Train button.
+- Reset Line button.
+- Check Answer button.
+- Level title and short instruction.
+- Optional hint button.
+
+Visual style:
+Use a clean, playful 2D educational game style. It should feel like a puzzle game, not a worksheet. The coordinate grid should be readable but not ugly. Stations should be small platforms. Tracks should look like simple railway tracks. The train can be a simple placeholder rectangle or sprite for now. Use placeholder assets if necessary, but structure the code so sprites can be swapped later.
+
+Core maths systems:
+Create reusable helper functions for:
+
+- gradient between two points
+- y-intercept from point and gradient
+- equation from two points
+- checking if a point lies on a line
+- checking if two lines are parallel
+- checking if two lines are perpendicular
+- intersection of two lines
+- midpoint between two points
+- distance between two points
+- converting between world coordinates and grid coordinates
+- parsing simple y = mx + c equations
+- formatting line equations cleanly
+
+Important:
+The maths must be accurate. Avoid floating point issues by using tolerances where needed. Use rational/fraction support where possible for gradients like 1/2, -3/4, etc.
+
+Level structure:
+Create a level data format that makes it easy to add new levels.
+
+Each level should include:
+- level id
+- title
+- instruction text
+- grid bounds
+- stations with coordinates
+- required connections
+- obstacles or forbidden zones
+- target condition
+- allowed tools
+- hints
+- success message
+
+Prototype levels:
+Build at least 8 playable levels.
+
+Level 1: Connect two stations
+Concept: basic line through two points.
+Objective: Draw a track from Station A to Station B.
+
+Level 2: Find the gradient
+Concept: gradient from two points.
+Objective: Build a track with the correct steepness between two platforms.
+
+Level 3: Use the y-intercept
+Concept: y = mx + c.
+Objective: Create a track that starts at the correct height and reaches the station.
+
+Level 4: Equation from two points
+Concept: equation of a straight line.
+Objective: Two stations are shown. Player must enter the equation that connects them.
+
+Level 5: Parallel tracks
+Concept: parallel lines have the same gradient.
+Objective: Build a second railway parallel to an existing railway.
+
+Level 6: Perpendicular crossing
+Concept: perpendicular gradients multiply to -1.
+Objective: Build a crossing track that meets the existing line at 90 degrees.
+
+Level 7: Intersection station
+Concept: simultaneous equations/intersections.
+Objective: Two railway lines meet. Place or identify the interchange station at the intersection.
+
+Level 8: Best route challenge
+Concept: combine multiple straight-line ideas.
+Objective: Connect stations while avoiding obstacles and using only a limited number of tracks.
+
+Gameplay validation:
+When the player presses Check Answer or Launch Train, validate the level condition mathematically. If correct, animate the train along the track. If incorrect, give clear feedback such as:
+- “The track does not pass through Station B.”
+- “This line is not parallel to the existing railway.”
+- “The gradient is close, but the intercept is wrong.”
+- “The train hits an obstacle.”
+
+Train movement:
+Use the existing physics/movement system if appropriate. The train should follow the railway line from start to end. It does not need complex train physics for the prototype. A simple tween/path movement is fine, but integrate with the existing engine where possible.
+
+Code quality:
+- Keep systems modular.
+- Do not hardcode level logic into the main game loop.
+- Separate maths utilities, rendering, input handling, level data, validation, and train movement.
+- Add clear comments for mathematical functions.
+- Make it easy to add more levels later.
+- Keep placeholder assets cleanly organised.
+- Do not over-engineer menus or accounts yet.
+
+Required deliverables:
+1. Working playable prototype.
+2. 8 levels.
+3. Reusable maths utilities.
+4. Level data structure.
+5. Basic train animation.
+6. Clear in-game feedback.
+7. Simple start menu and level select if quick to implement.
+8. Brief README explaining how to run the prototype, add levels, and reuse the existing physics engine.
+
+Before coding:
+Inspect the current project first. Identify:
+- framework/game engine used
+- physics engine files
+- existing coordinate or collision systems
+- current rendering approach
+- asset structure
+- input handling patterns
+
+Then implement the Railway Builder prototype in the most consistent style with the existing codebase.

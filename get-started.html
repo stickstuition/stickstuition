@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Get Started | Sticks Tuition</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="nav-shell">
+        <a class="brand" href="index.html"><span class="brand-mark">ST</span><span>STICKS TUITION<small>Make Maths Stick</small></span></a>
+        <nav class="nav-links" aria-label="Site">
+          <a href="index.html">Home</a>
+          <a href="our-lessons.html">Our Lessons</a>
+          <a class="games-link" href="maths-games.html">Game Lab</a>
+          <a href="pricing-and-packages.html">Pricing</a>
+          <a href="login.html">Login</a>
+        </nav>
+        <a class="nav-cta" href="get-started.html" aria-current="page">Start today</a>
+      </div>
+    </header>
+
+    <main>
+      <section class="start-section">
+        <div class="start-inner">
+          <div class="start-copy">
+            <p class="eyebrow">First trial lesson free</p>
+            <h1>Tell us what would help.</h1>
+            <p>Share a few details and we will reply with the best next step for your child, whether that is a trial lesson, a quick call, or a suggested lesson plan.</p>
+            <div class="start-proof">
+              <span>Qualified maths teacher</span>
+              <span>Online lessons</span>
+              <span>No lock-in contracts</span>
+            </div>
+          </div>
+
+          <form class="start-form" action="https://formsubmit.co/hello@stickstuition.com" method="POST">
+            <input type="hidden" name="_subject" value="New Sticks Tuition enquiry">
+            <input type="hidden" name="_template" value="table">
+            <input type="hidden" name="_captcha" value="false">
+            <h2>Get started</h2>
+            <div class="form-row">
+              <div><label for="parent-name">Parent name</label><input id="parent-name" name="Parent name" autocomplete="name" required></div>
+              <div><label for="student-name">Student name</label><input id="student-name" name="Student name" required></div>
+            </div>
+            <div class="form-row">
+              <div><label for="start-email">Email</label><input id="start-email" name="Email" type="email" autocomplete="email" required></div>
+              <div><label for="phone">Phone</label><input id="phone" name="Phone" autocomplete="tel"></div>
+            </div>
+            <label for="student-year">Student year level</label>
+            <input id="student-year" name="Student year level" placeholder="e.g. Year 9, GCSE, A Level">
+            <label for="region">Location / curriculum</label>
+            <input id="region" name="Location or curriculum" placeholder="Australia, UK, Europe, or other">
+            <label for="support-needed">What support are you looking for?</label>
+            <textarea id="support-needed" name="Support needed" rows="5" placeholder="Tell us about current topics, confidence, upcoming tests, or what has been tricky." required></textarea>
+            <label for="availability">Preferred lesson times</label>
+            <input id="availability" name="Preferred lesson times" placeholder="After school, weekends, timezone, etc.">
+            <button class="button primary" type="submit">Send enquiry</button>
+            <p class="form-note">Submissions are sent to hello@stickstuition.com.</p>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <script src="site.js"></script>
+  </body>
+</html>

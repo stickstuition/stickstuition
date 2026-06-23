@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Angle Architect | Sticks Tuition</title>
+    <link rel="stylesheet" href="../../styles.css">
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="nav-shell">
+        <a class="brand" href="../../index.html"><span class="brand-mark">ST</span><span>STICKS TUITION<small>Make Maths Stick</small></span></a>
+        <nav class="nav-links" aria-label="Site"><a href="../../index.html">Home</a><a href="../../our-lessons.html">Our Lessons</a><a class="games-link" href="../../maths-games.html" aria-current="page">Game Lab</a><a href="../../pricing-and-packages.html">Pricing</a><a href="../../login.html">Login</a></nav>
+        <a class="nav-cta" href="../../maths-games.html">All games</a>
+      </div>
+    </header>
+
+    <main class="angle-architect-page" data-angle-architect-game>
+      <section class="angle-game-shell" aria-label="Angle Architect game">
+        <div class="angle-game-topline">
+          <div>
+            <p class="eyebrow">Geometry / Construction Stability</p>
+            <h1>Angle Architect</h1>
+          </div>
+          <p>Builders add beams. You calculate the bracket angle that locks each new joint.</p>
+        </div>
+
+        <div class="angle-hud" aria-label="Game status">
+          <div class="angle-stat"><span>Score</span><strong data-aa-score>0</strong></div>
+          <div class="angle-stat"><span>Level</span><strong data-aa-level>1</strong></div>
+          <div class="angle-stability">
+            <span>Stability</span>
+            <div class="stability-track" aria-hidden="true"><i data-aa-stability-bar></i></div>
+            <strong data-aa-stability>100%</strong>
+          </div>
+          <div class="angle-prompt"><span>Active joint</span><strong data-aa-prompt>Start the build</strong></div>
+          <div class="angle-chain"><span>Perfect chain</span><strong data-aa-chain>0</strong></div>
+        </div>
+
+        <div class="angle-playfield">
+          <div class="angle-canvas-wrap" data-aa-stage>
+            <div class="angle-input-bubble" data-aa-input-bubble hidden>
+              <label for="aa-answer">Bracket angle</label>
+              <div>
+                <input id="aa-answer" data-aa-answer inputmode="numeric" autocomplete="off" aria-label="Bracket angle in degrees">
+                <button class="button primary" type="button" data-aa-install>Install</button>
+              </div>
+            </div>
+            <div class="angle-overlay is-visible" data-aa-start>
+              <div>
+                <p class="eyebrow">Blueprint ready</p>
+                <h2>Stabilise the structure.</h2>
+                <p>Tap the pulsing joint, read the existing angle, then install the missing metal bracket.</p>
+                <button class="button primary" type="button" data-aa-start-button>Start build</button>
+              </div>
+            </div>
+            <div class="angle-overlay" data-aa-game-over hidden>
+              <div>
+                <p class="eyebrow">Build inspection</p>
+                <h2 data-aa-game-over-title>Structure failed</h2>
+                <p data-aa-game-over-copy>The scaffold lost stability.</p>
+                <button class="button primary" type="button" data-aa-restart>New build</button>
+              </div>
+            </div>
+          </div>
+
+          <aside class="angle-side-panel">
+            <div class="foreman-card">
+              <div class="foreman-portrait" data-aa-foreman="neutral" aria-hidden="true"></div>
+              <div>
+                <p class="eyebrow">Foreman</p>
+                <strong data-aa-foreman-line>Waiting on your first bracket.</strong>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </section>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/pixi.js@7.4.2/dist/pixi.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/matter-js@0.20.0/build/matter.min.js"></script>
+    <script src="angle-architect-game.js"></script>
+  </body>
+</html>

@@ -1,0 +1,149 @@
+That version of Angle Architect is much stronger. It should stop being “type the missing angle from a diagram” and become a proper 2D construction stability game.
+Best Tech Stack
+For this, don’t rely on a VS Code extension to “make animations”. The extension helps your workflow, but the game itself should be built with real web game libraries:
+PixiJS for the Flash-like 2D game layer: sprites, builders, foreman, beams, pulsing supports, UI, particles. Pixi describes itself as a fast flexible 2D WebGL renderer, which is exactly the vibe here.
+https://pixijs.com/
+
+GSAP for polished animations: foreman reactions, shake effects, warning pulses, score popups, builder movements, beam placement timing. GSAP’s docs describe it as a professional-grade JavaScript animation library.
+https://gsap.com/docs/v3/
+
+Matter.js for optional 2D physics/stability: beams, supports, collapsing/wobbling if stability drops. It is a 2D physics engine for the web.
+https://brm.io/matter-js/docs/
+
+Vite to manage this properly instead of one giant static script. Vite is the clean way to bundle Pixi/GSAP/Matter and still output a normal web page.
+https://vite.dev/guide/
+
+VS Code Extensions I’d Use
+Install these in VS Code:
+ESLint: catches JS issues as the game grows.
+Prettier: keeps the code tidy.
+Live Preview or continue using local server: quick visual testing.
+npm Intellisense: helps with package imports.
+Path Intellisense: useful for sprite/audio asset paths.
+Error Lens: makes JS/CSS mistakes obvious inline.
+Draw.io Integration optional: good for sketching game state diagrams.
+SVG Preview optional: useful if builders/foreman/beams are SVG assets first.
+Game Brief For New Chat
+Copy this into a new Codex chat:
+We are rebuilding Angle Architect into a Flash-like 2D maths game for the Sticks Tuition site.
+
+Project location:
+C:\Sticks Tuition Dev
+
+Current files:
+angle-architect.html
+site.js
+styles.css
+maths-games.html
+
+Goal:
+Replace the current simple missing-angle quiz with a polished 2D construction stability game. It should feel like an educational Flash game, somewhere between Angry Birds, Tetris, and a building accuracy simulator.
+
+Core fantasy:
+Little builders construct a growing structure. Beams are added over time. Some joints flash to show that a support is needed. The player clicks the flashing joint and types the correct support angle. If correct, a support beam is installed and the structure stabilises. If wrong, the structure shakes, stability drops, and the builders/foreman react.
+
+Maths:
+The player mostly solves complementary/supplementary angle facts:
+- 90 degree supports: missing angle = 90 - known angle
+- 180 degree straight-line supports: missing angle = 180 - known angle
+As difficulty increases:
+- multiple joints need support at once
+- less time is given
+- mixed 90/180 angle facts
+- maybe later: vertically opposite angles, triangle angles, parallel-line angle facts
+
+Recommended implementation:
+Use PixiJS for the 2D game scene, GSAP for animation, and optionally Matter.js for light stability/physics. If needed, convert this static site to use Vite for the game bundle while preserving the existing site pages and visual style.
+
+Visual style:
+Use Sticks Tuition styling:
+- dark premium background
+- mint highlights
+- red/purple brand accents
+- rounded UI
+- polished arcade/game feel
+- no childish clipart; playful but clean
+
+Game layout:
+- Full game area below the site header.
+- Top HUD:
+  - Score
+  - Stability meter
+  - Level
+  - Required angle prompt when a joint is active
+- Main scene:
+  - Ground line at bottom
+  - Growing scaffold/building structure
+  - Beams and supports
+  - Flashing pulsing joint markers
+  - Little builders along the bottom
+  - Foreman character on one side reacting to success/failure
+- Input:
+  - Player clicks a pulsing joint
+  - A small angle input bubble appears near the joint
+  - Player types a number and presses Enter or Install
+  - Correct answer installs a support beam
+  - Wrong answer shakes structure and reduces stability
+
+Game loop:
+1. Start with a small base structure.
+2. Add a beam.
+3. Pick one or more joints requiring support.
+4. For each joint, generate an angle problem:
+   - type: right angle or straight line
+   - known angle
+   - missing answer
+5. Show known angle visually near the joint.
+6. Pulse the joint until answered.
+7. Correct:
+   - install support beam
+   - green/mint pulse
+   - score increase
+   - builder cheers
+   - foreman happy reaction
+8. Incorrect:
+   - red shake
+   - stability decreases
+   - builders look worried
+   - foreman warning reaction
+9. If all supports are correct, add another beam and continue.
+10. If stability reaches 0, game over.
+11. Scoring should be Tetris-like:
+   - correct support = points
+   - streak bonus
+   - faster answer bonus
+   - multiple supports cleared = combo bonus
+
+Needed components:
+- AngleArchitectGame controller
+- Scene renderer
+- Beam model
+- Joint/support model
+- Problem generator
+- Stability system
+- Score system
+- Input bubble component
+- Foreman component
+- Builder crowd component
+- HUD component
+- Level/difficulty manager
+- Animation helpers
+
+First build target:
+Make a playable MVP:
+- PixiJS scene loads
+- builders/foreman can be simple shapes or SVG placeholders
+- structure grows beam by beam
+- one flashing support at a time
+- click joint, type missing angle
+- correct installs support
+- wrong shakes structure and lowers stability
+- score/stability/level update
+- game over state
+- “New build” restart button
+
+Preserve:
+- Existing header/nav styling
+- Existing Game Lab links
+- Sticks Tuition colours and typography
+My honest recommendation: build the first version with PixiJS + GSAP only, and add Matter.js later if we really need physical collapse. Too much physics too early can make the maths feel random. The first version should be deterministic: wrong angle means visible instability, not “the physics engine decided it fell weirdly.”

@@ -1,0 +1,662 @@
+document.querySelectorAll("[data-contact-form]").forEach((form) => {
+  form.addEventListener("submit", (event) => {
+    if (form.getAttribute("action")) return;
+    event.preventDefault();
+    const button = form.querySelector("button");
+    const original = button.textContent;
+    button.textContent = "Message queued";
+    form.classList.add("is-sent");
+    window.setTimeout(() => {
+      button.textContent = original;
+      form.classList.remove("is-sent");
+      form.reset();
+    }, 1800);
+  });
+});
+
+document.querySelectorAll("[data-pricing-page]").forEach((page) => {
+  const priceData = {
+    aus: {
+      label: "Australia",
+      tiers: [{ label: "All students", price: "$59.99", note: "per lesson for all students" }],
+    },
+    uk: {
+      label: "United Kingdom",
+      tiers: [
+        { label: "GCSE", price: "\u00a339.99", note: "per GCSE lesson" },
+        { label: "A Levels", price: "\u00a344.99", note: "per A Level lesson" },
+      ],
+    },
+    europe: {
+      label: "Europe",
+      tiers: [
+        { label: "Years 7-10", price: "\u20ac34.99", note: "per Years 7-10 lesson" },
+        { label: "Years 11-12", price: "\u20ac39.99", note: "per Years 11-12 lesson" },
+      ],
+    },
+  };
+
+  const regionLabel = page.querySelector("[data-region-label]");
+  const priceDisplay = page.querySelector("[data-price-display]");
+  const priceNote = page.querySelector("[data-price-note]");
+  const regionStatus = page.querySelector("[data-region-status]");
+  const tierSwitch = page.querySelector("[data-tier-switch]");
+  const tierToggle = page.querySelector("[data-tier-toggle]");
+  const tierALabel = page.querySelector("[data-tier-a-label]");
+  const tierBLabel = page.querySelector("[data-tier-b-label]");
+  let activeRegion = "aus";
+  let activeTier = 0;
+
+  function regionFromCountry(countryCode) {
+    const code = String(countryCode || "").toUpperCase();
+    if (code === "AU") return "aus";
+    if (code === "GB" || code === "UK") return "uk";
+    const europeCodes = new Set([
+      "AD", "AL", "AT", "BA", "BE", "BG", "BY", "CH", "CY", "CZ", "DE", "DK", "EE", "ES", "FI", "FO",
+      "FR", "GG", "GI", "GR", "HR", "HU", "IE", "IM", "IS", "IT", "JE", "LI", "LT", "LU", "LV", "MC",
+      "MD", "ME", "MK", "MT", "NL", "NO", "PL", "PT", "RO", "RS", "SE", "SI", "SK", "SM", "UA", "VA",
+    ]);
+    if (europeCodes.has(code)) return "europe";
+    return "";
+  }
+
+  function guessRegionFromBrowser() {
+    const timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone || "";
+    const language = navigator.language || "";
+    if (timeZone.startsWith("Australia/")) return "aus";
+    if (timeZone === "Europe/London" || language.toLowerCase().includes("gb")) return "uk";
+    if (timeZone.startsWith("Europe/")) return "europe";
+    return "aus";
+  }
+
+  async function detectRegion() {
+    try {
+      const response = await fetch("https://ipapi.co/json/", { cache: "no-store" });
+      if (!response.ok) throw new Error("Location lookup failed");
+      const data = await response.json();
+      const region = regionFromCountry(data.country_code);
+      if (region) {
+        activeRegion = region;
+        if (regionStatus) {
+          regionStatus.textContent = `Pricing detected for ${priceData[region].label}. If that looks wrong, tell us your country when you enquire.`;
+        }
+        renderPricing();
+        return;
+      }
+    } catch (error) {
+      // Browser timezone is a quiet fallback when IP geolocation is blocked.
+    }
+
+    activeRegion = guessRegionFromBrowser();
+    if (regionStatus) {
+      regionStatus.textContent = `Pricing estimated for ${priceData[activeRegion].label}. If that looks wrong, tell us your country when you enquire.`;
+    }
+    renderPricing();
+  }
+
+  function renderPricing() {
+    const region = priceData[activeRegion];
+    const hasToggle = region.tiers.length > 1;
+    activeTier = hasToggle ? activeTier : 0;
+    const tier = region.tiers[activeTier];
+
+    regionLabel.textContent = region.label;
+    priceDisplay.textContent = tier.price;
+    priceNote.textContent = tier.note;
+
+    tierSwitch.hidden = !hasToggle;
+    if (hasToggle) {
+      tierALabel.textContent = region.tiers[0].label;
+      tierBLabel.textContent = region.tiers[1].label;
+      tierToggle.setAttribute("aria-checked", String(activeTier === 1));
+    }
+  }
+
+  tierToggle.addEventListener("click", () => {
+    activeTier = activeTier === 0 ? 1 : 0;
+    renderPricing();
+  });
+
+  renderPricing();
+  detectRegion();
+});
+
+document.querySelectorAll("[data-horse-race]").forEach((game) => {
+  const finish = 8;
+  const positions = Array.from({ length: 11 }, () => 0);
+  const track = game.querySelector("[data-track]");
+  const dieOne = game.querySelector("[data-die-one]");
+  const dieTwo = game.querySelector("[data-die-two]");
+  const result = game.querySelector("[data-result]");
+  const winner = game.querySelector("[data-winner]");
+  const rollButton = game.querySelector("[data-roll]");
+  const resetButton = game.querySelector("[data-reset]");
+  const modal = game.querySelector("[data-race-modal]");
+  const modalWinner = game.querySelector("[data-modal-winner]");
+  const raceBars = game.querySelector("[data-race-bars]");
+  const totalRolls = game.querySelector("[data-total-rolls]");
+  const modalClose = game.querySelector("[data-modal-close]");
+  const modalNewRace = game.querySelector("[data-modal-new-race]");
+  let isRolling = false;
+  let modalTimer = 0;
+
+  function setupDie(element, value = 1) {
+    element.innerHTML = `
+      <span class="die-cube">
+        <span class="die-face die-front" aria-live="polite">1</span>
+        <span class="die-face die-top"></span>
+        <span class="die-face die-right"></span>
+        <span class="die-face die-left"></span>
+        <span class="die-face die-bottom"></span>
+        <span class="die-face die-back"></span>
+      </span>
+    `;
+    setDieValue(element, value);
+  }
+
+  function setDieValue(element, value) {
+    element.dataset.value = value;
+    const front = element.querySelector(".die-front");
+    if (front) front.textContent = value;
+  }
+
+  function renderTracks(highlightNumber = 0) {
+    track.innerHTML = "";
+    positions.forEach((position, index) => {
+      const number = index + 2;
+      const row = document.createElement("div");
+      row.className = `track-row${number === highlightNumber ? " is-flashing" : ""}`;
+      row.innerHTML = `
+        <span class="track-number">${number}</span>
+        <div class="track"><span class="horse" style="left: calc(${(position / finish) * 100}% - ${position ? 84 : 0}px)"><img src="sprites/lanes/${number}.png" alt=""><span class="horse-body"></span><span class="horse-rider">${number}</span></span></div>
+        <span class="track-score">${position}/${finish}</span>
+      `;
+      track.appendChild(row);
+    });
+  }
+
+  function rollDie() {
+    return Math.floor(Math.random() * 6) + 1;
+  }
+
+  function rollAnimatedDice(first, second) {
+    return new Promise((resolve) => {
+      let ticks = 0;
+      const interval = window.setInterval(() => {
+        ticks += 1;
+        setDieValue(dieOne, ticks >= 10 ? first : rollDie());
+        setDieValue(dieTwo, ticks >= 10 ? second : rollDie());
+        if (ticks >= 10) {
+          window.clearInterval(interval);
+          window.setTimeout(resolve, 120);
+        }
+      }, 70);
+    });
+  }
+
+  function renderDistribution() {
+    const total = positions.reduce((sum, count) => sum + count, 0);
+    const max = Math.max(...positions, 1);
+    totalRolls.textContent = `${total} roll${total === 1 ? "" : "s"}`;
+    raceBars.innerHTML = positions.map((count, index) => {
+      const lane = index + 2;
+      const percent = total ? Math.round((count / total) * 100) : 0;
+      const height = Math.max(8, Math.round((count / max) * 100));
+      return `
+        <div class="race-bar-item">
+          <div class="race-bar-track"><span style="height:${height}%"></span></div>
+          <strong>${lane}</strong>
+          <em>${percent}%</em>
+          <small>${count}</small>
+        </div>
+      `;
+    }).join("");
+  }
+
+  function showRaceModal(winningLane) {
+    window.clearTimeout(modalTimer);
+    modalWinner.textContent = `Lane ${winningLane} wins!`;
+    renderDistribution();
+    modal.hidden = false;
+    modal.classList.remove("show-chart");
+    void modal.offsetWidth;
+    modal.classList.add("is-open");
+    modalTimer = window.setTimeout(() => {
+      modal.classList.add("show-chart");
+    }, 1600);
+  }
+
+  function closeRaceModal() {
+    window.clearTimeout(modalTimer);
+    modal.classList.remove("is-open", "show-chart");
+    window.setTimeout(() => {
+      modal.hidden = true;
+    }, 220);
+  }
+
+  function resetRace() {
+    positions.fill(0);
+    setDieValue(dieOne, 1);
+    setDieValue(dieTwo, 1);
+    result.textContent = "Ready to roll.";
+    winner.textContent = "";
+    rollButton.textContent = "Roll dice";
+    isRolling = false;
+    closeRaceModal();
+    renderTracks();
+  }
+
+  rollButton.addEventListener("click", () => {
+    if (winner.textContent || isRolling) return;
+    isRolling = true;
+    rollButton.textContent = "Rolling...";
+    const first = rollDie();
+    const second = rollDie();
+    const sum = first + second;
+    rollAnimatedDice(first, second).then(() => {
+      const index = sum - 2;
+      positions[index] += 1;
+      result.textContent = `${first} + ${second} = ${sum}. Lane ${sum} advances.`;
+      renderTracks(sum);
+      if (positions[index] >= finish) {
+        winner.textContent = `Lane ${sum} wins the Chance Cup!`;
+        rollButton.textContent = "Race finished";
+        showRaceModal(sum);
+      } else {
+        rollButton.textContent = "Roll dice";
+      }
+      isRolling = false;
+    });
+  });
+
+  resetButton.addEventListener("click", resetRace);
+  modalClose.addEventListener("click", closeRaceModal);
+  modalNewRace.addEventListener("click", resetRace);
+  modal.addEventListener("click", (event) => {
+    if (event.target === modal) closeRaceModal();
+  });
+
+  setupDie(dieOne, 1);
+  setupDie(dieTwo, 1);
+  renderTracks();
+});
+
+document.querySelectorAll("[data-arithmatrick]").forEach((game) => {
+  const largeCards = [25, 50, 75, 100, 25, 50];
+  const smallCards = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+  const largeCount = game.querySelector("[data-large-count]");
+  const largeCountOptions = Array.from(game.querySelectorAll("[data-large-count-option]"));
+  const roundingOptions = Array.from(game.querySelectorAll("[data-rounding]"));
+  const targetEl = game.querySelector("[data-target]");
+  const cardsEl = game.querySelector("[data-number-cards]");
+  const expression = game.querySelector("[data-expression]");
+  const feedback = game.querySelector("[data-arith-feedback]");
+  const newRound = game.querySelector("[data-new-round]");
+  const check = game.querySelector("[data-check-expression]");
+  const clear = game.querySelector("[data-clear-expression]");
+  let cards = [];
+  let target = 0;
+
+  function getLargeCount() {
+    const checkedOption = largeCountOptions.find((option) => option.checked);
+    if (checkedOption) return Number(checkedOption.value);
+    return Number(largeCount?.value || 2);
+  }
+
+  function getRounding() {
+    const checkedOption = roundingOptions.find((option) => option.checked);
+    return Number(checkedOption?.value || 0);
+  }
+
+  function draw(pool, count) {
+    const copy = [...pool];
+    const picked = [];
+    while (picked.length < count && copy.length) {
+      const index = Math.floor(Math.random() * copy.length);
+      picked.push(copy.splice(index, 1)[0]);
+    }
+    return picked;
+  }
+
+  function countValues(values) {
+    return values.reduce((map, value) => {
+      map[value] = (map[value] || 0) + 1;
+      return map;
+    }, {});
+  }
+
+  function generateTarget() {
+    const rounding = getRounding();
+    if (!rounding) return Math.floor(Math.random() * 899) + 101;
+    const min = Math.ceil(101 / rounding);
+    const max = Math.floor(999 / rounding);
+    return (Math.floor(Math.random() * (max - min + 1)) + min) * rounding;
+  }
+
+  function renderRound() {
+    const count = getLargeCount();
+    cards = [...draw(largeCards, count), ...draw(smallCards, 6 - count)].sort(() => Math.random() - 0.5);
+    target = generateTarget();
+    targetEl.textContent = target;
+    cardsEl.innerHTML = cards.map((card) => `<button class="number-card" type="button" data-card-value="${card}" aria-label="Use ${card}">${card}</button>`).join("");
+    if (expression) expression.value = "";
+    const rounding = getRounding();
+    setFeedback(rounding ? `Use the cards to get within ${rounding} of the target.` : "Use the cards to hit the target exactly.", "");
+  }
+
+  function setFeedback(message, state) {
+    if (!feedback) return;
+    feedback.textContent = message;
+    feedback.classList.remove("is-good", "is-warn");
+    if (state) feedback.classList.add(state);
+  }
+
+  function tokenize(input) {
+    const cleaned = input.replaceAll("x", "*").replaceAll("X", "*").replaceAll("×", "*").replaceAll("÷", "/").replace(/\s+/g, "");
+    if (!/^[\d+\-*/().]+$/.test(cleaned)) throw new Error("Use only numbers, +, -, x, / and brackets.");
+    return cleaned.match(/\d+(?:\.\d+)?|[+\-*/()]/g) || [];
+  }
+
+  function toRpn(tokens) {
+    const output = [];
+    const ops = [];
+    const precedence = { "+": 1, "-": 1, "*": 2, "/": 2 };
+    tokens.forEach((token) => {
+      if (/^\d/.test(token)) {
+        output.push(Number(token));
+      } else if (token in precedence) {
+        while (ops.length && ops[ops.length - 1] in precedence && precedence[ops[ops.length - 1]] >= precedence[token]) {
+          output.push(ops.pop());
+        }
+        ops.push(token);
+      } else if (token === "(") {
+        ops.push(token);
+      } else if (token === ")") {
+        while (ops.length && ops[ops.length - 1] !== "(") output.push(ops.pop());
+        if (ops.pop() !== "(") throw new Error("Check your brackets.");
+      }
+    });
+    while (ops.length) {
+      const op = ops.pop();
+      if (op === "(") throw new Error("Check your brackets.");
+      output.push(op);
+    }
+    return output;
+  }
+
+  function evaluateRpn(rpn) {
+    const stack = [];
+    rpn.forEach((token) => {
+      if (typeof token === "number") {
+        stack.push(token);
+        return;
+      }
+      const b = stack.pop();
+      const a = stack.pop();
+      if (a === undefined || b === undefined) throw new Error("That expression is incomplete.");
+      if (token === "+") stack.push(a + b);
+      if (token === "-") stack.push(a - b);
+      if (token === "*") stack.push(a * b);
+      if (token === "/") {
+        if (b === 0) throw new Error("Division by zero is not allowed.");
+        stack.push(a / b);
+      }
+    });
+    if (stack.length !== 1 || !Number.isFinite(stack[0])) throw new Error("That expression is incomplete.");
+    return stack[0];
+  }
+
+  function validateNumbers(tokens) {
+    const used = tokens.filter((token) => /^\d/.test(token)).map(Number);
+    const cardCounts = countValues(cards);
+    const usedCounts = countValues(used);
+    for (const value of used) {
+      if (!cardCounts[value]) throw new Error(`${value} is not one of your cards.`);
+      if (usedCounts[value] > cardCounts[value]) throw new Error(`${value} was used too many times.`);
+    }
+  }
+
+  check?.addEventListener("click", () => {
+    try {
+      const tokens = tokenize(expression.value);
+      if (!tokens.length) throw new Error("Type an expression first.");
+      validateNumbers(tokens);
+      const value = evaluateRpn(toRpn(tokens));
+      const rounded = Math.round(value * 100) / 100;
+      const gap = Math.abs(value - target);
+      const rounding = getRounding();
+      if (gap < 0.000001) {
+        setFeedback(`Exact hit: ${rounded}. Beautiful.`, "is-good");
+      } else if (rounding && gap <= rounding) {
+        setFeedback(`Close enough: ${rounded}. Difference from target: ${Math.round(gap * 100) / 100}.`, "is-good");
+      } else {
+        setFeedback(`You made ${rounded}. Difference from target: ${Math.round(gap * 100) / 100}.`, "is-warn");
+      }
+    } catch (error) {
+      setFeedback(error.message, "is-warn");
+    }
+  });
+
+  clear?.addEventListener("click", () => {
+    expression.value = "";
+    setFeedback("Cleared. Try a new combination.", "");
+  });
+
+  cardsEl.addEventListener("click", (event) => {
+    const card = event.target.closest("[data-card-value]");
+    if (!card) return;
+    if (!expression) return;
+    expression.value = `${expression.value}${expression.value ? " " : ""}${card.dataset.cardValue}`;
+    expression.focus();
+  });
+
+  largeCountOptions.forEach((option) => option.addEventListener("change", renderRound));
+  roundingOptions.forEach((option) => option.addEventListener("change", renderRound));
+  newRound.addEventListener("click", renderRound);
+  renderRound();
+});
+
+document.querySelectorAll("[data-fraction-forge]").forEach((game) => {
+  const pairs = [["1/2", "2/4"], ["1/3", "2/6"], ["3/4", "6/8"], ["2/5", "4/10"], ["1/4", "3/12"], ["5/6", "10/12"]];
+  const tiles = game.querySelector("[data-fraction-tiles]");
+  const score = game.querySelector("[data-fraction-score]");
+  const feedback = game.querySelector("[data-fraction-feedback]");
+  const fresh = game.querySelector("[data-fraction-new]");
+  let selected = null;
+  let matched = 0;
+
+  function shuffle(items) {
+    return [...items].sort(() => Math.random() - 0.5);
+  }
+
+  function render() {
+    selected = null;
+    matched = 0;
+    score.textContent = `Score 0 / ${pairs.length}`;
+    feedback.textContent = "Pick a fraction tile.";
+    const cards = shuffle(pairs.flatMap((pair, pairIndex) => pair.map((label) => ({ label, pairIndex }))));
+    tiles.innerHTML = cards.map((card, index) => `<button class="fraction-tile" data-pair="${card.pairIndex}" data-index="${index}" type="button">${card.label}</button>`).join("");
+  }
+
+  tiles.addEventListener("click", (event) => {
+    const tile = event.target.closest(".fraction-tile");
+    if (!tile || tile.classList.contains("is-matched")) return;
+    if (!selected) {
+      selected = tile;
+      tile.classList.add("is-selected");
+      feedback.textContent = "Now choose an equivalent partner.";
+      return;
+    }
+    if (tile === selected) return;
+    if (tile.dataset.pair === selected.dataset.pair) {
+      tile.classList.add("is-matched");
+      selected.classList.add("is-matched");
+      selected.classList.remove("is-selected");
+      selected = null;
+      matched += 1;
+      score.textContent = `Score ${matched} / ${pairs.length}`;
+      feedback.textContent = matched === pairs.length ? "Forge complete. Every pair matched." : "Matched. Keep forging.";
+    } else {
+      selected.classList.remove("is-selected");
+      selected = null;
+      feedback.textContent = "Not equivalent. Try again.";
+    }
+  });
+
+  fresh.addEventListener("click", render);
+  render();
+});
+
+document.querySelectorAll("[data-algebra-lockpick]").forEach((game) => {
+  const equation = game.querySelector("[data-equation]");
+  const answer = game.querySelector("[data-algebra-answer]");
+  const feedback = game.querySelector("[data-algebra-feedback]");
+  const meter = game.querySelector("[data-lock-meter]");
+  const check = game.querySelector("[data-algebra-check]");
+  const fresh = game.querySelector("[data-algebra-new]");
+  let solution = 0;
+  let locks = 0;
+
+  function newLock() {
+    solution = Math.floor(Math.random() * 17) - 8;
+    const a = Math.floor(Math.random() * 7) + 2;
+    const b = Math.floor(Math.random() * 19) - 9;
+    const total = a * solution + b;
+    equation.textContent = `${a}x ${b >= 0 ? "+" : "-"} ${Math.abs(b)} = ${total}`;
+    answer.value = "";
+    feedback.textContent = "Ready.";
+    meter.textContent = `Tumblers open: ${locks} / 5`;
+  }
+
+  check.addEventListener("click", () => {
+    if (Number(answer.value) === solution) {
+      locks = Math.min(5, locks + 1);
+      feedback.textContent = locks === 5 ? "Vault open. Excellent inverse operations." : "Click. Tumbler opened.";
+      meter.textContent = `Tumblers open: ${locks} / 5`;
+      if (locks < 5) window.setTimeout(newLock, 650);
+    } else {
+      feedback.textContent = "Not yet. Undo the operations in reverse.";
+    }
+  });
+
+  fresh.addEventListener("click", () => {
+    locks = 0;
+    newLock();
+  });
+  newLock();
+});
+
+document.querySelectorAll("[data-graph-glider]").forEach((game) => {
+  const svg = game.querySelector("[data-graph-svg]");
+  const gradient = game.querySelector("[data-gradient]");
+  const intercept = game.querySelector("[data-intercept]");
+  const feedback = game.querySelector("[data-graph-feedback]");
+  const fresh = game.querySelector("[data-graph-new]");
+  let target = { x: 2, y: 4 };
+
+  function sx(x) { return 210 + x * 20; }
+  function sy(y) { return 210 - y * 20; }
+
+  function draw() {
+    const m = Number(gradient.value);
+    const b = Number(intercept.value);
+    const yAtTarget = m * target.x + b;
+    const hit = yAtTarget === target.y;
+    svg.innerHTML = `
+      <line class="axis" x1="0" y1="210" x2="420" y2="210"></line>
+      <line class="axis" x1="210" y1="0" x2="210" y2="420"></line>
+      <line class="glider-line" x1="${sx(-10)}" y1="${sy(m * -10 + b)}" x2="${sx(10)}" y2="${sy(m * 10 + b)}"></line>
+      <circle class="target-point" cx="${sx(target.x)}" cy="${sy(target.y)}" r="9"></circle>
+    `;
+    feedback.textContent = hit ? `Direct hit: y = ${m}x ${b >= 0 ? "+" : "-"} ${Math.abs(b)}` : `Target (${target.x}, ${target.y}). Current y there: ${yAtTarget}.`;
+    feedback.classList.toggle("is-good", hit);
+  }
+
+  function newTarget() {
+    target = { x: Math.floor(Math.random() * 13) - 6, y: Math.floor(Math.random() * 13) - 6 };
+    draw();
+  }
+
+  gradient.addEventListener("input", draw);
+  intercept.addEventListener("input", draw);
+  fresh.addEventListener("click", newTarget);
+  newTarget();
+});
+
+document.querySelectorAll("[data-angle-architect]").forEach((game) => {
+  const svg = game.querySelector("[data-angle-svg]");
+  const prompt = game.querySelector("[data-angle-prompt]");
+  const answer = game.querySelector("[data-angle-answer]");
+  const feedback = game.querySelector("[data-angle-feedback]");
+  const check = game.querySelector("[data-angle-check]");
+  const fresh = game.querySelector("[data-angle-new]");
+  let missing = 0;
+
+  function draw() {
+    const straight = Math.random() > 0.5;
+    const known = straight ? Math.floor(Math.random() * 110) + 25 : Math.floor(Math.random() * 65) + 15;
+    missing = straight ? 180 - known : 90 - known;
+    prompt.textContent = straight ? `Straight line: one angle is ${known} degrees. Find the missing angle.` : `Right angle: one angle is ${known} degrees. Find the missing angle.`;
+    svg.innerHTML = `
+      <line class="beam" x1="70" y1="240" x2="350" y2="240"></line>
+      <line class="beam" x1="210" y1="240" x2="${straight ? 120 : 210}" y2="${straight ? 100 : 90}"></line>
+      <path class="angle-arc" d="M 250 240 A 40 40 0 0 0 210 200"></path>
+      <text x="245" y="208" font-size="26" fill="#121514">${known} deg</text>
+      <text x="135" y="206" font-size="32" fill="#ff8f70">?</text>
+    `;
+    answer.value = "";
+    feedback.textContent = "Enter the missing angle.";
+  }
+
+  check.addEventListener("click", () => {
+    const value = Number(answer.value);
+    const correct = value === missing;
+    feedback.textContent = correct ? "Structure stable. Nice angle fact." : `Not quite. The missing angle is ${missing} degrees.`;
+    feedback.classList.toggle("is-good", correct);
+  });
+  fresh.addEventListener("click", draw);
+  draw();
+});
+
+document.querySelectorAll("[data-data-detective]").forEach((game) => {
+  const valuesEl = game.querySelector("[data-data-values]");
+  const bars = game.querySelector("[data-data-bars]");
+  const question = game.querySelector("[data-data-question]");
+  const answer = game.querySelector("[data-data-answer]");
+  const feedback = game.querySelector("[data-data-feedback]");
+  const check = game.querySelector("[data-data-check]");
+  const fresh = game.querySelector("[data-data-new]");
+  let values = [];
+  let task = "mean";
+  let solution = 0;
+
+  function getMode(valuesList) {
+    const counts = {};
+    valuesList.forEach((value) => counts[value] = (counts[value] || 0) + 1);
+    return Number(Object.keys(counts).sort((a, b) => counts[b] - counts[a] || Number(a) - Number(b))[0]);
+  }
+
+  function newCase() {
+    values = Array.from({ length: 8 }, () => Math.floor(Math.random() * 12) + 1);
+    task = ["mean", "median", "mode", "range"][Math.floor(Math.random() * 4)];
+    const sorted = [...values].sort((a, b) => a - b);
+    if (task === "mean") solution = values.reduce((a, b) => a + b, 0) / values.length;
+    if (task === "median") solution = (sorted[3] + sorted[4]) / 2;
+    if (task === "mode") solution = getMode(values);
+    if (task === "range") solution = Math.max(...values) - Math.min(...values);
+    question.textContent = `Find the ${task} of the evidence.`;
+    valuesEl.innerHTML = values.map((value) => `<span>${value}</span>`).join("");
+    bars.innerHTML = values.map((value) => `<i style="height:${value * 7}%"></i>`).join("");
+    answer.value = "";
+    feedback.textContent = "Inspect the evidence.";
+  }
+
+  check.addEventListener("click", () => {
+    const value = Number(answer.value);
+    const correct = Math.abs(value - solution) < 0.01;
+    feedback.textContent = correct ? `Case solved: ${task} = ${solution}.` : `Close the case with ${solution}.`;
+    feedback.classList.toggle("is-good", correct);
+  });
+  fresh.addEventListener("click", newCase);
+  newCase();
+});

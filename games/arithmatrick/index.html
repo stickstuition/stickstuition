@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Arithmatrick | Sticks Tuition</title>
+    <link rel="stylesheet" href="../../styles.css">
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="nav-shell">
+        <a class="brand" href="../../index.html"><span class="brand-mark">ST</span><span>STICKS TUITION<small>Make Maths Stick</small></span></a>
+        <nav class="nav-links" aria-label="Site"><a href="../../index.html">Home</a><a href="../../our-lessons.html">Our Lessons</a><a class="games-link" href="../../maths-games.html" aria-current="page">Game Lab</a><a href="../../pricing-and-packages.html">Pricing</a><a href="../../login.html">Login</a></nav>
+        <a class="nav-cta" href="../../maths-games.html">All games</a>
+      </div>
+    </header>
+
+    <main class="numbers-game-page" data-arithmatrick>
+      <section class="numbers-title-band">
+        <p class="eyebrow">Teacher-led arithmetic</p>
+        <h1>Arithmatrick</h1>
+      </section>
+
+      <section class="numbers-stage" aria-label="Arithmatrick numbers game">
+        <div class="rounding-row" aria-label="Rounding options">
+          <span>For a simpler game, choose rounding:</span>
+          <label><input type="radio" name="rounding" value="50" data-rounding> 50</label>
+          <label><input type="radio" name="rounding" value="20" data-rounding> 20</label>
+          <label><input type="radio" name="rounding" value="10" data-rounding> 10</label>
+          <label><input type="radio" name="rounding" value="5" data-rounding> 5</label>
+          <label><input type="radio" name="rounding" value="0" data-rounding checked> no rounding</label>
+        </div>
+
+        <div class="numbers-board">
+          <fieldset class="card-combo" aria-label="Large and small card combination">
+            <legend>Large and small cards</legend>
+            <label><input type="radio" name="large-count" value="0" data-large-count-option> 0 L / 6 S</label>
+            <label><input type="radio" name="large-count" value="1" data-large-count-option> 1 L / 5 S</label>
+            <label><input type="radio" name="large-count" value="2" data-large-count-option checked> 2 L / 4 S</label>
+            <label><input type="radio" name="large-count" value="3" data-large-count-option> 3 L / 3 S</label>
+            <label><input type="radio" name="large-count" value="4" data-large-count-option> 4 L / 2 S</label>
+            <label><input type="radio" name="large-count" value="5" data-large-count-option> 5 L / 1 S</label>
+            <label><input type="radio" name="large-count" value="6" data-large-count-option> 6 L / 0 S</label>
+          </fieldset>
+
+          <div class="goal-block">
+            <div class="target-orb"><span>Target</span><strong data-target>000</strong></div>
+          </div>
+
+          <div class="number-cards" data-number-cards aria-label="Number cards"></div>
+
+          <button class="button primary" type="button" data-new-round>New round</button>
+        </div>
+      </section>
+    </main>
+
+    <script src="../../site.js"></script>
+  </body>
+</html>

@@ -1,0 +1,187 @@
+Here’s the handover summary for the next chat.
+Project Location
+Work should now happen in:
+C:\Sticks Tuition Dev
+This replaced the old OneDrive working folder because OneDrive was causing permission/file-lock weirdness. The local preview server was started from this folder on:
+http://localhost:8087
+Last known server process ID was 34000, though a new chat may need to restart it.
+Overall Goal
+We are rebuilding the Sticks Tuition website into a much more polished, dark, premium-feeling version. The original Wix site was used only as a content/page base. The user wants it to feel much better visually, especially the Maths Games section.
+Core Site Files
+Current static site files include:
+index.html
+our-lessons.html
+pricing-and-packages.html
+login.html
+maths-games.html
+horse-race.html
+arithmatrick.html
+fraction-forge.html
+algebra-lockpick.html
+graph-glider.html
+angle-architect.html
+data-detective.html
+styles.css
+site.js
+There is also:
+gamesimages\
+with these image assets:
+Arithmatrick.png
+Fraction Forge.png
+The Chance Cup.png
+Theme / Brand Direction
+The site uses a dark premium theme. The user specifically asked to keep:
+the dark overall theme
+the mint CTA button style, e.g. “Start Today” / “Choose a game”
+the iridescent rainbow “Maths Games” nav button
+The rest of the accent system was changed to the brand colours:
+#C6001C red
+#4B4875 purple
+#F2F2F2 off-white
+#121524 navy
+The old teal/coral/gold accents were largely removed. A scan showed only the rainbow Maths Games pill still contains the old bright rainbow colours, intentionally.
+Navigation
+All main pages have the top nav:
+Home
+Our Lessons
+Maths Games
+Pricing
+Login
+The Maths Games nav item is intentionally styled as a standout rainbow/liquid-glass button.
+Footer
+The footer was redesigned because it looked too spread out. It now has:
+brand/socials on the left
+contact form in the middle
+footer nav on the right
+dark navy/purple/red background glow
+better spacing and mobile stacking
+mobile nav links left-aligned rather than floating awkwardly right
+This was visually checked on desktop and mobile.
+Maths Games Page
+maths-games.html is now a gallery/arcade landing page, not an embedded-games page.
+Hero copy:
+“Flash-style games. Serious maths.”
+Supporting copy:
+“Pick a topic, launch a full game page, and play a classroom-ready first version.”
+The gallery currently has seven game cards:
+Horse Race
+Arithmatrick
+Fraction Forge
+Algebra Lockpick
+Graph Glider
+Angle Architect
+Data Detective
+Each game card links to its own dedicated page.
+The first three game previews now use images from gamesimages:
+Horse Race uses gamesimages/The%20Chance%20Cup.png
+Arithmatrick uses gamesimages/Arithmatrick.png
+Fraction Forge uses gamesimages/Fraction%20Forge.png
+The preview boxes remain the same rounded card shape. The images use object-fit: contain so the full artwork is visible rather than cropped.
+The remaining games still use generated/styled CSS preview art until matching image files are added.
+Game Descriptions
+Current game descriptions/copy established:
+Horse Race
+Roll two dice and send the matching numbered horse down the track. A live probability game where students quickly see why some totals appear more often than others.
+Arithmatrick
+Use six number cards and the four operations to hit a target number. Great for arithmetic fluency, mental maths, brackets, and flexible number thinking.
+Fraction Forge
+Match equivalent fractions to complete the forge. Students practise simplifying, comparing, and recognising fraction families under light game pressure.
+Algebra Lockpick
+Solve linear equations to open a vault, one lock at a time. Each correct value of x cracks another tumbler.
+Graph Glider
+Adjust gradient and intercept controls to guide a line through a target coordinate. A visual game for straight-line graphs and coordinate reasoning.
+Angle Architect
+Find missing angles to stabilise geometric structures. Students use angle facts, reasoning, and quick calculation to keep the build standing.
+Data Detective
+Inspect datasets and solve cases using mean, median, mode, and range. A statistics game built around evidence, patterns, and calculation.
+Foopy
+User said Foopy is a sports-themed maths game where players solve equations using AFL players’ jumper numbers. Each player represents the number on their guernsey, so students answer maths problems by combining arithmetic with AFL knowledge.
+Short Foopy card copy suggested:
+“Solve maths puzzles using AFL player jumper numbers. A football-flavoured arithmetic game for students who know their players as well as their times tables.”
+Foopy is not yet embedded/added to the gallery in code, but it should be added later.
+Game Pages
+Each game has its own page:
+horse-race.html
+arithmatrick.html
+fraction-forge.html
+algebra-lockpick.html
+graph-glider.html
+angle-architect.html
+data-detective.html
+All pages share the site header and link back to maths-games.html via “All games”.
+Game Implementations in site.js
+site.js contains playable first versions:
+Horse Race:
+two dice
+sums advance horses
+first to finish wins
+horses are now CSS horse sprites, not dots
+horse 1 is noted as impossible because two dice cannot sum to 1
+Arithmatrick:
+inspired by Maths Starters / Numbers Game
+choose large/small number cards
+target generated
+expression input supports +, -, x, /, brackets
+validates that cards are only used as allowed
+checks exact/difference from target
+Fraction Forge:
+match equivalent fraction pairs
+score updates
+wrong matches give feedback
+Algebra Lockpick:
+generates linear equations
+user enters value of x
+correct answers advance lock/tumbler progress
+Graph Glider:
+sliders for gradient m and intercept b
+SVG graph
+target coordinate
+feedback based on whether the line hits the target
+Angle Architect:
+missing-angle style prompts
+answer in degrees
+SVG board
+Data Detective:
+dataset shown as evidence
+asks for mean/median/mode/range
+user solves statistic
+Visual Verification Already Done
+Multiple screenshots were rendered using headless Edge. Temporary screenshot/profile files were cleaned up after each pass.
+Checks run at different points:
+node --check site.js
+The main pages and game image paths returned 200 from the local server.
+Known verified routes:
+maths-games.html
+index.html
+our-lessons.html
+pricing-and-packages.html
+login.html
+gamesimages/The%20Chance%20Cup.png
+gamesimages/Arithmatrick.png
+gamesimages/Fraction%20Forge.png
+Important Design Fixes Already Made
+Footer desktop layout tightened.
+Footer mobile stacking fixed.
+Games gallery mobile clipping fixed.
+Game card image previews constrained on mobile.
+Brand palette switched.
+Image previews added for first three games.
+Arithmatrick image initially cropped; changed to object-fit: contain.
+Mobile card widths constrained to avoid right-edge overflow.
+Potential Next Steps
+Likely next work:
+Add Foopy to maths-games.html.
+Decide whether Foopy gets its own card, embed iframe, or opens external/internal page.
+Add more gamesimages artwork for:Algebra Lockpick
+Graph Glider
+Angle Architect
+Data Detective
+
+Deepen the gameplay on all game pages.
+Possibly rename Horse Race to “The Chance Cup” if that matches the image/branding.
+Add footer to individual game pages if desired, since some game pages currently only have header/main/script.
+Restart preview server in the new chat if needed from C:\Sticks Tuition Dev.
+Suggested server command:
+py -3 -m http.server 8087
+from:
+C:\Sticks Tuition Dev
