@@ -2266,6 +2266,386 @@ textarea:focus {
 .data-preview { grid-template-columns: repeat(4, 1fr); align-items: end; gap: 10px; padding: 82px 18px 18px; }
 .data-preview i { width: 100%; border-radius: 999px 999px 8px 8px; background: linear-gradient(180deg, var(--mint), var(--coral)); }
 
+.puzzleforge-preview {
+  display: grid;
+  place-items: center;
+  background:
+    linear-gradient(135deg, rgba(185, 244, 222, 0.34), rgba(255, 255, 255, 0.08)),
+    #161928;
+}
+
+.puzzleforge-preview svg {
+  width: 76%;
+  height: 76%;
+}
+
+.puzzleforge-preview rect,
+.puzzleforge-preview path,
+.puzzleforge-preview circle {
+  fill: none;
+  stroke: rgba(255, 255, 255, 0.86);
+  stroke-width: 5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.pf-card-mini {
+  position: absolute;
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 58px;
+  border-radius: 8px;
+  background: #fff;
+  color: var(--coal);
+  font-family: "Poppins Semi", "Questrial", sans-serif;
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.22);
+}
+
+.pf-card-mini:first-child {
+  left: 22px;
+  top: 18px;
+  transform: rotate(-9deg);
+}
+
+.pf-card-mini:nth-child(2) {
+  right: 26px;
+  bottom: 18px;
+  transform: rotate(8deg);
+}
+
+.puzzleforge-page {
+  min-height: calc(100vh - 82px);
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.05) 25%, transparent 25%) 0 0 / 30px 30px,
+    linear-gradient(225deg, rgba(255, 255, 255, 0.04) 25%, transparent 25%) 0 0 / 30px 30px,
+    #151824;
+  color: #fff;
+}
+
+.puzzleforge-hero {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  background:
+    radial-gradient(circle at 18% 22%, rgba(185, 244, 222, 0.18), transparent 28%),
+    radial-gradient(circle at 78% 36%, rgba(198, 0, 28, 0.22), transparent 30%),
+    linear-gradient(135deg, #171a2a, #242747);
+}
+
+.puzzleforge-hero-inner {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(320px, 430px);
+  align-items: center;
+  gap: 42px;
+  width: min(var(--max), calc(100% - 40px));
+  margin: 0 auto;
+  padding: 54px 0 42px;
+}
+
+.puzzleforge-hero h1 {
+  margin: 0;
+  font-family: "Poppins Semi", "Questrial", sans-serif;
+  font-size: clamp(46px, 7vw, 88px);
+  line-height: 0.92;
+}
+
+.puzzleforge-hero .lead {
+  max-width: 680px;
+  color: rgba(255, 255, 255, 0.78);
+}
+
+.puzzleforge-hero-diagram {
+  padding: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.28);
+}
+
+.puzzleforge-hero-diagram svg {
+  width: 100%;
+  min-height: 230px;
+}
+
+.puzzleforge-hero-diagram rect,
+.puzzleforge-hero-diagram path,
+.puzzleforge-hero-diagram polygon,
+.puzzleforge-hero-diagram circle {
+  fill: rgba(185, 244, 222, 0.16);
+  stroke: rgba(255, 255, 255, 0.82);
+  stroke-width: 4;
+}
+
+.puzzleforge-hero-diagram text {
+  fill: #fff;
+  font-family: "Poppins Semi", "Questrial", sans-serif;
+  font-size: 24px;
+}
+
+.puzzleforge-shell {
+  display: grid;
+  grid-template-columns: minmax(230px, 280px) minmax(0, 1fr) minmax(250px, 320px);
+  gap: 16px;
+  width: min(1380px, calc(100% - 40px));
+  margin: 0 auto;
+  padding: 24px 0 72px;
+}
+
+.puzzleforge-panel,
+.puzzleforge-question {
+  min-width: 0;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 20px 70px rgba(0, 0, 0, 0.24);
+}
+
+.puzzleforge-panel {
+  display: grid;
+  align-content: start;
+  gap: 12px;
+  padding: 18px;
+}
+
+.puzzleforge-panel h2,
+.puzzleforge-question h2 {
+  margin: 0;
+  font-family: "Poppins Semi", "Questrial", sans-serif;
+  line-height: 1.08;
+}
+
+.puzzleforge-panel label,
+.puzzleforge-kicker {
+  color: rgba(255, 255, 255, 0.64);
+  font-size: 13px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.puzzleforge-panel select {
+  width: 100%;
+  min-height: 44px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+  background: rgba(18, 21, 36, 0.86);
+  color: #fff;
+  padding: 0 12px;
+  font: inherit;
+}
+
+.puzzleforge-status,
+.puzzleforge-tutor-reply,
+.puzzleforge-feedback {
+  margin: 0;
+  padding: 12px;
+  border-radius: 12px;
+  background: rgba(18, 21, 36, 0.56);
+  color: rgba(255, 255, 255, 0.82);
+}
+
+.puzzleforge-checks {
+  display: grid;
+  gap: 7px;
+}
+
+.puzzleforge-checks span {
+  display: block;
+  padding: 8px 10px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.08);
+  font-size: 13px;
+}
+
+.puzzleforge-checks .is-good {
+  color: var(--mint);
+}
+
+.puzzleforge-checks .is-warn {
+  color: #ffb3a6;
+}
+
+.puzzleforge-question {
+  display: grid;
+  gap: 18px;
+  padding: 20px;
+}
+
+.puzzleforge-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.puzzleforge-meta span {
+  display: inline-flex;
+  min-height: 28px;
+  align-items: center;
+  padding: 5px 10px;
+  border-radius: 999px;
+  background: rgba(185, 244, 222, 0.14);
+  color: var(--mint);
+  font-family: "Poppins Semi", "Questrial", sans-serif;
+  font-size: 12px;
+}
+
+.puzzleforge-meta span:last-child {
+  background: rgba(185, 244, 222, 0.22);
+}
+
+.puzzleforge-meta span.is-failed {
+  background: rgba(198, 0, 28, 0.22);
+  color: #ffb3a6;
+}
+
+.puzzleforge-diagram {
+  display: grid;
+  place-items: center;
+  min-height: 260px;
+  border-radius: 14px;
+  background: #f8faf9;
+  color: var(--coal);
+  overflow: hidden;
+}
+
+.puzzleforge-diagram svg {
+  width: min(100%, 460px);
+  height: auto;
+  max-height: 390px;
+}
+
+.pf-grid-line {
+  stroke: rgba(18, 21, 36, 0.16);
+  stroke-width: 1.5;
+}
+
+.pf-axis {
+  stroke: #151824;
+  stroke-width: 3;
+  stroke-linecap: round;
+}
+
+.pf-shape,
+.pf-shade,
+.pf-sector {
+  fill: rgba(185, 244, 222, 0.55);
+  stroke: #151824;
+  stroke-width: 3;
+  stroke-linejoin: round;
+}
+
+.pf-shade {
+  fill-rule: evenodd;
+}
+
+.pf-empty,
+.pf-spinner {
+  fill: #fff;
+  stroke: #151824;
+  stroke-width: 3;
+}
+
+.pf-point,
+.pf-dot {
+  fill: var(--coral);
+  stroke: #151824;
+  stroke-width: 2;
+}
+
+.pf-dot {
+  fill: rgba(75, 72, 117, 0.25);
+}
+
+.pf-spoke,
+.pf-arc {
+  fill: none;
+  stroke: #151824;
+  stroke-width: 2.5;
+  stroke-linecap: round;
+}
+
+.puzzleforge-diagram text {
+  fill: #151824;
+  font-family: "Poppins Semi", "Questrial", sans-serif;
+  font-size: 16px;
+}
+
+.puzzleforge-options {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.puzzleforge-options button,
+.puzzleforge-tutor-buttons button {
+  min-width: 0;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.10);
+  color: #fff;
+  cursor: pointer;
+  font: inherit;
+}
+
+.puzzleforge-options button {
+  display: grid;
+  gap: 4px;
+  justify-items: start;
+  min-height: 78px;
+  padding: 12px;
+  text-align: left;
+}
+
+.puzzleforge-options strong {
+  color: var(--mint);
+  font-family: "Poppins Semi", "Questrial", sans-serif;
+}
+
+.puzzleforge-options span {
+  overflow-wrap: anywhere;
+}
+
+.puzzleforge-options button:hover,
+.puzzleforge-tutor-buttons button:hover {
+  background: rgba(255, 255, 255, 0.16);
+}
+
+.puzzleforge-options button.is-correct {
+  border-color: rgba(185, 244, 222, 0.78);
+  background: rgba(185, 244, 222, 0.18);
+}
+
+.puzzleforge-options button.is-wrong {
+  border-color: rgba(255, 143, 112, 0.78);
+  background: rgba(198, 0, 28, 0.18);
+}
+
+.puzzleforge-feedback.is-good {
+  color: var(--mint);
+}
+
+.puzzleforge-feedback.is-warn {
+  color: #ffb3a6;
+}
+
+.puzzleforge-tutor {
+  gap: 16px;
+}
+
+.puzzleforge-tutor p {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.78);
+}
+
+.puzzleforge-tutor-buttons {
+  display: grid;
+  gap: 8px;
+}
+
+.puzzleforge-tutor-buttons button {
+  min-height: 40px;
+  padding: 8px 10px;
+  text-align: left;
+}
+
 .angle-architect-page {
   min-height: calc(100vh - 82px);
   background:
@@ -3840,6 +4220,19 @@ textarea:focus {
 }
 
 @media (max-width: 1080px) {
+  .puzzleforge-hero-inner,
+  .puzzleforge-shell {
+    grid-template-columns: 1fr;
+  }
+
+  .puzzleforge-shell {
+    width: min(820px, calc(100% - 32px));
+  }
+
+  .puzzleforge-options {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
   .railway-layout {
     grid-template-columns: 1fr;
   }
@@ -3877,6 +4270,38 @@ textarea:focus {
 }
 
 @media (max-width: 680px) {
+  .puzzleforge-hero-inner {
+    width: min(calc(100% - 32px), var(--max));
+    padding: 38px 0 30px;
+  }
+
+  .puzzleforge-hero h1 {
+    font-size: 44px;
+  }
+
+  .puzzleforge-hero-diagram {
+    display: none;
+  }
+
+  .puzzleforge-shell {
+    width: min(calc(100% - 24px), 440px);
+    padding-top: 14px;
+  }
+
+  .puzzleforge-question,
+  .puzzleforge-panel {
+    padding: 14px;
+    border-radius: 14px;
+  }
+
+  .puzzleforge-options {
+    grid-template-columns: 1fr;
+  }
+
+  .puzzleforge-diagram {
+    min-height: 210px;
+  }
+
   .railway-shell {
     width: calc(100vw - 28px);
     max-width: var(--max);

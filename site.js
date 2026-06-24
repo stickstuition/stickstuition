@@ -660,3 +660,336 @@ document.querySelectorAll("[data-data-detective]").forEach((game) => {
   fresh.addEventListener("click", newCase);
   newCase();
 });
+
+document.querySelectorAll("[data-puzzleforge]").forEach((game) => {
+  const topicSelect = game.querySelector("[data-pf-topic]");
+  const difficultySelect = game.querySelector("[data-pf-difficulty]");
+  const generateButton = game.querySelector("[data-pf-generate]");
+  const status = game.querySelector("[data-pf-status]");
+  const checks = game.querySelector("[data-pf-checks]");
+  const templateLabel = game.querySelector("[data-pf-template]");
+  const verifiedLabel = game.querySelector("[data-pf-verified]");
+  const questionText = game.querySelector("[data-pf-question]");
+  const diagram = game.querySelector("[data-pf-diagram]");
+  const optionsEl = game.querySelector("[data-pf-options]");
+  const feedback = game.querySelector("[data-pf-feedback]");
+  const explanation = game.querySelector("[data-pf-explanation]");
+  const tutorReply = game.querySelector("[data-pf-tutor-reply]");
+  let currentQuestion = null;
+
+  const labels = ["A", "B", "C", "D", "E"];
+
+  function rand(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+  }
+
+  function sample(items) {
+    return items[rand(0, items.length - 1)];
+  }
+
+  function shuffle(items) {
+    return [...items].sort(() => Math.random() - 0.5);
+  }
+
+  function uniqueDistractors(correct, candidates, format) {
+    const values = [];
+    candidates.forEach((candidate) => {
+      if (candidate === correct) return;
+      if (!Number.isFinite(Number(candidate))) return;
+      if (!values.includes(candidate)) values.push(candidate);
+    });
+    let nudge = 1;
+    while (values.length < 4) {
+      const candidate = correct + nudge * (values.length % 2 ? -1 : 1);
+      if (candidate !== correct && !values.includes(candidate)) values.push(candidate);
+      nudge += 1;
+    }
+    return shuffle([correct, ...values.slice(0, 4)]).map((value, index) => ({
+      label: labels[index],
+      value,
+      text: format(value),
+    }));
+  }
+
+  function coordinateSvg(points, extras = "") {
+    const size = 360;
+    const origin = 180;
+    const unit = 28;
+    const sx = (x) => origin + x * unit;
+    const sy = (y) => origin - y * unit;
+    const grid = Array.from({ length: 13 }, (_, index) => index - 6).map((n) => `
+      <line class="pf-grid-line" x1="${sx(n)}" y1="${sy(-6)}" x2="${sx(n)}" y2="${sy(6)}"></line>
+      <line class="pf-grid-line" x1="${sx(-6)}" y1="${sy(n)}" x2="${sx(6)}" y2="${sy(n)}"></line>
+    `).join("");
+    return `
+      <svg viewBox="0 0 ${size} ${size}" role="img" aria-label="Coordinate diagram">
+        ${grid}
+        <line class="pf-axis" x1="12" y1="${origin}" x2="348" y2="${origin}"></line>
+        <line class="pf-axis" x1="${origin}" y1="12" x2="${origin}" y2="348"></line>
+        ${extras}
+        ${points.map((point) => `<circle class="pf-point" cx="${sx(point.x)}" cy="${sy(point.y)}" r="7"></circle><text x="${sx(point.x) + 9}" y="${sy(point.y) - 8}">${point.label}</text>`).join("")}
+      </svg>
+    `;
+  }
+
+  function gridAreaTemplate(difficulty) {
+    const width = difficulty === "beginner" ? rand(3, 6) : rand(5, 9);
+    const height = difficulty === "senior" ? rand(5, 9) : rand(3, 7);
+    const cut = rand(1, Math.min(width, height) - 1);
+    const answer = width * height - cut * cut;
+    const svg = `
+      <svg viewBox="0 0 360 260" role="img" aria-label="Shaded grid area">
+        ${Array.from({ length: width + 1 }, (_, i) => `<line class="pf-grid-line" x1="${40 + i * 28}" y1="30" x2="${40 + i * 28}" y2="${30 + height * 28}"></line>`).join("")}
+        ${Array.from({ length: height + 1 }, (_, i) => `<line class="pf-grid-line" x1="40" y1="${30 + i * 28}" x2="${40 + width * 28}" y2="${30 + i * 28}"></line>`).join("")}
+        <path class="pf-shade" d="M40 30 H${40 + width * 28} V${30 + height * 28} H40 Z M40 30 H${40 + cut * 28} V${30 + cut * 28} H40 Z"></path>
+        <text x="42" y="${56 + height * 28}">Each square has area 1</text>
+      </svg>
+    `;
+    return {
+      topic: "Geometry",
+      templateId: "grid-shaded-area",
+      questionText: `A ${width} by ${height} rectangle is drawn on a square grid. A ${cut} by ${cut} square is removed from one corner. What is the shaded area?`,
+      correctValue: answer,
+      diagram: { type: "grid", svg, data: { width, height, cut } },
+      options: uniqueDistractors(answer, [width * height, answer + cut, answer - cut, width + height + cut, answer + cut * cut], (v) => `${v} square units`),
+      explanationShort: `Find the rectangle area, then subtract the missing square: ${width} x ${height} - ${cut} x ${cut} = ${answer}.`,
+      explanationFull: `Key idea: the shaded area is the whole rectangle minus the cut-out corner. The rectangle has area ${width * height}. The removed square has area ${cut * cut}. So ${width * height} - ${cut * cut} = ${answer}.`,
+      commonMistakes: `A common mistake is to count the outside dimensions and forget to subtract the removed ${cut} by ${cut} square.`,
+      trick: "Work with areas, not just side lengths.",
+    };
+  }
+
+  function coordinateAreaTemplate(difficulty) {
+    const base = difficulty === "beginner" ? rand(3, 6) : rand(4, 9);
+    const height = difficulty === "senior" ? rand(5, 9) : rand(3, 7);
+    const x = rand(-4, 1);
+    const y = rand(-4, 0);
+    const points = [{ label: "A", x, y }, { label: "B", x: x + base, y }, { label: "C", x, y: y + height }];
+    const answer = (base * height) / 2;
+    const polygon = `<polygon class="pf-shape" points="${points.map((p) => `${180 + p.x * 28},${180 - p.y * 28}`).join(" ")}"></polygon>`;
+    return {
+      topic: "Geometry",
+      templateId: "coordinate-triangle-area",
+      questionText: `Triangle ABC has vertices A(${x}, ${y}), B(${x + base}, ${y}) and C(${x}, ${y + height}). What is its area?`,
+      correctValue: answer,
+      diagram: { type: "coordinate-plane", svg: coordinateSvg(points, polygon), data: { points, base, height } },
+      options: uniqueDistractors(answer, [base * height, base + height, answer + base, answer + height, Math.abs(base - height)], (v) => `${v} square units`),
+      explanationShort: `The base is ${base} and the height is ${height}, so the area is (${base} x ${height}) / 2 = ${answer}.`,
+      explanationFull: `Key idea: this is a right triangle on the coordinate grid. AB is ${base} units and AC is ${height} units. Triangle area is half base times height, so (${base} x ${height}) / 2 = ${answer}.`,
+      commonMistakes: "A common mistake is to use base times height and forget to halve it for a triangle.",
+      trick: "Use the horizontal and vertical sides as the base and height.",
+    };
+  }
+
+  function remainderTemplate(difficulty) {
+    const divisor = difficulty === "senior" ? rand(7, 12) : rand(4, 9);
+    const quotient = difficulty === "beginner" ? rand(8, 18) : rand(18, 45);
+    const remainder = rand(1, divisor - 1);
+    const number = divisor * quotient + remainder;
+    return {
+      topic: "Number Properties",
+      templateId: "remainder-logic",
+      questionText: `When ${number} is divided by ${divisor}, what is the remainder?`,
+      correctValue: remainder,
+      diagram: { type: "number-line", svg: `<svg viewBox="0 0 360 130" role="img" aria-label="Number line jumps"><line class="pf-axis" x1="30" y1="70" x2="330" y2="70"></line><path class="pf-arc" d="M60 68 Q98 18 136 68 T212 68 T288 68"></path><text x="52" y="105">0</text><text x="248" y="105">${divisor} x ${quotient}</text><text x="298" y="52">+ ${remainder}</text></svg>`, data: { number, divisor, quotient, remainder } },
+      options: uniqueDistractors(remainder, [divisor - remainder, remainder + 1, remainder - 1, divisor, quotient], (v) => `${v}`),
+      explanationShort: `${divisor} x ${quotient} = ${divisor * quotient}, and ${number} is ${remainder} more than that.`,
+      explanationFull: `Key idea: find the nearest lower multiple of ${divisor}. Since ${divisor} x ${quotient} = ${divisor * quotient}, the difference ${number} - ${divisor * quotient} is ${remainder}.`,
+      commonMistakes: "A common mistake is to give the quotient instead of the leftover amount.",
+      trick: "Use the nearest lower multiple, then count what is left over.",
+    };
+  }
+
+  function fractionTemplate(difficulty) {
+    const denominators = difficulty === "senior" ? [8, 10, 12, 15] : [4, 5, 6, 8, 10];
+    const denominator = sample(denominators);
+    const numerator = rand(1, denominator - 2);
+    const total = denominator * rand(3, difficulty === "senior" ? 11 : 8);
+    const answer = (total / denominator) * numerator;
+    return {
+      topic: "Fractions",
+      templateId: "fraction-of-set",
+      questionText: `A collection has ${total} tiles. ${numerator}/${denominator} of the tiles are blue. How many tiles are blue?`,
+      correctValue: answer,
+      diagram: { type: "ratio-strip", svg: `<svg viewBox="0 0 360 150" role="img" aria-label="Fraction strip">${Array.from({ length: denominator }, (_, i) => `<rect class="${i < numerator ? "pf-shade" : "pf-empty"}" x="${30 + i * (300 / denominator)}" y="44" width="${300 / denominator}" height="52"></rect>`).join("")}<text x="30" y="126">${numerator} of ${denominator} equal parts are blue</text></svg>`, data: { numerator, denominator, total } },
+      options: uniqueDistractors(answer, [total / denominator, total - answer, answer + denominator, numerator * denominator, answer - numerator], (v) => `${v}`),
+      explanationShort: `One ${denominator}th is ${total / denominator}, so ${numerator}/${denominator} is ${numerator} x ${total / denominator} = ${answer}.`,
+      explanationFull: `Key idea: divide by the denominator first. ${total} divided by ${denominator} is ${total / denominator}. There are ${numerator} of those parts, so ${numerator} x ${total / denominator} = ${answer}.`,
+      commonMistakes: "A common mistake is to multiply the two numbers in the fraction instead of finding equal parts of the total.",
+      trick: "Denominator first, numerator second.",
+    };
+  }
+
+  function spinnerTemplate(difficulty) {
+    const total = difficulty === "senior" ? rand(8, 12) : rand(5, 8);
+    const wins = rand(1, total - 1);
+    const answer = wins;
+    const angle = (wins / total) * 360;
+    return {
+      topic: "Probability",
+      templateId: "spinner-probability",
+      questionText: `A spinner has ${total} equal sectors. ${wins} sectors are shaded. Out of ${total} equally likely outcomes, how many give a shaded result?`,
+      correctValue: answer,
+      diagram: { type: "spinner", svg: `<svg viewBox="0 0 240 240" role="img" aria-label="Spinner with shaded sectors"><circle class="pf-spinner" cx="120" cy="120" r="82"></circle>${Array.from({ length: total }, (_, i) => `<line class="pf-spoke" x1="120" y1="120" x2="${120 + Math.cos((i / total) * Math.PI * 2) * 82}" y2="${120 + Math.sin((i / total) * Math.PI * 2) * 82}"></line>`).join("")}<path class="pf-sector" d="M120 120 L202 120 A82 82 0 ${angle > 180 ? 1 : 0} 1 ${120 + Math.cos((angle * Math.PI) / 180) * 82} ${120 + Math.sin((angle * Math.PI) / 180) * 82} Z"></path><circle class="pf-point" cx="120" cy="120" r="5"></circle></svg>`, data: { total, wins } },
+      options: uniqueDistractors(answer, [total - wins, wins + 1, wins - 1, total, Math.max(1, total - wins + 1)], (v) => `${v}`),
+      explanationShort: `The shaded result happens on ${wins} of the ${total} equal sectors.`,
+      explanationFull: `Key idea: equal sectors are equally likely. Count the shaded sectors. There are ${wins}, so ${wins} outcomes give a shaded result.`,
+      commonMistakes: "A common mistake is to count the unshaded sectors instead of the shaded ones.",
+      trick: "For equally likely sectors, probability starts with counting.",
+    };
+  }
+
+  function statisticsTemplate(difficulty) {
+    const count = difficulty === "senior" ? 7 : 5;
+    const values = Array.from({ length: count }, () => rand(3, 18)).sort((a, b) => a - b);
+    const middle = Math.floor(values.length / 2);
+    const answer = values[middle];
+    return {
+      topic: "Statistics",
+      templateId: "median-from-chart",
+      questionText: `The values shown are already in order. What is the median?`,
+      correctValue: answer,
+      diagram: { type: "dot-row", svg: `<svg viewBox="0 0 360 150" role="img" aria-label="Ordered data row">${values.map((value, i) => `<g><circle class="${i === middle ? "pf-point" : "pf-dot"}" cx="${48 + i * (264 / (values.length - 1))}" cy="70" r="18"></circle><text x="${42 + i * (264 / (values.length - 1))}" y="76">${value}</text></g>`).join("")}<line class="pf-axis" x1="32" y1="116" x2="328" y2="116"></line></svg>`, data: { values } },
+      options: uniqueDistractors(answer, [values[0], values[values.length - 1], values.reduce((a, b) => a + b, 0) / values.length, answer + 1, answer - 1], (v) => `${Math.round(v * 10) / 10}`),
+      explanationShort: `There are ${values.length} values, so the median is the middle value: ${answer}.`,
+      explanationFull: `Key idea: the median is the middle when the data is ordered. With ${values.length} values, the middle is position ${middle + 1}, which is ${answer}.`,
+      commonMistakes: "A common mistake is to calculate the mean when the question asks for the median.",
+      trick: "Ordered data means you can go straight to the middle.",
+    };
+  }
+
+  function algebraTemplate(difficulty) {
+    const x = rand(difficulty === "senior" ? -8 : 1, difficulty === "senior" ? 12 : 10);
+    const a = rand(2, difficulty === "beginner" ? 5 : 9);
+    const b = rand(3, 16);
+    const total = a * x + b;
+    return {
+      topic: "Algebra",
+      templateId: "linear-equation",
+      questionText: `If ${a}x + ${b} = ${total}, what is x?`,
+      correctValue: x,
+      diagram: { type: "balance", svg: `<svg viewBox="0 0 360 170" role="img" aria-label="Equation balance"><line class="pf-axis" x1="70" y1="92" x2="290" y2="92"></line><line class="pf-axis" x1="180" y1="45" x2="180" y2="126"></line><rect class="pf-empty" x="78" y="104" width="78" height="34"></rect><rect class="pf-empty" x="204" y="104" width="78" height="34"></rect><text x="92" y="128">${a}x + ${b}</text><text x="229" y="128">${total}</text></svg>`, data: { a, b, total } },
+      options: uniqueDistractors(x, [total / a, total - b, x + 1, x - 1, -x], (v) => `${v}`),
+      explanationShort: `Subtract ${b}, then divide by ${a}: (${total} - ${b}) / ${a} = ${x}.`,
+      explanationFull: `Key idea: undo the operations in reverse. ${total} - ${b} = ${total - b}. Then ${total - b} divided by ${a} is ${x}.`,
+      commonMistakes: "A common mistake is to divide before subtracting the added number.",
+      trick: "Undo addition first, then multiplication.",
+    };
+  }
+
+  function measurementTemplate(difficulty) {
+    const scale = difficulty === "senior" ? rand(5, 12) : rand(2, 8);
+    const drawing = rand(3, 9);
+    const answer = scale * drawing;
+    return {
+      topic: "Measurement",
+      templateId: "scale-length",
+      questionText: `On a scale diagram, 1 cm represents ${scale} m. A path is ${drawing} cm long on the diagram. What is its real length?`,
+      correctValue: answer,
+      diagram: { type: "scale", svg: `<svg viewBox="0 0 360 150" role="img" aria-label="Scale line"><line class="pf-axis" x1="55" y1="72" x2="305" y2="72"></line><circle class="pf-point" cx="55" cy="72" r="7"></circle><circle class="pf-point" cx="305" cy="72" r="7"></circle><text x="132" y="54">${drawing} cm on diagram</text><text x="94" y="112">1 cm = ${scale} m</text></svg>`, data: { scale, drawing } },
+      options: uniqueDistractors(answer, [answer + scale, answer - scale, drawing + scale, scale, drawing], (v) => `${v} m`),
+      explanationShort: `Each centimetre represents ${scale} m, so ${drawing} cm represents ${drawing} x ${scale} = ${answer} m.`,
+      explanationFull: `Key idea: scale diagrams multiply the drawing length by the scale. The path is ${drawing} cm, and each centimetre is ${scale} m, so ${drawing} x ${scale} = ${answer} m.`,
+      commonMistakes: "A common mistake is to add the two numbers instead of multiplying by the scale.",
+      trick: "Scale length means repeated equal units, so multiply.",
+    };
+  }
+
+  const templates = {
+    Geometry: [gridAreaTemplate, coordinateAreaTemplate],
+    "Number Properties": [remainderTemplate],
+    Fractions: [fractionTemplate],
+    Probability: [spinnerTemplate],
+    Statistics: [statisticsTemplate],
+    Algebra: [algebraTemplate],
+    Measurement: [measurementTemplate],
+  };
+
+  function verify(question) {
+    const values = question.options.map((option) => option.value);
+    const matching = values.filter((value) => value === question.correctValue).length;
+    const distinct = new Set(values.map((value) => String(value))).size === values.length;
+    const hasDiagramData = Boolean(question.diagram?.svg && question.diagram?.data);
+    const checksPassed = {
+      "Solver answer matches option": matching === 1,
+      "Five distinct options": values.length === 5 && distinct,
+      "Diagram shares variables": hasDiagramData,
+      "Explanation reaches answer": question.explanationFull.includes(String(question.correctValue)),
+      "Multiple choice only": question.options.every((option, index) => option.label === labels[index]),
+    };
+    return {
+      status: Object.values(checksPassed).every(Boolean) ? "VERIFIED" : "FAILED",
+      checksPassed,
+      solverResult: question.correctValue,
+      diagramCheck: hasDiagramData ? "Diagram data present" : "Missing diagram data",
+      llmReview: "Not run in static MVP; code checks are required before display.",
+    };
+  }
+
+  function buildQuestion() {
+    const topic = topicSelect.value;
+    const difficulty = difficultySelect.value;
+    const template = sample(templates[topic] || templates.Geometry);
+    const question = template(difficulty);
+    question.id = `pf-${Date.now()}`;
+    question.difficulty = difficulty;
+    question.correctLabel = question.options.find((option) => option.value === question.correctValue)?.label || "";
+    question.verification = verify(question);
+    return question;
+  }
+
+  function renderQuestion() {
+    let question = buildQuestion();
+    let attempts = 0;
+    while (question.verification.status !== "VERIFIED" && attempts < 8) {
+      question = buildQuestion();
+      attempts += 1;
+    }
+    currentQuestion = question;
+    templateLabel.textContent = `${question.topic} / ${question.templateId}`;
+    verifiedLabel.textContent = question.verification.status;
+    verifiedLabel.classList.toggle("is-failed", question.verification.status !== "VERIFIED");
+    questionText.textContent = question.questionText;
+    diagram.innerHTML = question.diagram.svg;
+    optionsEl.innerHTML = question.options.map((option) => `<button type="button" data-pf-option="${option.label}"><strong>${option.label}</strong><span>${option.text}</span></button>`).join("");
+    feedback.textContent = "Choose one answer.";
+    feedback.classList.remove("is-good", "is-warn");
+    explanation.textContent = question.explanationShort;
+    tutorReply.textContent = "Follow-up answers use only the verified puzzle data.";
+    status.textContent = question.verification.status === "VERIFIED" ? "Question passed code verification." : "Question failed verification and should be regenerated.";
+    checks.innerHTML = Object.entries(question.verification.checksPassed).map(([name, passed]) => `<span class="${passed ? "is-good" : "is-warn"}">${passed ? "PASS" : "FAIL"} ${name}</span>`).join("");
+  }
+
+  optionsEl.addEventListener("click", (event) => {
+    const button = event.target.closest("[data-pf-option]");
+    if (!button || !currentQuestion) return;
+    const chosen = button.dataset.pfOption;
+    const correct = chosen === currentQuestion.correctLabel;
+    optionsEl.querySelectorAll("button").forEach((optionButton) => {
+      optionButton.classList.toggle("is-correct", optionButton.dataset.pfOption === currentQuestion.correctLabel);
+      optionButton.classList.toggle("is-wrong", optionButton === button && !correct);
+    });
+    feedback.textContent = correct ? `Correct. ${currentQuestion.explanationShort}` : `Not quite. The answer is ${currentQuestion.correctLabel}. ${currentQuestion.commonMistakes}`;
+    feedback.classList.toggle("is-good", correct);
+    feedback.classList.toggle("is-warn", !correct);
+    explanation.textContent = `${currentQuestion.explanationFull} So the answer is ${currentQuestion.correctLabel}, ${currentQuestion.options.find((option) => option.label === currentQuestion.correctLabel).text}.`;
+  });
+
+  game.querySelectorAll("[data-pf-tutor]").forEach((button) => {
+    button.addEventListener("click", () => {
+      if (!currentQuestion) return;
+      const type = button.dataset.pfTutor;
+      const correctOption = currentQuestion.options.find((option) => option.label === currentQuestion.correctLabel);
+      const replies = {
+        why: currentQuestion.explanationFull,
+        easier: `Short version: ${currentQuestion.trick} That gives ${correctOption.text}.`,
+        mistake: currentQuestion.commonMistakes,
+        trick: currentQuestion.trick,
+      };
+      tutorReply.textContent = replies[type] || currentQuestion.explanationShort;
+    });
+  });
+
+  generateButton.addEventListener("click", renderQuestion);
+  renderQuestion();
+});

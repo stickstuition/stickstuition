@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>PuzzleForge | Sticks Tuition</title>
+    <link rel="stylesheet" href="../../styles.css">
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="nav-shell">
+        <a class="brand" href="../../index.html"><span class="brand-mark">ST</span><span>STICKS TUITION<small>Make Maths Stick</small></span></a>
+        <nav class="nav-links" aria-label="Site"><a href="../../index.html">Home</a><a href="../../our-lessons.html">Our Lessons</a><a class="games-link" href="../../maths-games.html" aria-current="page">Game Lab</a><a href="../../pricing-and-packages.html">Pricing</a><a href="../../login.html">Login</a></nav>
+        <a class="nav-cta" href="../../maths-games.html">All games</a>
+      </div>
+    </header>
+
+    <main class="puzzleforge-page" data-puzzleforge>
+      <section class="puzzleforge-hero">
+        <div class="puzzleforge-hero-inner">
+          <div>
+            <p class="eyebrow">AMC-style problem solving</p>
+            <h1>PuzzleForge</h1>
+            <p class="lead">Generate short multiple-choice maths puzzles with deterministic answers, SVG diagrams, verification checks and helpful explanations.</p>
+          </div>
+          <div class="puzzleforge-hero-diagram" aria-hidden="true">
+            <svg viewBox="0 0 420 260">
+              <defs><pattern id="pf-grid" width="28" height="28" patternUnits="userSpaceOnUse"><path d="M28 0H0V28" fill="none"></path></pattern></defs>
+              <rect x="20" y="20" width="380" height="220"></rect>
+              <rect x="20" y="20" width="380" height="220" fill="url(#pf-grid)"></rect>
+              <polygon points="110,190 188,74 274,190"></polygon>
+              <path d="M110 190H274"></path>
+              <circle cx="315" cy="86" r="36"></circle>
+              <path d="M315 86L348 72"></path>
+              <text x="128" y="184">A</text><text x="188" y="66">B</text><text x="260" y="184">C</text>
+            </svg>
+          </div>
+        </div>
+      </section>
+
+      <section class="puzzleforge-shell">
+        <aside class="puzzleforge-panel" aria-label="Puzzle settings">
+          <div>
+            <p class="puzzleforge-kicker">Settings</p>
+            <h2>Question Planner</h2>
+          </div>
+          <label for="pf-topic">Topic</label>
+          <select id="pf-topic" data-pf-topic>
+            <option>Geometry</option>
+            <option>Number Properties</option>
+            <option>Fractions</option>
+            <option>Probability</option>
+            <option>Statistics</option>
+            <option>Algebra</option>
+            <option>Measurement</option>
+          </select>
+          <label for="pf-difficulty">Difficulty</label>
+          <select id="pf-difficulty" data-pf-difficulty>
+            <option value="beginner">Beginner, Years 7 to 8</option>
+            <option value="intermediate" selected>Intermediate, Years 9 to 10</option>
+            <option value="senior">Senior, Years 11 to 12</option>
+          </select>
+          <button class="button primary" type="button" data-pf-generate>Generate verified puzzle</button>
+          <div class="puzzleforge-status" data-pf-status>Ready to forge a question.</div>
+          <div class="puzzleforge-checks" data-pf-checks></div>
+        </aside>
+
+        <section class="puzzleforge-question" aria-live="polite">
+          <div class="puzzleforge-meta">
+            <span data-pf-template>Template</span>
+            <span data-pf-verified>VERIFIED</span>
+          </div>
+          <h2 data-pf-question>Choose settings and generate a puzzle.</h2>
+          <div class="puzzleforge-diagram" data-pf-diagram></div>
+          <div class="puzzleforge-options" data-pf-options></div>
+          <p class="puzzleforge-feedback" data-pf-feedback>Answer options will appear here.</p>
+        </section>
+
+        <aside class="puzzleforge-panel puzzleforge-tutor" aria-label="Explanation and tutor">
+          <div>
+            <p class="puzzleforge-kicker">Tutor</p>
+            <h2>Explanation</h2>
+          </div>
+          <p data-pf-explanation>Generate a puzzle to see the solution pathway.</p>
+          <div class="puzzleforge-tutor-buttons">
+            <button type="button" data-pf-tutor="why">Why?</button>
+            <button type="button" data-pf-tutor="easier">Explain it easier</button>
+            <button type="button" data-pf-tutor="mistake">What if I chose another?</button>
+            <button type="button" data-pf-tutor="trick">Show me the trick</button>
+          </div>
+          <div class="puzzleforge-tutor-reply" data-pf-tutor-reply>Follow-up answers use only the verified puzzle data.</div>
+        </aside>
+      </section>
+    </main>
+
+    <script src="../../site.js"></script>
+  </body>
+</html>
