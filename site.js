@@ -1,3 +1,30 @@
+document.querySelectorAll(".site-header").forEach((header) => {
+  const toggle = header.querySelector("[data-menu-toggle]");
+  const nav = header.querySelector(".nav-links");
+  if (!toggle || !nav) return;
+
+  function setMenu(open) {
+    header.classList.toggle("is-menu-open", open);
+    document.body.classList.toggle("has-open-menu", open);
+    toggle.setAttribute("aria-expanded", String(open));
+    toggle.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+  }
+
+  toggle.addEventListener("click", () => {
+    setMenu(!header.classList.contains("is-menu-open"));
+  });
+
+  nav.querySelectorAll("a").forEach((link) => {
+    link.addEventListener("click", () => setMenu(false));
+  });
+
+  header.querySelector(".nav-cta")?.addEventListener("click", () => setMenu(false));
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") setMenu(false);
+  });
+});
+
 document.querySelectorAll("[data-contact-form]").forEach((form) => {
   form.addEventListener("submit", (event) => {
     if (form.getAttribute("action")) return;
