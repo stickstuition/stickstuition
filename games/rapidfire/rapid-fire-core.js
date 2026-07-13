@@ -10,15 +10,9 @@ export const OPERATION_SYMBOLS = {
 };
 
 export const DIFFICULTIES = {
-  junior: { label: "Junior", detail: "Years 7–8 band", add: [-50, 50], multiply: [1, 12], negativeMultiply: false, decimals: 0, target: 35 },
-  year_7: { label: "Year 7", detail: "Year level", add: [-100, 100], multiply: [1, 20], negativeMultiply: false, decimals: 0, target: 35 },
-  year_8: { label: "Year 8", detail: "Year level", add: [-100, 250], multiply: [2, 20], negativeMultiply: false, decimals: 0, target: 38 },
-  intermediate: { label: "Intermediate", detail: "Years 9–10 band", add: [-250, 500], multiply: [2, 25], negativeMultiply: false, decimals: 0, target: 42 },
-  year_9: { label: "Year 9", detail: "Year level", add: [-500, 1000], multiply: [2, 30], negativeMultiply: true, decimals: 0, target: 42 },
-  year_10: { label: "Year 10", detail: "Year level", add: [-1000, 2000], multiply: [2, 40], negativeMultiply: true, decimals: 0, target: 45 },
-  senior: { label: "Senior", detail: "Years 11–12 band", add: [-5000, 10000], multiply: [2, 50], negativeMultiply: true, decimals: 0.25, target: 50 },
-  year_11: { label: "Year 11", detail: "Year level", add: [-5000, 10000], multiply: [2, 60], negativeMultiply: true, decimals: 0.35, target: 50 },
-  year_12: { label: "Year 12", detail: "Year level", add: [-10000, 15000], multiply: [2, 80], negativeMultiply: true, decimals: 0.45, target: 55 },
+  junior: { label: "Junior", detail: "Foundations", add: [1, 50], multiply: [1, 12], nonNegativeSubtraction: true, negativeMultiply: false, decimals: 0, target: 35 },
+  intermediate: { label: "Intermediate", detail: "Stepping up", add: [1, 250], multiply: [1, 15], nonNegativeSubtraction: true, negativeMultiply: false, decimals: 0, target: 42 },
+  senior: { label: "Senior", detail: "Challenge", add: [-500, 1000], multiply: [1, 20], nonNegativeSubtraction: false, negativeMultiply: true, decimals: 0, target: 50 },
 };
 
 export const DISPLAY_NAME_BLOCKLIST = [];
@@ -76,23 +70,20 @@ function makeQuestion(operation, difficulty, index, random) {
     const scale = useDecimal ? 10 : 1;
     leftOperand = randomInt(profile.add[0] * scale, profile.add[1] * scale, random) / scale;
     rightOperand = randomInt(profile.add[0] * scale, profile.add[1] * scale, random) / scale;
-    if (difficulty === "junior") {
-      leftOperand = randomInt(1, operation === "addition" ? 50 : 100, random);
-      rightOperand = randomInt(1, operation === "addition" ? 50 : 100, random);
-      if (operation === "addition" && leftOperand + rightOperand > 100) rightOperand = 100 - leftOperand;
-      if (operation === "subtraction" && rightOperand > leftOperand) [leftOperand, rightOperand] = [rightOperand, leftOperand];
+    if (operation === "subtraction" && profile.nonNegativeSubtraction && rightOperand > leftOperand) {
+      [leftOperand, rightOperand] = [rightOperand, leftOperand];
     }
     correctAnswer = operation === "addition" ? leftOperand + rightOperand : leftOperand - rightOperand;
   } else if (operation === "multiplication") {
     const [min, max] = profile.multiply;
     leftOperand = randomInt(min, max, random) * chooseSign(profile.negativeMultiply, random);
-    rightOperand = randomInt(min, Math.min(max, difficulty === "year_12" ? 80 : 30), random) * chooseSign(profile.negativeMultiply, random);
+    rightOperand = randomInt(min, max, random) * chooseSign(profile.negativeMultiply, random);
     if (useDecimal) leftOperand = round(leftOperand / 10, 1);
     correctAnswer = leftOperand * rightOperand;
   } else {
     const [min, max] = profile.multiply;
     rightOperand = randomInt(Math.max(1, min), Math.min(max, 30), random) * chooseSign(profile.negativeMultiply, random);
-    let quotient = randomInt(1, Math.min(max, difficulty === "year_12" ? 80 : 30), random) * chooseSign(profile.negativeMultiply, random);
+    let quotient = randomInt(min, max, random) * chooseSign(profile.negativeMultiply, random);
     if (useDecimal) {
       if (random() < 0.5) rightOperand = round(rightOperand / 10, 1);
       else quotient = round(quotient / 10, 1);
