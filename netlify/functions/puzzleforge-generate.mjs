@@ -1,5 +1,5 @@
 const OPENAI_URL = "https://api.openai.com/v1";
-const TEXT_MODEL = process.env.PUZZLEFORGE_TEXT_MODEL || "gpt-5.4-nano";
+const TEXT_MODEL = process.env.PUZZLEFORGE_TEXT_MODEL || "gpt-4o-mini";
 const OPENAI_API_KEY = process.env.OPENAI_API_KEY || process.env.Open_AI_Key;
 
 const thresholds = { junior: 72, intermediate: 78, senior: 82 };
@@ -75,15 +75,6 @@ const jsonResponse = (body, status = 200) => new Response(JSON.stringify(body), 
   headers: { "content-type": "application/json", "cache-control": "no-store" },
 });
 
-function outputText(data) {
-  if (typeof data.output_text === "string") return data.output_text;
-  return (data.output || [])
-    .flatMap((item) => item.content || [])
-    .filter((content) => content.type === "output_text")
-    .map((content) => content.text)
-    .join("");
-}
-
 async function forgeWithAI(level, category, recentFingerprints) {
   const family = categories[category] || categories.mixed;
   const system = `You are the complete PuzzleForge review panel. Work through six internal roles in order: concept designer, independent solver, diagram engineer, visual reviewer, difficulty critic, and final editor. Generate five structurally distinct concepts, fully develop and independently solve the strongest three, reject routine or ambiguous work, score every developed candidate, and return only the highest-scoring valid challenge. Never choose the first merely valid idea. The SVG is essential mathematical content and must be exact.`;
@@ -99,25 +90,25 @@ Never imitate or reproduce any supplied or known paper's wording, numbers, diagr
 
 Do not repeat these recent structural fingerprints: ${recentFingerprints.join(" | ") || "none"}.`;
 
-  const response = await fetch(`${OPENAI_URL}/responses`, {
+  const response = await fetch(`${OPENAI_URL}/chat/completions`, {
     method: "POST",
     headers: { authorization: `Bearer ${OPENAI_API_KEY}`, "content-type": "application/json" },
     body: JSON.stringify({
       model: TEXT_MODEL,
-      reasoning: { effort: "low" },
-      max_output_tokens: 6000,
-      input: [
-        { role: "system", content: [{ type: "input_text", text: system }] },
-        { role: "user", content: [{ type: "input_text", text: prompt }] },
+      max_tokens: 6000,
+      messages: [
+        { role: "system", content: system },
+        { role: "user", content: prompt },
       ],
-      text: { format: { type: "json_schema", name: "forged_challenge", schema: forgeSchema, strict: true } },
+      response_format: { type: "json_schema", json_schema: { name: "forged_challenge", schema: forgeSchema, strict: true } },
     }),
   });
   if (!response.ok) {
     const detail = await response.text();
     throw new Error(`OpenAI ${response.status}: ${detail.slice(0, 500)}`);
   }
-  const text = outputText(await response.json());
+  const data = await response.json();
+  const text = data.choices?.[0]?.message?.content;
   if (!text) throw new Error("OpenAI returned no structured challenge");
   return JSON.parse(text);
 }
