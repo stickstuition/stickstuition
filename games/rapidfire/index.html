@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#121524">
+    <title>Rapid Fire | Sticks Tuition GameLab</title>
+    <meta name="description" content="Answer 15 mental arithmetic questions. Beat the clock and set your best score in Rapid Fire.">
+    <link rel="icon" type="image/png" href="../../logos/C6001C.png">
+    <link rel="stylesheet" href="../../styles.css">
+    <link rel="stylesheet" href="./rapid-fire.css">
+  </head>
+  <body class="rapid-fire-body">
+    <header class="site-header rapid-fire-header">
+      <div class="nav-shell">
+        <a class="brand" href="../../index.html"><span class="brand-mark">ST</span><span>STICKS TUITION<small>Make Maths Stick</small></span></a>
+        <button class="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false" data-menu-toggle><span></span><span></span><span></span></button>
+        <nav class="nav-links" aria-label="Site"><a href="../../index.html">Home</a><a href="../../our-lessons.html">Our Lessons</a><a class="games-link" href="../../maths-games.html" aria-current="page">Game Lab</a><a href="../../pricing-and-packages.html">Pricing</a><a href="../../login.html">Login</a></nav>
+        <a class="nav-cta" href="../../maths-games.html">All games</a>
+      </div>
+    </header>
+
+    <main class="rapid-fire" data-rapid-fire data-status="setup">
+      <section class="rf-screen rf-setup" data-screen="setup" aria-labelledby="rf-title">
+        <div class="rf-menu-media" data-menu-background aria-hidden="true"></div>
+        <div class="rf-menu-overlay" aria-hidden="true"></div>
+        <div class="rf-setup-content">
+          <header class="rf-title-block">
+            <p class="rf-kicker"><span></span> Sticks Tuition GameLab</p>
+            <h1 id="rf-title">Rapid <em>Fire</em></h1>
+            <p>15 questions. Beat the clock. Climb your leaderboard.</p>
+          </header>
+
+          <form class="rf-setup-card" data-setup-form novalidate>
+            <div class="rf-setup-heading">
+              <div><p class="rf-step">Challenge setup</p><h2>Ready when you are.</h2></div>
+              <span class="rf-question-pill">15 questions</span>
+            </div>
+
+            <label class="rf-field" for="rf-display-name">
+              <span>Display name</span>
+              <input id="rf-display-name" name="displayName" type="text" minlength="2" maxlength="20" autocomplete="nickname" placeholder="Maths Hero" data-display-name>
+            </label>
+
+            <fieldset class="rf-fieldset">
+              <legend><span>Choose your level</span><small>Difficulty bands are general guides.</small></legend>
+              <div class="rf-difficulty-grid" data-difficulty-options></div>
+            </fieldset>
+
+            <fieldset class="rf-fieldset">
+              <legend><span>Choose operations</span><small>Select one or more.</small></legend>
+              <div class="rf-operation-grid" data-operation-options></div>
+            </fieldset>
+
+            <label class="rf-sound-toggle"><input type="checkbox" data-sound-enabled><span aria-hidden="true"></span> Sound effects</label>
+            <p class="rf-form-message" data-setup-message aria-live="polite"></p>
+
+            <div class="rf-primary-actions">
+              <button class="rf-button rf-button-primary" type="submit" data-start-game><span>Start challenge</span><b aria-hidden="true">→</b></button>
+              <button class="rf-button rf-button-ghost" type="button" data-open-leaderboard>Weekly leaderboard</button>
+            </div>
+            <button class="rf-text-button" type="button" data-open-how>How to play</button>
+          </form>
+        </div>
+      </section>
+
+      <section class="rf-screen rf-countdown" data-screen="countdown" hidden aria-label="Game countdown">
+        <p>Get ready</p><strong data-countdown aria-live="assertive">3</strong><span>Answer with the keyboard. Press Enter to submit.</span>
+      </section>
+
+      <section class="rf-screen rf-playing" data-screen="playing" hidden aria-labelledby="rf-question">
+        <div class="rf-game-shell">
+          <header class="rf-game-hud">
+            <a href="../../maths-games.html" class="rf-mini-logo" aria-label="Return to GameLab">RF</a>
+            <div class="rf-progress-copy"><span data-progress-label>Question 1 of 15</span><div class="rf-progress-track"><span data-progress-bar></span></div></div>
+            <div class="rf-hud-stat"><span>Correct</span><strong data-correct-count>0</strong></div>
+            <div class="rf-hud-stat"><span>Time</span><strong data-timer>0.00</strong></div>
+          </header>
+          <div class="rf-question-stage" data-question-stage>
+            <p class="rf-live-status" data-live-status aria-live="polite"></p>
+            <span class="rf-streak" data-streak>Streak 0</span>
+            <h1 id="rf-question" data-question-text>8 × 7</h1>
+            <form class="rf-answer-form" data-answer-form novalidate>
+              <label for="rf-answer">Your answer</label>
+              <div class="rf-answer-row"><input id="rf-answer" data-answer inputmode="decimal" autocomplete="off" enterkeyhint="done" aria-describedby="rf-answer-hint"><button type="submit">Submit <span aria-hidden="true">↵</span></button></div>
+              <small id="rf-answer-hint">Negative numbers and decimals are allowed.</small>
+            </form>
+            <div class="rf-feedback" data-answer-feedback aria-live="assertive"></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="rf-screen rf-results" data-screen="results" hidden aria-labelledby="rf-results-title">
+        <div class="rf-results-shell">
+          <header class="rf-results-heading"><p class="rf-kicker"><span></span> Challenge complete</p><h1 id="rf-results-title">Rapid Fire complete</h1><p data-result-message>Strong finish. Here’s how you did.</p></header>
+          <div class="rf-result-grid">
+            <article class="rf-score-card"><span>Final score</span><strong data-final-score>0</strong><div class="rf-personal-best" data-personal-best hidden>New personal best!</div><p data-ranking-note></p></article>
+            <article class="rf-stat-card"><span>Accuracy</span><strong data-final-accuracy>0%</strong><p data-final-correct>0 / 15 correct</p></article>
+            <article class="rf-stat-card"><span>Total time</span><strong data-final-time>0.00s</strong><p data-average-time>0.00s average</p></article>
+            <article class="rf-stat-card"><span>Best streak</span><strong data-final-streak>0</strong><p>correct answers in a row</p></article>
+          </div>
+          <div class="rf-result-actions"><button class="rf-button rf-button-primary" type="button" data-play-again>Play again</button><button class="rf-button rf-button-ghost" type="button" data-change-settings>Change settings</button><button class="rf-button rf-button-ghost" type="button" data-results-leaderboard>View leaderboard</button></div>
+          <details class="rf-review"><summary>Review incorrect answers <span data-review-count>0</span></summary><div data-answer-review></div></details>
+        </div>
+      </section>
+
+      <section class="rf-screen rf-leaderboard" data-screen="leaderboard" hidden aria-labelledby="rf-leaderboard-title">
+        <div class="rf-leaderboard-shell">
+          <button class="rf-back-button" type="button" data-leaderboard-back>← Back</button>
+          <header><p class="rf-kicker"><span></span> This device</p><h1 id="rf-leaderboard-title">Weekly leaderboard</h1><p>Best attempts for each player and challenge on this device. The week resets Monday at 00:00 London time.</p></header>
+          <div class="rf-leaderboard-filters">
+            <label>Week<select data-leaderboard-week></select></label>
+            <label>Difficulty<select data-leaderboard-difficulty></select></label>
+            <label>Operations<select data-leaderboard-operations></select></label>
+          </div>
+          <div class="rf-table-wrap"><table><thead><tr><th>Rank</th><th>Player</th><th>Score</th><th>Accuracy</th><th>Time</th></tr></thead><tbody data-leaderboard-body></tbody></table><p class="rf-empty-state" data-leaderboard-empty hidden>No scores have been recorded for this challenge yet. You could be the first.</p></div>
+        </div>
+      </section>
+    </main>
+
+    <dialog class="rf-dialog" data-how-dialog>
+      <form method="dialog"><button class="rf-dialog-close" aria-label="Close">×</button><p class="rf-step">How to play</p><h2>Fast answers. Full focus.</h2><ol><li>Choose a level and at least one operation.</li><li>Answer all 15 questions using the keyboard or on-screen input.</li><li>Your score rewards accuracy first, then speed.</li><li>If the game loses focus, you can finish, but the attempt will be unranked.</li></ol><button class="rf-button rf-button-primary" value="close">Got it</button></form>
+    </dialog>
+
+    <script src="../../site.js"></script>
+    <script type="module" src="./rapid-fire-game.js"></script>
+  </body>
+</html>
