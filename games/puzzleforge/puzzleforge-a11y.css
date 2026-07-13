@@ -14,3 +14,8 @@
 .pf-body .nav-cta {
   width: auto;
 }
+
+.pf-generator-status.is-error {
+  color: #ffb9c3;
+  font-weight: 700;
+}

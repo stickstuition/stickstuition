@@ -4,6 +4,7 @@ const IMAGE_MODEL=process.env.PUZZLEFORGE_IMAGE_MODEL||"gpt-image-2";
 const thresholds={junior:72,intermediate:78,senior:82};
 const categories={mixed:"any of the three approved families", "visual-geometry":"visual geometry and measurement", "number-structures":"combinatorial patterns and number structures",systems:"systems, processes and probability"};
 const banList=["single missing angle","ordinary perimeter or area substitution","ordinary spinner probability","direct reflection","visible next-term sequence","mean calculation","formula substitution","large arithmetic as difficulty","decorative diagram","routine worksheet exercise"];
+const jsonResponse=(body,status=200)=>new Response(JSON.stringify(body),{status,headers:{"content-type":"application/json","cache-control":"no-store"}});
 
 const headers=()=>({authorization:`Bearer ${process.env.OPENAI_API_KEY}`,"content-type":"application/json"});
 function outputText(data){if(typeof data.output_text==="string")return data.output_text;return (data.output||[]).flatMap(item=>item.content||[]).filter(c=>c.type==="output_text").map(c=>c.text).join("")}
@@ -30,11 +31,11 @@ function sharedBrief(level,category,recent){return `Create an original ${level} 
 async function generateImage(prompt){const data=await openai("/images/generations",{model:IMAGE_MODEL,prompt,quality:"medium",size:"1536x1024",output_format:"png",background:"opaque",n:1});const b64=data.data?.[0]?.b64_json;if(!b64)throw new Error("Image generation returned no image");return `data:image/png;base64,${b64}`}
 async function askVision(promptParts,schema,name){const data=await openai("/responses",{model:TEXT_MODEL,reasoning:{effort:"low"},input:[{role:"system",content:[{type:"input_text",text:"You are an independent mathematical diagram reviewer. Be exact and adversarial."}]},{role:"user",content:promptParts}],text:{format:{type:"json_schema",name,schema,strict:true}}});return JSON.parse(outputText(data))}
 
-export async function handler(event){
-  if(event.httpMethod!=="POST")return{statusCode:405,headers:{allow:"POST"},body:JSON.stringify({error:"Method not allowed"})};
-  if(!process.env.OPENAI_API_KEY)return{statusCode:503,headers:{"content-type":"application/json"},body:JSON.stringify({error:"PuzzleForge AI is not configured",code:"AI_NOT_CONFIGURED"})};
+export default async function handler(request){
+  if(request.method!=="POST")return new Response(JSON.stringify({error:"Method not allowed"}),{status:405,headers:{allow:"POST","content-type":"application/json"}});
+  if(!process.env.OPENAI_API_KEY)return jsonResponse({error:"PuzzleForge AI is not configured",code:"AI_NOT_CONFIGURED"},503);
   try{
-    const input=JSON.parse(event.body||"{}");const level=["junior","intermediate","senior"].includes(input.level)?input.level:"junior";const category=Object.hasOwn(categories,input.category)?input.category:"mixed";const recent=Array.isArray(input.recentFingerprints)?input.recentFingerprints.slice(-8).map(String):[];const brief=sharedBrief(level,category,recent);
+    const input=await request.json().catch(()=>({}));const level=["junior","intermediate","senior"].includes(input.level)?input.level:"junior";const category=Object.hasOwn(categories,input.category)?input.category:"mixed";const recent=Array.isArray(input.recentFingerprints)?input.recentFingerprints.slice(-8).map(String):[];const brief=sharedBrief(level,category,recent);
     const conceptResult=await askJson("You are the mathematical concept designer. Propose mechanisms, not reskinned worksheets. Make all five structurally distinct.",`${brief}\nGenerate five concept dossiers. Do not write polished questions yet.`,conceptSchema,"concept_shortlist");
     const developed=await askJson("You are the challenge developer. Select the strongest three concepts, instantiate fully consistent original values, and make the diagram essential. Solve while constructing, but do not reveal the hidden insight in the prompt.",`${brief}\nConcept dossiers:\n${JSON.stringify(conceptResult.concepts)}\nDevelop exactly three and explicitly reject two. Every correct answer must appear exactly once among A–E. Diagram prompt: clean flat mathematical editorial illustration on warm white, restrained Sticks red/blue accents, no branding, no decorative scenery, no text beyond indispensable short labels.`,finalistSchema,"developed_finalists");
     const finalists=developed.finalists;
@@ -58,6 +59,6 @@ export async function handler(event){
     }catch(error){visualReport={pass:false,mathematicallyFaithful:false,legible:false,issues:[error.message.slice(0,180)],repairPrompt:""}}
     if(!diagramDataUri)throw new Error(`Diagram failed visual review: ${visualReport.issues.join("; ")}`);
     const concepts=conceptResult.concepts.map(c=>{const assessment=editorial.assessments.find(a=>a.id===c.id);const solution=solved.reports.find(r=>r.id===c.id);const rejected=developed.rejected.find(r=>r.id===c.id);return{title:c.title,fingerprint:c.fingerprint,hiddenInsight:c.hiddenInsight,status:c.id===winner.id?"winner":assessment?.status||"rejected",score:assessment?.score.total??0,reason:assessment?.reason||rejected?.reason||"Not developed beyond concept stage.",solution:solution?.solution||[]}});
-    return{statusCode:200,headers:{"content-type":"application/json","cache-control":"no-store"},body:JSON.stringify({...finalQuestion,level,category,source:"ai",qualityScore:winningAssessment.score.total,diagramDataUri,audit:{threshold:thresholds[level],winnerFingerprint:finalQuestion.fingerprint,concepts,visualReport,notes:[]}})};
-  }catch(error){console.error("PuzzleForge generation failed",error);return{statusCode:502,headers:{"content-type":"application/json"},body:JSON.stringify({error:"The candidates did not clear review. Please forge another.",detail:process.env.CONTEXT==="dev"?error.message:undefined})}}
+    return jsonResponse({...finalQuestion,level,category,source:"ai",qualityScore:winningAssessment.score.total,diagramDataUri,audit:{threshold:thresholds[level],winnerFingerprint:finalQuestion.fingerprint,concepts,visualReport,notes:[]}});
+  }catch(error){console.error("PuzzleForge generation failed",error);return jsonResponse({error:"The candidates did not clear review. Please forge another.",detail:process.env.CONTEXT==="dev"?error.message:undefined},502)}
 }
