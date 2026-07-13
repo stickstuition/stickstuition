@@ -1,0 +1,19 @@
+{
+  "purpose": "Abstract design observations only; no source question text, values, artwork, branding or layouts are stored.",
+  "reasoning": [
+    "A short accessible setup can conceal a non-obvious invariant, symmetry, conservation rule or counting shortcut.",
+    "Strong intermediate questions connect at least two facts before routine calculation becomes useful.",
+    "Strong senior questions require a chain of constraints and reward reframing over large arithmetic.",
+    "Distractors should correspond to plausible incomplete models, not random nearby numbers."
+  ],
+  "visuals": [
+    "A diagram earns its space by carrying information that would be awkward or revealing in prose.",
+    "Text and diagram should divide the information load cleanly.",
+    "Restrained line work, sparse colour and generous whitespace keep mathematical relationships legible."
+  ],
+  "paperStyle": [
+    "Warm white question field, serif question copy and blue question numbering.",
+    "Thin horizontal separators and evenly distributed A–E choices.",
+    "Diagrams sit beside or below the prompt according to their natural aspect ratio."
+  ]
+}

@@ -1,0 +1,16 @@
+.pf-body {
+  overflow-x: hidden;
+}
+
+.pf-levels input,
+.pf-options input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: 0;
+  clip: rect(0 0 0 0);
+}
+
+.pf-body .nav-cta {
+  width: auto;
+}
