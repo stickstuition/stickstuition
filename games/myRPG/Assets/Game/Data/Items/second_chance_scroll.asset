@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08c7166683efd0947bce2d2341071487, type: 3}
+  m_Name: second_chance_scroll
+  m_EditorClassIdentifier: MyRPG.Runtime::MyRPG.Data.ItemDefinition
+  id: second_chance_scroll
+  displayName: Second Chance Scroll
+  description: Second Chance Scroll definition.
+  category: 5
+  stackable: 1
+  maximumStack: 3
+  statModifiers:
+    maxHealth: 0
+    maxFocus: 0
+    strength: 0
+    defence: 0
+    magic: 0
+    intelligence: 0
+    agility: 0
+    luck: 0
+  icon: {fileID: 21300000, guid: 927ae5ec8f9ad654faeeed7d38bb79d5, type: 3}

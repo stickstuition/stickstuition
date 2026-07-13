@@ -1,0 +1,7 @@
+{
+  "name": "MyRPG.Editor",
+  "rootNamespace": "MyRPG.Editor",
+  "references": ["MyRPG.Runtime"],
+  "includePlatforms": ["Editor"],
+  "autoReferenced": true
+}

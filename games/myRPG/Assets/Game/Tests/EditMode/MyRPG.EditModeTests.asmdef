@@ -1,0 +1,8 @@
+{
+  "name": "MyRPG.EditModeTests",
+  "rootNamespace": "MyRPG.Tests",
+  "references": ["MyRPG.Runtime"],
+  "optionalUnityReferences": ["TestAssemblies"],
+  "includePlatforms": ["Editor"],
+  "autoReferenced": false
+}

@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 486bf0093dc91544c965268186003bd7, type: 3}
+  m_Name: Lyra
+  m_EditorClassIdentifier: MyRPG.Runtime::MyRPG.Data.CompanionDefinition
+  id: lyra
+  displayName: Lyra
+  description: Lyra definition.
+  companionId: 2
+  unlockChapter: 2
+  baseStats:
+    maxHealth: 78
+    maxFocus: 38
+    strength: 3
+    defence: 3
+    magic: 9
+    intelligence: 9
+    agility: 6
+    luck: 5
+  signatureAbility: {fileID: 11400000, guid: 07a4f3d15f4018c40a3fa3d6504aab39, type: 2}
+  characterModel: {fileID: 0}

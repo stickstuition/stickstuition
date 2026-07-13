@@ -1,0 +1,537 @@
+[Licensing::Module] Trying to connect to existing licensing client channel...
+Built from '6000.5/staging' branch; Version is '6000.5.2f1 (eb73d3b415a1) revision 15430611'; Using compiler version '194234433'; Build Type 'Release'
+OS: 'Windows 11  (10.0.26100) Core' Language: 'en' Physical Memory: 15805 MB
+BatchMode: 1, IsHumanControllingUs: 0, StartBugReporterOnCrash: 0, Is64bit: 1
+System  architecture: x64
+Process architecture: x64
+[Licensing::IpcConnector] Successfully connected to: "LicenseClient-paddy" at "2026-07-12T12:38:51.0876704Z"
+Date: 2026-07-12T12:38:51Z
+
+COMMAND LINE ARGUMENTS:
+C:\Program Files\Unity\Hub\Editor\6000.5.2f1\Editor\Unity.exe
+-batchmode
+-nographics
+-quit
+-projectPath
+.
+-executeMethod
+MyRPG.Editor.ProjectSetup.Run
+-logFile
+Phase10Setup.log
+Successfully changed project path to: C:/Sticks Tuition Dev/games/myRPG
+C:/Sticks Tuition Dev/games/myRPG
+[UnityMemory] Configuration Parameters - Can be set up in boot.config
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-nav-mesh-worker=65536"
+    "memorysetup-temp-allocator-size-audio-worker=65536"
+    "memorysetup-temp-allocator-size-cloud-worker=32768"
+    "memorysetup-temp-allocator-size-gfx=262144"
+    "memorysetup-temp-allocator-size-preload-manager=33554432"
+    "memorysetup-allocator-temp-initial-block-size-main=262144"
+    "memorysetup-allocator-temp-initial-block-size-worker=262144"
+    "memorysetup-temp-allocator-size-job-worker=262144"
+    "memorysetup-temp-allocator-size-background-worker=32768"
+    "memorysetup-bucket-allocator-granularity=16"
+    "memorysetup-bucket-allocator-bucket-count=8"
+    "memorysetup-bucket-allocator-block-size=33554432"
+    "memorysetup-bucket-allocator-block-count=8"
+    "memorysetup-main-allocator-block-size=16777216"
+    "memorysetup-thread-allocator-block-size=16777216"
+    "memorysetup-main-allocator-mimalloc-enabled=0"
+    "memorysetup-gfx-main-allocator-block-size=16777216"
+    "memorysetup-gfx-thread-allocator-block-size=16777216"
+    "memorysetup-cache-allocator-block-size=4194304"
+    "memorysetup-typetree-allocator-block-size=2097152"
+    "memorysetup-profiler-bucket-allocator-granularity=16"
+    "memorysetup-profiler-bucket-allocator-bucket-count=8"
+    "memorysetup-profiler-bucket-allocator-block-size=33554432"
+    "memorysetup-profiler-bucket-allocator-block-count=8"
+    "memorysetup-profiler-allocator-block-size=16777216"
+    "memorysetup-profiler-editor-allocator-block-size=1048576"
+    "memorysetup-temp-allocator-size-main=16777216"
+    "memorysetup-job-temp-allocator-block-size=2097152"
+    "memorysetup-job-temp-allocator-block-size-background=1048576"
+    "memorysetup-job-temp-allocator-reduction-small-platforms=262144"
+Logging is directed to a specific file, skipping project log.Player connection [28032]  Target information:
+
+Player connection [28032]  * "[IP] 192.168.0.13 [Port] 55504 [Flags] 2 [Guid] 111572759 [EditorId] 111572759 [Version] 1048832 [Id] WindowsEditor(7,Stix) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" 
+
+Player connection [28032] Host joined multi-casting on [225.0.0.222:54997]...
+Player connection [28032] Host joined alternative multi-casting on [225.0.0.222:34997]...
+Input System module state changed to: Initialized.
+[Physics::Module] Initialized fallback backend.
+[Physics::Module] Id: 0xdecafbad
+[Package Manager] Connected to IPC stream "Upm-5956" after 0.3 seconds.
+[Licensing::Module] Licensing is not yet initialized.
+[Licensing::Client] Error: HandshakeResponse reported an error:
+	ResponseCode: 505
+	ResponseStatus: Unsupported protocol version '1.18.1'.
+[Licensing::Module] Error: Failed to handshake to channel: "LicenseClient-paddy"
+[Licensing::IpcConnector] LicenseClient-paddy channel disconnected successfully.
+[Licensing::IpcConnector] Channel LicenseClient-paddy-6000.5.2 doesn't exist
+[Licensing::Module] Successfully launched the LicensingClient (PId: 2948)
+[Licensing::IpcConnector] Successfully connected to: "LicenseClient-paddy-6000.5.2" at "2026-07-12T12:38:52.6025212Z"
+[Licensing::Client] Code 10 while verifying Licensing Client signature (process Id: 2948, path: "C:/Program Files/Unity/Hub/Editor/6000.5.2f1/Editor/Data/Resources/Licensing/Client/Unity.Licensing.Client.exe")
+[Licensing::Module] LicensingClient has failed validation; ignoring
+[Licensing::Client] Handshaking with LicensingClient:
+  Version:                 1.18.1+9fbee8e
+  Session Id:              5e9b24dd96644227a5f1eebcd1b57a69
+  Correlation Id:          3b6b520c38372f08cf88cc285cec7156
+  External correlation Id: 4784666524218285492
+  Machine Id:              BdVYpNufXu5ll39T6aeK+tUhoro=
+[Licensing::Module] Successfully connected to LicensingClient on channel: "LicenseClient-paddy-6000.5.2" (connect: 0.38s, validation: 0.32s, handshake: 0.01s)
+[Licensing::IpcConnector] Successfully connected to: "LicenseClient-paddy-6000.5.2-notifications" at "2026-07-12T12:38:52.9283695Z"
+[Licensing::Module] Connected to LicensingClient (PId: 2948, launch time: 0.01, total connection time: 0.70s)
+[Licensing::Module] Error: Access token is unavailable; failed to update
+[Licensing::Client] Successfully resolved entitlement details
+[Licensing::Module] License group:
+  Id: 16768092483574-UnityPersXXXX
+  Product: Unity Personal
+  Type: Assigned
+  Expiration: Unlimited
+[Licensing::Client] Successfully updated license, isAsync: True, time: 0.01
+[Licensing::Client] Successfully resolved entitlement details
+[Licensing::Module] Licensing Background thread has ended after 1.89s
+[Licensing::Module] Licensing is initialized (took 1.29s).
+[Licensing::Client] Successfully resolved entitlement details
+Library Redirect Path: Library/
+[Physics::Module] Selected backend.
+[Physics::Module] Name: PhysX
+[Physics::Module] Id: 0xf2b8ea05
+[Physics::Module] SDK Version: 4.1.2
+[Physics::Module] Integration Version: 1.0.0
+[Physics::Module] Threading Mode: Multi-Threaded
+Initialize engine version: 6000.5.2f1 (eb73d3b415a1)
+[Subsystems] Discovering subsystems at path C:/Program Files/Unity/Hub/Editor/6000.5.2f1/Editor/Data/Resources/UnitySubsystems
+[Subsystems] Discovering subsystems at path C:/Sticks Tuition Dev/games/myRPG/Assets
+Forcing GfxDevice: Null
+GfxDevice: creating device client; kGfxThreadingModeNonThreaded
+NullGfxDevice:
+    Version:  NULL 1.0 [1.0]
+    Renderer: Null Device
+    Vendor:   Unity Technologies
+Initialize mono
+Mono path[0] = 'C:/Program Files/Unity/Hub/Editor/6000.5.2f1/Editor/Data/Managed'
+Mono path[1] = 'C:/Program Files/Unity/Hub/Editor/6000.5.2f1/Editor/Data/BCLExtensions/runtime/netstandard2.1'
+Mono path[2] = 'C:/Program Files/Unity/Hub/Editor/6000.5.2f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit-win32'
+Mono config path = 'C:/Program Files/Unity/Hub/Editor/6000.5.2f1/Editor/Data/MonoBleedingEdge/etc'
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56956
+CodeReloadManager initialized
+ImportWorker Server TCP listen port: 0
+AcceleratorClientConnectionCallback - disconnected - :0
+Begin MonoManager ReloadAssembly
+Registering precompiled unity dll's ...
+Register platform support module: C:/Program Files/Unity/Hub/Editor/6000.5.2f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
+Registered in 0.002041 seconds.
+Native extension for WindowsStandalone target not found
+Package Manager log level set to [2]
+ScheduleIndexationOnStartup MainProcess:False IndexOnStartup:False
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  0.469 seconds
+Domain Reload Profiling: 989ms
+	BeginReloadAssembly (137ms)
+		CreateAndSetChildDomain (6ms)
+	RebuildCommonClasses (4ms)
+	RebuildNativeTypeToScriptingClass (17ms)
+	initialDomainReloadingComplete (65ms)
+	LoadAllAssembliesAndSetupDomain (294ms)
+		LoadAssemblies (129ms)
+		AnalyzeDomain (214ms)
+			TypeCache.Refresh (212ms)
+				TypeCache.ScanAssembly (198ms)
+	FinalizeReload (472ms)
+		SetupLoadedEditorAssemblies (0ms)
+			BeforeProcessingInitializeOnLoad (94ms)
+			ProcessInitializeOnLoadAttributes (107ms)
+			ProcessInitializeOnLoadMethodAttributes (181ms)
+[Licensing::Client] Successfully resolved entitlement details
+Application.AssetDatabase Initial Refresh Start
+[Package Manager] Restoring resolved packages state from cache
+[Licensing::Client] Successfully resolved entitlement details
+[Package Manager] Registered 39 packages:
+  Built-in packages:
+    com.unity.test-framework@1.7.0 (location: C:\Sticks Tuition Dev\games\myRPG\Library\PackageCache\com.unity.test-framework@1405238725ab)
+    com.unity.ugui@2.5.0 (location: C:\Sticks Tuition Dev\games\myRPG\Library\PackageCache\com.unity.ugui@3d1ea40b73ef)
+    com.unity.modules.accessibility@1.0.0 (location: C:\Sticks Tuition Dev\games\myRPG\Library\PackageCache\com.unity.modules.accessibility)
+    com.unity.modules.adaptiveperformance@1.0.0 (location: C:\Sticks Tuition Dev\games\myRPG\Library\PackageCache\com.unity.modules.adaptiveperformance)
+    com.unity.modules.ai@1.0.0 (location: C:\Sticks Tuition Dev\games\myRPG\Library\PackageCache\com.unity.modules.ai)
+    com.unity.modules.androidjni@1.0.0 (location: C:\Sticks Tuition Dev\games\myRPG\Library\PackageCache\com.unity.modules.androidjni)
+    com.unity.modules.animation@1.0.0 (location: C:\Sticks Tuition Dev\games\myRPG\Library\PackageCache\com.unity.modules.animation)
+    com.unity.modules.assetbundle@1.0.0 (location: C:\Sticks Tuition Dev\games\myRPG\Library\PackageCache\com.unity.modules.assetbundle)
+    com.unity.modules.audio@1.0.0 (location: C:\Sticks Tuition Dev\games\myRPG\Library\PackageCache\com.unity.modules.audio)
+    com.unity.modules.cloth@1.0.0 (location: C:\Sticks Tuition Dev\games\myRPG\Library\PackageCache\com.unity.modules.cloth)
+    com.unity.modules.director@1.0.0 (location: C:\Sticks Tuition Dev\games\myRPG\Library\PackageCache\com.unity.modules.director)
+    com.unity.modules.imageconversion@1.0.0 (location: C:\Sticks Tuition Dev\games\myRPG\Library\PackageCache\com.unity.modules.imageconversion)
+    com.unity.modules.imgui@1.0.0 (location: C:\Sticks Tuition Dev\games\myRPG\Library\PackageCache\com.unity.modules.imgui)
+    com.unity.modules.jsonserialize@1.0.0 (location: C:\Sticks Tuition Dev\games\myRPG\Library\PackageCache\com.unity.modules.jsonserialize)
+    com.unity.modules.particlesystem@1.0.0 (location: C:\Sticks Tuition Dev\games\myRPG\Library\PackageCache\com.unity.modules.particlesystem)
+    com.unity.modules.physics@1.0.0 (location: C:\Sticks Tuition Dev\games\myRPG\Library\PackageCache\com.unity.modules.physics)
+    com.unity.modules.physics2d@1.0.0 (location: C:\Sticks Tuition Dev\games\myRPG\Library\PackageCache\com.unity.modules.physics2d)
+    com.unity.modules.physicscore2d@1.0.0 (location: C:\Sticks Tuition Dev\games\myRPG\Library\PackageCache\com.unity.modules.physicscore2d)
+    com.unity.modules.screencapture@1.0.0 (location: C:\Sticks Tuition Dev\games\myRPG\Library\PackageCache\com.unity.modules.screencapture)
+    com.unity.modules.terrain@1.0.0 (location: C:\Sticks Tuition Dev\games\myRPG\Library\PackageCache\com.unity.modules.terrain)
+    com.unity.modules.terrainphysics@1.0.0 (location: C:\Sticks Tuition Dev\games\myRPG\Library\PackageCache\com.unity.modules.terrainphysics)
+    com.unity.modules.tilemap@1.0.0 (location: C:\Sticks Tuition Dev\games\myRPG\Library\PackageCache\com.unity.modules.tilemap)
+    com.unity.modules.ui@1.0.0 (location: C:\Sticks Tuition Dev\games\myRPG\Library\PackageCache\com.unity.modules.ui)
+    com.unity.modules.uielements@1.0.0 (location: C:\Sticks Tuition Dev\games\myRPG\Library\PackageCache\com.unity.modules.uielements)
+    com.unity.modules.umbra@1.0.0 (location: C:\Sticks Tuition Dev\games\myRPG\Library\PackageCache\com.unity.modules.umbra)
+    com.unity.modules.unityanalytics@1.0.0 (location: C:\Sticks Tuition Dev\games\myRPG\Library\PackageCache\com.unity.modules.unityanalytics)
+    com.unity.modules.unitywebrequest@1.0.0 (location: C:\Sticks Tuition Dev\games\myRPG\Library\PackageCache\com.unity.modules.unitywebrequest)
+    com.unity.modules.unitywebrequestassetbundle@1.0.0 (location: C:\Sticks Tuition Dev\games\myRPG\Library\PackageCache\com.unity.modules.unitywebrequestassetbundle)
+    com.unity.modules.unitywebrequestaudio@1.0.0 (location: C:\Sticks Tuition Dev\games\myRPG\Library\PackageCache\com.unity.modules.unitywebrequestaudio)
+    com.unity.modules.unitywebrequesttexture@1.0.0 (location: C:\Sticks Tuition Dev\games\myRPG\Library\PackageCache\com.unity.modules.unitywebrequesttexture)
+    com.unity.modules.unitywebrequestwww@1.0.0 (location: C:\Sticks Tuition Dev\games\myRPG\Library\PackageCache\com.unity.modules.unitywebrequestwww)
+    com.unity.modules.vectorgraphics@1.0.0 (location: C:\Sticks Tuition Dev\games\myRPG\Library\PackageCache\com.unity.modules.vectorgraphics)
+    com.unity.modules.vehicles@1.0.0 (location: C:\Sticks Tuition Dev\games\myRPG\Library\PackageCache\com.unity.modules.vehicles)
+    com.unity.modules.video@1.0.0 (location: C:\Sticks Tuition Dev\games\myRPG\Library\PackageCache\com.unity.modules.video)
+    com.unity.modules.wind@1.0.0 (location: C:\Sticks Tuition Dev\games\myRPG\Library\PackageCache\com.unity.modules.wind)
+    com.unity.modules.xr@1.0.0 (location: C:\Sticks Tuition Dev\games\myRPG\Library\PackageCache\com.unity.modules.xr)
+    com.unity.modules.subsystems@1.0.0 (location: C:\Sticks Tuition Dev\games\myRPG\Library\PackageCache\com.unity.modules.subsystems)
+    com.unity.modules.hierarchycore@1.0.0 (location: C:\Sticks Tuition Dev\games\myRPG\Library\PackageCache\com.unity.modules.hierarchycore)
+    com.unity.ext.nunit@2.1.0 (location: C:\Sticks Tuition Dev\games\myRPG\Library\PackageCache\com.unity.ext.nunit@44f7d31723bd)
+[Subsystems] No new subsystems found in resolved package list.
+[Package Manager] Done registering packages in 0.01 seconds
+[ScriptCompilation] Requested script compilation because: AssetDatabase observed changes in script compilation related files
+Starting: C:\Program Files\Unity\Hub\Editor\6000.5.2f1\Editor\Data\Tools\BuildPipeline\bee_backend.exe --ipc --defer-dag-verification --dagfile="Library/Bee/1900b0aE.dag" --continue-on-failure --profile="Library/Bee/backend1.traceevents" ScriptAssemblies
+WorkingDir: C:/Sticks Tuition Dev/games/myRPG
+DisplayProgressbar: Compiling Scripts
+ExitCode: 4 Duration: 2s821ms
+Rebuilding DAG because FileSignature timestamp changed: Library/Bee/1900b0aE-inputdata.json
+*** Tundra requires additional run (2.76 seconds), 1 items updated, 240 evaluated
+Starting: C:\Program Files\Unity\Hub\Editor\6000.5.2f1\Editor\Data\netcorerun\netcorerun.exe "C:\Program Files\Unity\Hub\Editor\6000.5.2f1\Editor\Data\Tools\BuildPipeline\ScriptCompilationBuildProgram.exe" "Library/Bee/1900b0aE.dag.json" "Library/Bee/1900b0aE-inputdata.json" "Library\Bee\buildprogram0.traceevents"
+WorkingDir: C:/Sticks Tuition Dev/games/myRPG
+ExitCode: 0 Duration: 0s313ms
+Starting: C:\Program Files\Unity\Hub\Editor\6000.5.2f1\Editor\Data\Tools\BuildPipeline\bee_backend.exe --ipc --defer-dag-verification --dagfile="Library/Bee/1900b0aE.dag" --continue-on-failure --dagfilejson="Library\Bee\1900b0aE.dag.json" --profile="Library/Bee/backend2.traceevents" ScriptAssemblies
+WorkingDir: C:/Sticks Tuition Dev/games/myRPG
+Assets\Game\Scripts\Runtime\World\WorldUI.cs(59,43): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+Assets\Game\Scripts\Runtime\World\ChapterReportUI.cs(48,17): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+Assets\Game\Scripts\Runtime\Education\QuestionManager.cs(172,17): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+Assets\Game\Scripts\Runtime\Dice\DiceManager.cs(98,17): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+Assets\Game\Scripts\Runtime\UI\EndingController.cs(23,17): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+Assets\Game\Scripts\Runtime\UI\MainMenuController.cs(50,17): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+Assets\Game\Scripts\Runtime\Combat\CombatManager.cs(336,17): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+Assets\Game\Scripts\Runtime\Inventory\InventoryMenu.cs(159,17): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+Assets\Game\Tests\PlayMode\MainMenuSmokeTests.cs(29,25): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+Assets\Game\Tests\PlayMode\MainMenuSmokeTests.cs(30,77): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
+Assets\Game\Tests\PlayMode\MainMenuSmokeTests.cs(30,32): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
+Assets\Game\Tests\PlayMode\MainMenuSmokeTests.cs(32,25): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+Assets\Game\Tests\PlayMode\MainMenuSmokeTests.cs(48,25): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+Assets\Game\Tests\PlayMode\MainMenuSmokeTests.cs(49,25): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+Assets\Game\Tests\PlayMode\MainMenuSmokeTests.cs(50,25): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+Assets\Game\Tests\PlayMode\MainMenuSmokeTests.cs(51,25): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+Assets\Game\Tests\PlayMode\MainMenuSmokeTests.cs(52,74): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
+Assets\Game\Tests\PlayMode\MainMenuSmokeTests.cs(52,25): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
+Assets\Game\Tests\PlayMode\MainMenuSmokeTests.cs(53,25): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+Assets\Game\Tests\PlayMode\MainMenuSmokeTests.cs(54,25): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+Assets\Game\Tests\PlayMode\MainMenuSmokeTests.cs(55,25): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+Assets\Game\Tests\PlayMode\MainMenuSmokeTests.cs(56,39): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+Assets\Game\Tests\PlayMode\MainMenuSmokeTests.cs(58,34): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+Assets\Game\Tests\PlayMode\MainMenuSmokeTests.cs(63,25): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+Assets\Game\Tests\PlayMode\MainMenuSmokeTests.cs(67,25): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+Assets\Game\Tests\PlayMode\MainMenuSmokeTests.cs(69,32): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+Assets\Game\Tests\PlayMode\MainMenuSmokeTests.cs(75,84): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
+Assets\Game\Tests\PlayMode\MainMenuSmokeTests.cs(75,39): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
+Assets\Game\Tests\PlayMode\MainMenuSmokeTests.cs(78,29): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+Assets\Game\Tests\PlayMode\MainMenuSmokeTests.cs(80,25): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+Assets\Game\Tests\PlayMode\MainMenuSmokeTests.cs(101,46): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+Assets\Game\Tests\PlayMode\MainMenuSmokeTests.cs(102,39): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+Assets\Game\Tests\PlayMode\MainMenuSmokeTests.cs(126,84): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
+Assets\Game\Tests\PlayMode\MainMenuSmokeTests.cs(126,25): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
+Assets\Game\Tests\PlayMode\MainMenuSmokeTests.cs(127,25): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+Assets\Game\Tests\PlayMode\MainMenuSmokeTests.cs(128,25): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+Assets\Game\Tests\PlayMode\MainMenuSmokeTests.cs(133,84): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
+Assets\Game\Tests\PlayMode\MainMenuSmokeTests.cs(133,25): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
+Assets\Game\Tests\PlayMode\MainMenuSmokeTests.cs(134,25): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+Assets\Game\Tests\PlayMode\MainMenuSmokeTests.cs(135,25): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+Assets\Game\Tests\PlayMode\MainMenuSmokeTests.cs(140,112): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
+Assets\Game\Tests\PlayMode\MainMenuSmokeTests.cs(140,53): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
+Assets\Game\Tests\PlayMode\MainMenuSmokeTests.cs(150,25): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+Assets\Game\Scripts\Editor\ProjectSetup.cs(11,7): warning CS0105: The using directive for 'MyRPG.UI' appeared previously in this namespace
+ExitCode: 0 Duration: 1s646ms
+Finished compiling graph: 256 nodes, 2512 flattened edges (2380 ToBuild, 24 ToUse), maximum node priority 112
+[190/253    0s] WriteText Library/Bee/artifacts/1900b0aE.dag/MyRPG.Runtime.rsp
+[241/253    0s] Csc Library/Bee/artifacts/1900b0aE.dag/MyRPG.Runtime.dll (+2 others)
+Assets\Game\Scripts\Runtime\World\WorldUI.cs(59,43): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+
+Assets\Game\Scripts\Runtime\World\ChapterReportUI.cs(48,17): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+
+Assets\Game\Scripts\Runtime\Education\QuestionManager.cs(172,17): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+
+Assets\Game\Scripts\Runtime\Dice\DiceManager.cs(98,17): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+
+Assets\Game\Scripts\Runtime\UI\EndingController.cs(23,17): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+
+Assets\Game\Scripts\Runtime\UI\MainMenuController.cs(50,17): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+
+Assets\Game\Scripts\Runtime\Combat\CombatManager.cs(336,17): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+
+Assets\Game\Scripts\Runtime\Inventory\InventoryMenu.cs(159,17): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+[242/253    0s] CopyFiles Library/ScriptAssemblies/MyRPG.Runtime.pdb
+[243/253    0s] Csc Library/Bee/artifacts/1900b0aE.dag/MyRPG.PlayModeTests.dll (+2 others)
+Assets\Game\Tests\PlayMode\MainMenuSmokeTests.cs(29,25): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+
+Assets\Game\Tests\PlayMode\MainMenuSmokeTests.cs(30,77): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
+
+Assets\Game\Tests\PlayMode\MainMenuSmokeTests.cs(30,32): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
+
+Assets\Game\Tests\PlayMode\MainMenuSmokeTests.cs(32,25): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+
+Assets\Game\Tests\PlayMode\MainMenuSmokeTests.cs(48,25): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+
+Assets\Game\Tests\PlayMode\MainMenuSmokeTests.cs(49,25): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+
+Assets\Game\Tests\PlayMode\MainMenuSmokeTests.cs(50,25): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+
+Assets\Game\Tests\PlayMode\MainMenuSmokeTests.cs(51,25): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+
+Assets\Game\Tests\PlayMode\MainMenuSmokeTests.cs(52,74): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
+
+Assets\Game\Tests\PlayMode\MainMenuSmokeTests.cs(52,25): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
+
+Assets\Game\Tests\PlayMode\MainMenuSmokeTests.cs(53,25): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+
+Assets\Game\Tests\PlayMode\MainMenuSmokeTests.cs(54,25): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+
+Assets\Game\Tests\PlayMode\MainMenuSmokeTests.cs(55,25): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+
+Assets\Game\Tests\PlayMode\MainMenuSmokeTests.cs(56,39): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+
+Assets\Game\Tests\PlayMode\MainMenuSmokeTests.cs(58,34): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+
+Assets\Game\Tests\PlayMode\MainMenuSmokeTests.cs(63,25): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+
+Assets\Game\Tests\PlayMode\MainMenuSmokeTests.cs(67,25): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+
+Assets\Game\Tests\PlayMode\MainMenuSmokeTests.cs(69,32): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+
+Assets\Game\Tests\PlayMode\MainMenuSmokeTests.cs(75,84): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
+
+Assets\Game\Tests\PlayMode\MainMenuSmokeTests.cs(75,39): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
+
+Assets\Game\Tests\PlayMode\MainMenuSmokeTests.cs(78,29): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+
+Assets\Game\Tests\PlayMode\MainMenuSmokeTests.cs(80,25): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+
+Assets\Game\Tests\PlayMode\MainMenuSmokeTests.cs(101,46): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+
+Assets\Game\Tests\PlayMode\MainMenuSmokeTests.cs(102,39): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+
+Assets\Game\Tests\PlayMode\MainMenuSmokeTests.cs(126,84): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
+
+Assets\Game\Tests\PlayMode\MainMenuSmokeTests.cs(126,25): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
+
+Assets\Game\Tests\PlayMode\MainMenuSmokeTests.cs(127,25): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+
+Assets\Game\Tests\PlayMode\MainMenuSmokeTests.cs(128,25): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+
+Assets\Game\Tests\PlayMode\MainMenuSmokeTests.cs(133,84): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
+
+Assets\Game\Tests\PlayMode\MainMenuSmokeTests.cs(133,25): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
+
+Assets\Game\Tests\PlayMode\MainMenuSmokeTests.cs(134,25): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+
+Assets\Game\Tests\PlayMode\MainMenuSmokeTests.cs(135,25): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+
+Assets\Game\Tests\PlayMode\MainMenuSmokeTests.cs(140,112): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
+
+Assets\Game\Tests\PlayMode\MainMenuSmokeTests.cs(140,53): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
+
+Assets\Game\Tests\PlayMode\MainMenuSmokeTests.cs(150,25): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+[244/253    0s] CopyFiles Library/ScriptAssemblies/MyRPG.PlayModeTests.dll
+[245/253    0s] CopyFiles Library/ScriptAssemblies/MyRPG.PlayModeTests.pdb
+[246/253    0s] CopyFiles Library/ScriptAssemblies/MyRPG.Runtime.dll
+[247/253    0s] Csc Library/Bee/artifacts/1900b0aE.dag/MyRPG.EditModeTests.dll (+2 others)
+[248/253    0s] CopyFiles Library/ScriptAssemblies/MyRPG.EditModeTests.pdb
+[249/253    0s] Csc Library/Bee/artifacts/1900b0aE.dag/MyRPG.Editor.dll (+2 others)
+Assets\Game\Scripts\Editor\ProjectSetup.cs(11,7): warning CS0105: The using directive for 'MyRPG.UI' appeared previously in this namespace
+[250/253    0s] CopyFiles Library/ScriptAssemblies/MyRPG.Editor.pdb
+[251/253    0s] CopyFiles Library/ScriptAssemblies/MyRPG.EditModeTests.dll
+[252/253    0s] CopyFiles Library/ScriptAssemblies/MyRPG.Editor.dll
+*** Tundra build success (1.58 seconds), 13 items updated, 253 evaluated
+Total cache size 234108376
+Total cache size after purge 234108376, took 00:00:00.1943188
+AssetDatabase: script compilation time: 6.053313s
+Begin MonoManager ReloadAssembly
+Importing 'GUID: ea1f04616cd5c494dafcc5d22e1cae3a - Path: Assets/Game/Scripts/Runtime/Presentation' with importer (DefaultImporter)
+Imported 'GUID: ea1f04616cd5c494dafcc5d22e1cae3a' -> (Import Result ID: 'a28a34b1aa522d9a71af37473f892874') in 0.050 seconds [static dependencies only]. Details - ImportResultOutputID=837edf7f05bfbee080425676d65e69e5 DependenciesID=9d78a090eecd85ba5eac371bc392a623 StaticDependenciesID=b0adf4ee3de53ee26b395f852424aee0 
+Native extension for WindowsStandalone target not found
+ScheduleIndexationOnStartup MainProcess:True IndexOnStartup:True
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  0.431 seconds
+Domain Reload Profiling: 999ms
+	BeginReloadAssembly (225ms)
+		DisableScriptedObjects (24ms)
+		CreateAndSetChildDomain (60ms)
+	RebuildCommonClasses (8ms)
+	RebuildNativeTypeToScriptingClass (16ms)
+	initialDomainReloadingComplete (41ms)
+	LoadAllAssembliesAndSetupDomain (275ms)
+		LoadAssemblies (269ms)
+		AnalyzeDomain (30ms)
+			TypeCache.Refresh (17ms)
+				TypeCache.ScanAssembly (12ms)
+			BuildScriptInfoCaches (9ms)
+	FinalizeReload (434ms)
+		SetupLoadedEditorAssemblies (0ms)
+			BeforeProcessingInitializeOnLoad (99ms)
+			ProcessInitializeOnLoadAttributes (72ms)
+			ProcessInitializeOnLoadMethodAttributes (96ms)
+			AfterProcessingInitializeOnLoad (4ms)
+		AwakeInstancesAfterBackupRestoration (21ms)
+Starting new worker id: 0 with log in C:/Sticks Tuition Dev/games/myRPG/Logs/AssetImportWorkerHW0.log
+
+Asset Pipeline Refresh (id=025c5cd19e1b6fe47ab686a382bc5f19): Total: 7.695 seconds - Initiated by InitialRefreshV2(ForceSynchronousImport)
+	(Values over 0.05ms)
+	Summary:
+		Imports: total=1 (actual=1, local cache=0, cache server=0)
+		Asset DB Process Time: managed=5 ms, native=929 ms
+		Asset DB Callback time: managed=87 ms, native=15 ms
+		Scripting: domain reloads=1, domain reload time=590 ms, compile time=6057 ms, other=9 ms
+		Project Asset Count: scripts=349, non-scripts=1303
+		Asset File Changes: new=2, changed=6, moved=0, deleted=0
+		Scan Filter Count: 0
+	InvokePackagesCallback: 14.707ms
+	ApplyChangesToAssetFolders: 0.439ms
+	Scan: 312.247ms
+	Collect global state as custom dependencies: 3.132ms
+	OnSourceAssetsModified: 0.948ms
+	CategorizeScriptCompilationAssets: 5.787ms
+	ProcessAssetsWithTransientArtifactChanges: 12.544ms
+	CategorizeAssets: 18.819ms
+	CompileScripts: 6057.270ms
+	ImportOutOfDateAssets: 521.514ms (442.021ms without children)
+		ImportManagerImport: 53.732ms (3.621ms without children)
+		UnloadImportedAssets: 0.169ms
+		EnsureUptoDateAssetsAreRegisteredWithGuidPM: 0.258ms
+		ImportSchedulerStart: 25.331ms
+	PostProcessAllAssets: 88.404ms
+		VCAutoAddAssetPostprocess 1.341ms
+		PostProcessCallbackCreateDeferredMaterials 0.086ms
+		VersionControlSettings.HiddenFilePostprocess 0.082ms
+		MonoPostProcessAllAssets: 85.985ms
+			AssetPostprocessor.OnPostprocessAllAssets 40.437ms
+			StyleCatalogPostProcessor.OnPostprocessAllAssets 14.637ms
+			WindowAssetPostprocessingWatcher.OnPostprocessAllAssets 7.562ms
+			BuilderAssetPostprocessor.OnPostprocessAllAssets 4.521ms
+			AssetChangedListener.OnPostprocessAllAssets 2.470ms
+			SyncVS.PostprocessSyncProject 2.289ms
+			RetainedModeAssetPostprocessor.OnPostprocessAllAssets 1.267ms
+			SpeedTree9Postprocessor.OnPostprocessAllAssets 0.892ms
+			TextAssetPostProcessor.OnPostprocessAllAssets 0.680ms
+			ReferencedClipsPostProcessor.OnPostprocessAllAssets 0.588ms
+			ArtifactBrowserPostProcessor.OnPostprocessAllAssets 0.540ms
+			TMPro_TexturePostProcessor.OnPostprocessAllAssets 0.480ms
+			AssetEvents.OnPostprocessAllAssets 0.390ms
+			AudioMixerPostprocessor.OnPostprocessAllAssets 0.279ms
+			TerrainToolbarOverlayPostProcessor.OnPostprocessAllAssets 0.213ms
+			AssetDatabaseCallbacks.OnPostprocessAllAssets 0.166ms
+			SpeedTreePostProcessor.OnPostprocessAllAssets 0.153ms
+			ConfigAssetsTracker.OnPostprocessAllAssets 0.110ms
+			ScenarioDriftAssetsTracker.OnPostprocessAllAssets 0.107ms
+			RenderPipelineGlobalSettingsPostprocessor.OnPostprocessAllAssets 0.101ms
+			AudioContainerPostProcessor.OnPostprocessAllAssets 0.066ms
+	PostAssetChangesProfiler: 1.047ms
+	UnloadStreamsBegin: 1.450ms
+	PersistCurrentRevisions: 0.222ms
+	Untracked: 648.151ms
+
+Application.AssetDatabase Initial Refresh End
+Scanning for USB devices : 2.343ms
+Initializing Unity extensions:
+[MODES] ModeService[none].Initialize
+[MODES] ModeService[none].LoadModes
+[MODES] Loading mode Default (0) for mode-current-id-MyRPG
+Unloading 4 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 824 unused Assets / (0.8 MB). Loaded Objects now: 1468.
+Memory consumption went from 210.8 MB to 210.1 MB.
+Total: 5.714600 ms (FindLiveObjects: 0.201500 ms CreateObjectMapping: 0.123300 ms MarkObjects: 4.883300 ms  DeleteObjects: 0.499800 ms)
+
+Unloading 0 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 0 unused Assets / (0 B). Loaded Objects now: 1468.
+Memory consumption went from 209.4 MB to 209.4 MB.
+Total: 4.829400 ms (FindLiveObjects: 0.130800 ms CreateObjectMapping: 0.094000 ms MarkObjects: 4.596200 ms  DeleteObjects: 0.006700 ms)
+
+Importing 'GUID: d6bf3cfbe9e20004885b62e3d0d6c627 - Path: Assets/Game/Scenes/00_Boot.unity' with importer (DefaultImporter)
+Imported 'GUID: d6bf3cfbe9e20004885b62e3d0d6c627' -> (Import Result ID: 'f4bb27bdce40d412d91bc0eb6e7f0fa2') in 0.003 seconds [static dependencies only]. Details - ImportResultOutputID=dcd29b516acc4771f42d0da503c2a2db DependenciesID=82233a8f5b066e0d7e73cdd75ab6704b StaticDependenciesID=34839330c3ff0884247c90ed706bec3c 
+Asset Pipeline Refresh (id=b9d7ac7dbf222174792bf08daaa2a32a): Total: 0.054 seconds - Initiated by StopAssetImportingV2(NoUpdateAssetOptions)
+Unloading 0 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 1 unused Assets / (0.8 KB). Loaded Objects now: 1468.
+Memory consumption went from 206.0 MB to 206.0 MB.
+Total: 4.436700 ms (FindLiveObjects: 0.087000 ms CreateObjectMapping: 0.071800 ms MarkObjects: 4.248800 ms  DeleteObjects: 0.027800 ms)
+
+Importing 'GUID: 1114572bf9d9d904cadc55ad2daef972 - Path: Assets/Game/Scenes/01_MainMenu.unity' with importer (DefaultImporter)
+Imported 'GUID: 1114572bf9d9d904cadc55ad2daef972' -> (Import Result ID: '1a9643402f1e14ae1018aef7d1713a4e') in 0.003 seconds [static dependencies only]. Details - ImportResultOutputID=bc7c3ad73f498a2a48c22a0cdf8b51a3 DependenciesID=1c44ffaebd63e93e7995c7fdd3486af3 StaticDependenciesID=cca3868ec5d7fdc7036c0849ee96f392 
+Asset Pipeline Refresh (id=94718f1d768757c43843bb373ffed5f8): Total: 0.034 seconds - Initiated by StopAssetImportingV2(NoUpdateAssetOptions)
+Unloading 0 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 30 unused Assets / (218.4 KB). Loaded Objects now: 1468.
+Memory consumption went from 211.2 MB to 211.0 MB.
+Total: 7.784500 ms (FindLiveObjects: 0.113700 ms CreateObjectMapping: 0.106300 ms MarkObjects: 6.897000 ms  DeleteObjects: 0.665400 ms)
+
+Launched and connected shader compiler UnityShaderCompiler.exe after 0.01 seconds
+Importing 'GUID: c85608506a6ee8e4ca3eb5a1f3a795be - Path: Assets/Game/Scenes/03_Village.unity' with importer (DefaultImporter)
+Imported 'GUID: c85608506a6ee8e4ca3eb5a1f3a795be' -> (Import Result ID: '7f912ded067de719e74bde132f3e0f0e') in 0.002 seconds [static dependencies only]. Details - ImportResultOutputID=34c7b3362e3f6bf74a73556781da0afb DependenciesID=92de8de9e03126e0a1ab4407c060bff5 StaticDependenciesID=d623b19041840755bca8bfa989678774 
+Asset Pipeline Refresh (id=b3d62425d1d73c94f8a279a672221f55): Total: 0.038 seconds - Initiated by StopAssetImportingV2(NoUpdateAssetOptions)
+Unloading 0 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 540 unused Assets / (344.5 KB). Loaded Objects now: 1470.
+Memory consumption went from 212.1 MB to 211.7 MB.
+Total: 6.283700 ms (FindLiveObjects: 0.121500 ms CreateObjectMapping: 0.170500 ms MarkObjects: 4.571400 ms  DeleteObjects: 1.418200 ms)
+
+Importing 'GUID: 4266605b4fef38f428bba162bf380edf - Path: Assets/Game/Scenes/04_BrokenRoad.unity' with importer (DefaultImporter)
+Imported 'GUID: 4266605b4fef38f428bba162bf380edf' -> (Import Result ID: 'da184122749e3a92c0da6ab9bdaa7bc3') in 0.004 seconds [static dependencies only]. Details - ImportResultOutputID=70540591e92076da5abf1d3b12284766 DependenciesID=10a336b2a219da2e193b112a653779a3 StaticDependenciesID=1f65bf46b0c087805b0c2f584b26fa17 
+Asset Pipeline Refresh (id=556ba82ae3e96c04087a13aa4738907a): Total: 0.057 seconds - Initiated by StopAssetImportingV2(NoUpdateAssetOptions)
+Unloading 0 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 668 unused Assets / (0.7 MB). Loaded Objects now: 1470.
+Memory consumption went from 213.2 MB to 212.5 MB.
+Total: 13.573900 ms (FindLiveObjects: 0.110400 ms CreateObjectMapping: 0.103600 ms MarkObjects: 12.385600 ms  DeleteObjects: 0.973000 ms)
+
+Importing 'GUID: 0a16b640e41ab1445817a92fb2ef0fc9 - Path: Assets/Game/Scenes/05_Crypt.unity' with importer (DefaultImporter)
+Imported 'GUID: 0a16b640e41ab1445817a92fb2ef0fc9' -> (Import Result ID: 'ca7ef832f6ad35125fbe6f1b29e95174') in 0.006 seconds [static dependencies only]. Details - ImportResultOutputID=ce17aac12954c5b953a9418004e85970 DependenciesID=677ea8a8fe62f5b3ffc82a110f2a53c0 StaticDependenciesID=777ff36991c4e5c0a7dd05b11d119d79 
+Asset Pipeline Refresh (id=de91807a4b7fe6c44b04140145317930): Total: 0.041 seconds - Initiated by StopAssetImportingV2(NoUpdateAssetOptions)
+Unloading 0 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 597 unused Assets / (364.2 KB). Loaded Objects now: 1470.
+Memory consumption went from 212.4 MB to 212.0 MB.
+Total: 8.424700 ms (FindLiveObjects: 0.086500 ms CreateObjectMapping: 0.090200 ms MarkObjects: 7.585100 ms  DeleteObjects: 0.661400 ms)
+
+Importing 'GUID: 9f241edafedb7c5468ecd4c5f7f23db8 - Path: Assets/Game/Scenes/06_BoneKingKeep.unity' with importer (DefaultImporter)
+Imported 'GUID: 9f241edafedb7c5468ecd4c5f7f23db8' -> (Import Result ID: '237fea1f5e907362a5f2e5ab09b54f55') in 0.002 seconds [static dependencies only]. Details - ImportResultOutputID=bb33baa35f1d51ccb21b5bf4b22640cf DependenciesID=9ab516db729eae1ef91eec8d2adfadb2 StaticDependenciesID=cb422e0dae001296b97846d022c54915 
+Asset Pipeline Refresh (id=cd080ccaa8a95484396a124c152a21a5): Total: 0.033 seconds - Initiated by StopAssetImportingV2(NoUpdateAssetOptions)
+Unloading 0 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 491 unused Assets / (326.4 KB). Loaded Objects now: 1470.
+Memory consumption went from 212.0 MB to 211.7 MB.
+Total: 6.653600 ms (FindLiveObjects: 0.137600 ms CreateObjectMapping: 0.150200 ms MarkObjects: 5.510200 ms  DeleteObjects: 0.854100 ms)
+
+Importing 'GUID: 3f3d187beec25e5468f5b66ee0f869ff - Path: Assets/Game/Scenes/07_Ending.unity' with importer (DefaultImporter)
+Imported 'GUID: 3f3d187beec25e5468f5b66ee0f869ff' -> (Import Result ID: '85beb83a39f8deab1572ffc271c459d8') in 0.002 seconds [static dependencies only]. Details - ImportResultOutputID=7d5fe396823a2c4a56e62f365aaf5317 DependenciesID=83219ad6cf5dc87177640393e50e77ed StaticDependenciesID=c7eb2f4dee2b4f4b71276133c5ec9e92 
+Asset Pipeline Refresh (id=4c7bf91455b900f45b64400e43d7df9d): Total: 0.034 seconds - Initiated by StopAssetImportingV2(NoUpdateAssetOptions)
+Importing 'GUID: 00000000000000004000000000000000 - Path: ProjectSettings/ProjectSettings.asset' with importer (LibraryAssetImporter)
+Imported 'GUID: 00000000000000004000000000000000' -> (Import Result ID: '5a1ace34b4d57fe37dda5f228f463034') in 0.001 seconds [static dependencies only]. Details - ImportResultOutputID=276a810dac73e1f29404d5e5f692e214 DependenciesID=ca0aa6278533f915af50a26e20668386 StaticDependenciesID=b0179c00755bf516a05f7497226245eb 
+Asset Pipeline Refresh (id=e2411c0ed92d63644963cc4a36b49d26): Total: 0.026 seconds - Initiated by StopAssetImportingV2(NoUpdateAssetOptions)
+Asset Pipeline Refresh (id=a44dbfb40c8f46a49a9e340dafa0faf1): Total: 0.017 seconds - Initiated by RefreshV2(NoUpdateAssetOptions)
+MyRPG Phase 1 setup completed.
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+MyRPG.Editor.ProjectSetup:Run () (at Assets/Game/Scripts/Editor/ProjectSetup.cs:38)
+
+(Filename: Assets/Game/Scripts/Editor/ProjectSetup.cs Line: 38)
+
+Batchmode quit successfully invoked - shutting down!
+[Physics::Module] Cleanup current backend.
+[Physics::Module] Id: 0xf2b8ea05
+Input System module state changed to: ShutdownInProgress.
+Input Polling Thread exited.
+Input System module state changed to: Shutdown.
+[Licensing::IpcConnector] LicenseClient-paddy-6000.5.2-notifications channel disconnected successfully.
+[Licensing::IpcConnector] LicenseClient-paddy-6000.5.2 channel disconnected successfully.
+AcceleratorClientConnectionCallback - disconnected - :0
+Cleanup mono
+CodeReloadManager destroyed
+Exiting batchmode successfully now!
+Exiting without the bug reporter. Application will terminate with return code 0

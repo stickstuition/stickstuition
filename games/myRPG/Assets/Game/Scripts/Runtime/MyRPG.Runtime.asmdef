@@ -1,0 +1,6 @@
+{
+  "name": "MyRPG.Runtime",
+  "rootNamespace": "MyRPG",
+  "references": ["Unity.ugui"],
+  "autoReferenced": true
+}

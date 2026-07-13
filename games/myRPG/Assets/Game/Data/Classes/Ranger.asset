@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0b4f75ebc2660145ba21c4865a5487f, type: 3}
+  m_Name: Ranger
+  m_EditorClassIdentifier: MyRPG.Runtime::MyRPG.Data.CharacterClassDefinition
+  id: ranger
+  displayName: Ranger
+  description: Ranger definition.
+  classId: 2
+  startingStats:
+    maxHealth: 95
+    maxFocus: 28
+    strength: 6
+    defence: 5
+    magic: 3
+    intelligence: 6
+    agility: 9
+    luck: 6
+  specialAbility: {fileID: 11400000, guid: 9df1f98b28fd11244b64e247a4100631, type: 2}
+  characterModel: {fileID: 0}

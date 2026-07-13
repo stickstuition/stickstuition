@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0b4f75ebc2660145ba21c4865a5487f, type: 3}
+  m_Name: Rogue
+  m_EditorClassIdentifier: MyRPG.Runtime::MyRPG.Data.CharacterClassDefinition
+  id: rogue
+  displayName: Rogue
+  description: Rogue definition.
+  classId: 3
+  startingStats:
+    maxHealth: 90
+    maxFocus: 30
+    strength: 5
+    defence: 4
+    magic: 3
+    intelligence: 7
+    agility: 10
+    luck: 9
+  specialAbility: {fileID: 11400000, guid: 75f0475e8edfcb3448b20f9346013291, type: 2}
+  characterModel: {fileID: 0}

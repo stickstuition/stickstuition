@@ -1,0 +1,7 @@
+{
+  "name": "MyRPG.PlayModeTests",
+  "rootNamespace": "MyRPG.Tests",
+  "references": ["MyRPG.Runtime", "Unity.ugui"],
+  "optionalUnityReferences": ["TestAssemblies"],
+  "autoReferenced": false
+}
