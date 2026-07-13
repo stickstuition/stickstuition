@@ -183,6 +183,6 @@ export default async function handler(request) {
     console.error("PuzzleForge generation failed", diagnostic);
     return jsonResponse(authFailed
       ? { error: "OpenAI rejected the configured API key. Replace OPENAI_API_KEY in Netlify with a new Platform API key, then redeploy.", code: "AI_AUTH_FAILED" }
-      : { error: "The AI challenge did not clear review. Please forge another.", code: "GENERATION_FAILED" }, authFailed ? 503 : 502);
+      : { error: "The AI challenge did not clear review. Please forge another.", code: "GENERATION_FAILED", diagnostic }, authFailed ? 503 : 502);
   }
 }
