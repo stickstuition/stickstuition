@@ -1,12 +1,13 @@
 const OPENAI_URL="https://api.openai.com/v1";
 const TEXT_MODEL=process.env.PUZZLEFORGE_TEXT_MODEL||"gpt-5.4-mini";
 const IMAGE_MODEL=process.env.PUZZLEFORGE_IMAGE_MODEL||"gpt-image-2";
+const OPENAI_API_KEY=process.env.OPENAI_API_KEY||process.env.Open_AI_Key;
 const thresholds={junior:72,intermediate:78,senior:82};
 const categories={mixed:"any of the three approved families", "visual-geometry":"visual geometry and measurement", "number-structures":"combinatorial patterns and number structures",systems:"systems, processes and probability"};
 const banList=["single missing angle","ordinary perimeter or area substitution","ordinary spinner probability","direct reflection","visible next-term sequence","mean calculation","formula substitution","large arithmetic as difficulty","decorative diagram","routine worksheet exercise"];
 const jsonResponse=(body,status=200)=>new Response(JSON.stringify(body),{status,headers:{"content-type":"application/json","cache-control":"no-store"}});
 
-const headers=()=>({authorization:`Bearer ${process.env.OPENAI_API_KEY}`,"content-type":"application/json"});
+const headers=()=>({authorization:`Bearer ${OPENAI_API_KEY}`,"content-type":"application/json"});
 function outputText(data){if(typeof data.output_text==="string")return data.output_text;return (data.output||[]).flatMap(item=>item.content||[]).filter(c=>c.type==="output_text").map(c=>c.text).join("")}
 async function openai(path,body){const response=await fetch(`${OPENAI_URL}${path}`,{method:"POST",headers:headers(),body:JSON.stringify(body)});if(!response.ok){const detail=await response.text();throw new Error(`OpenAI ${response.status}: ${detail.slice(0,500)}`)}return response.json()}
 async function askJson(role,prompt,schema,name){
@@ -33,7 +34,7 @@ async function askVision(promptParts,schema,name){const data=await openai("/resp
 
 export default async function handler(request){
   if(request.method!=="POST")return new Response(JSON.stringify({error:"Method not allowed"}),{status:405,headers:{allow:"POST","content-type":"application/json"}});
-  if(!process.env.OPENAI_API_KEY)return jsonResponse({error:"PuzzleForge AI is not configured",code:"AI_NOT_CONFIGURED"},503);
+  if(!OPENAI_API_KEY)return jsonResponse({error:"PuzzleForge AI is not configured",code:"AI_NOT_CONFIGURED"},503);
   try{
     const input=await request.json().catch(()=>({}));const level=["junior","intermediate","senior"].includes(input.level)?input.level:"junior";const category=Object.hasOwn(categories,input.category)?input.category:"mixed";const recent=Array.isArray(input.recentFingerprints)?input.recentFingerprints.slice(-8).map(String):[];const brief=sharedBrief(level,category,recent);
     const conceptResult=await askJson("You are the mathematical concept designer. Propose mechanisms, not reskinned worksheets. Make all five structurally distinct.",`${brief}\nGenerate five concept dossiers. Do not write polished questions yet.`,conceptSchema,"concept_shortlist");
