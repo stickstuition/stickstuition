@@ -82,9 +82,9 @@ async function forgeWithAI(level, category, recentFingerprints) {
 
 Quality threshold: ${thresholds[level]}/100. Score originality /25, reasoning /20, diagram /20, clarity /15, distractors /10, and level suitability /10. Junior needs one genuine insight; Intermediate must connect two facts; Senior needs multiple constraint-driven steps.
 
-Generate five audit concepts: exactly one winner, two finalists, and two rejected. Give each a distinct structural fingerprint, hidden insight, honest score, one-sentence reason, and at most two short solution steps. The winner must have one unique answer appearing exactly once among five plausible A-E options. Keep the insight hidden from the player prompt.
+Generate five compact audit concepts: exactly one winner, two finalists, and two rejected. Give each a distinct short fingerprint, a one-sentence hidden insight, honest score, one-sentence reason, and one short solution summary. The winner must have one unique answer appearing exactly once among five plausible A-E options. Keep the insight hidden from the player prompt.
 
-The diagram must carry essential information. Create a self-contained landscape SVG under 3000 characters with viewBox="0 0 900 520", xmlns="http://www.w3.org/2000/svg", a warm-white background, explicit fills and strokes, crisp dark lines, restrained #c6001c and #284f9e accents, and large legible essential labels. Use only SVG shapes, paths, lines and text. No scripts, stylesheets, links, external assets, foreignObject, branding, answer, decorative scenery, or announced trick. Internally inspect it against the solved mathematics before setting visualReview.pass.
+The diagram must carry essential information. Create a compact self-contained landscape SVG under 1400 characters with viewBox="0 0 900 520", xmlns="http://www.w3.org/2000/svg", a warm-white background, explicit fills and strokes, crisp dark lines, restrained #c6001c and #284f9e accents, and large legible essential labels. Use only essential SVG shapes, paths, lines and text. No scripts, stylesheets, links, external assets, foreignObject, branding, answer, decorative scenery, or announced trick. Internally inspect it against the solved mathematics before setting visualReview.pass.
 
 Never imitate or reproduce any supplied or known paper's wording, numbers, diagram, characters, sequence, or branding. Use only abstract competition-design principles. Avoid: ${banList.join(", ")}.
 
@@ -95,7 +95,7 @@ Do not repeat these recent structural fingerprints: ${recentFingerprints.join(" 
     headers: { authorization: `Bearer ${OPENAI_API_KEY}`, "content-type": "application/json" },
     body: JSON.stringify({
       model: TEXT_MODEL,
-      max_tokens: 6000,
+      max_tokens: 2200,
       messages: [
         { role: "system", content: system },
         { role: "user", content: prompt },
