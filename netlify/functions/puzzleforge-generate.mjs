@@ -1,5 +1,5 @@
 const OPENAI_URL = "https://api.openai.com/v1";
-const TEXT_MODEL = process.env.PUZZLEFORGE_TEXT_MODEL || "gpt-5.4-mini";
+const TEXT_MODEL = process.env.PUZZLEFORGE_TEXT_MODEL || "gpt-5.4-nano";
 const OPENAI_API_KEY = process.env.OPENAI_API_KEY || process.env.Open_AI_Key;
 
 const thresholds = { junior: 72, intermediate: 78, senior: 82 };
@@ -93,7 +93,7 @@ Quality threshold: ${thresholds[level]}/100. Score originality /25, reasoning /2
 
 Generate five audit concepts: exactly one winner, two finalists, and two rejected. Give each a distinct structural fingerprint, hidden insight, honest score, one-sentence reason, and at most two short solution steps. The winner must have one unique answer appearing exactly once among five plausible A-E options. Keep the insight hidden from the player prompt.
 
-The diagram must carry essential information. Create a self-contained landscape SVG under 5000 characters with viewBox="0 0 900 520", xmlns="http://www.w3.org/2000/svg", a warm-white background, explicit fills and strokes, crisp dark lines, restrained #c6001c and #284f9e accents, and large legible essential labels. Use only SVG shapes, paths, lines and text. No scripts, stylesheets, links, external assets, foreignObject, branding, answer, decorative scenery, or announced trick. Internally inspect it against the solved mathematics before setting visualReview.pass.
+The diagram must carry essential information. Create a self-contained landscape SVG under 3000 characters with viewBox="0 0 900 520", xmlns="http://www.w3.org/2000/svg", a warm-white background, explicit fills and strokes, crisp dark lines, restrained #c6001c and #284f9e accents, and large legible essential labels. Use only SVG shapes, paths, lines and text. No scripts, stylesheets, links, external assets, foreignObject, branding, answer, decorative scenery, or announced trick. Internally inspect it against the solved mathematics before setting visualReview.pass.
 
 Never imitate or reproduce any supplied or known paper's wording, numbers, diagram, characters, sequence, or branding. Use only abstract competition-design principles. Avoid: ${banList.join(", ")}.
 
@@ -105,7 +105,7 @@ Do not repeat these recent structural fingerprints: ${recentFingerprints.join(" 
     body: JSON.stringify({
       model: TEXT_MODEL,
       reasoning: { effort: "low" },
-      max_output_tokens: 8000,
+      max_output_tokens: 6000,
       input: [
         { role: "system", content: [{ type: "input_text", text: system }] },
         { role: "user", content: [{ type: "input_text", text: prompt }] },
