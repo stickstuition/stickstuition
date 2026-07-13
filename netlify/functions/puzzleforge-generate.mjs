@@ -113,7 +113,7 @@ Do not repeat these recent structural fingerprints: ${recentFingerprints.join(" 
   return JSON.parse(text);
 }
 
-function diagramDataUri(raw) {
+function makeDiagramDataUri(raw) {
   const svg = String(raw || "").trim();
   if (!/^<svg[\s>]/i.test(svg) || svg.length < 120 || svg.length > 60000) {
     throw new Error("AI diagram was not a valid SVG");
@@ -159,7 +159,7 @@ export default async function handler(request) {
     const recentFingerprints = Array.isArray(input.recentFingerprints) ? input.recentFingerprints.slice(-8).map(String) : [];
     const challenge = await forgeWithAI(level, category, recentFingerprints);
     validateChallenge(challenge, level, recentFingerprints);
-    const diagramDataUri = diagramDataUri(challenge.diagramSvg);
+    const diagramDataUri = makeDiagramDataUri(challenge.diagramSvg);
     const { diagramSvg, visualReview, ...question } = challenge;
     return jsonResponse({
       ...question,
@@ -183,6 +183,6 @@ export default async function handler(request) {
     console.error("PuzzleForge generation failed", diagnostic);
     return jsonResponse(authFailed
       ? { error: "OpenAI rejected the configured API key. Replace OPENAI_API_KEY in Netlify with a new Platform API key, then redeploy.", code: "AI_AUTH_FAILED" }
-      : { error: "The AI challenge did not clear review. Please forge another.", code: "GENERATION_FAILED", diagnostic }, authFailed ? 503 : 502);
+      : { error: "The AI challenge did not clear review. Please forge another.", code: "GENERATION_FAILED" }, authFailed ? 503 : 502);
   }
 }
