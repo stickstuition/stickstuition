@@ -87,13 +87,13 @@ function outputText(data) {
 async function forgeWithAI(level, category, recentFingerprints) {
   const family = categories[category] || categories.mixed;
   const system = `You are the complete PuzzleForge review panel. Work through six internal roles in order: concept designer, independent solver, diagram engineer, visual reviewer, difficulty critic, and final editor. Generate five structurally distinct concepts, fully develop and independently solve the strongest three, reject routine or ambiguous work, score every developed candidate, and return only the highest-scoring valid challenge. Never choose the first merely valid idea. The SVG is essential mathematical content and must be exact.`;
-  const prompt = `Create an original ${level} challenge in ${family}.
+  const prompt = `Create an original ${level} challenge in ${family}. Be concise and finish quickly.
 
 Quality threshold: ${thresholds[level]}/100. Score originality /25, reasoning /20, diagram /20, clarity /15, distractors /10, and level suitability /10. Junior needs one genuine insight; Intermediate must connect two facts; Senior needs multiple constraint-driven steps.
 
-Generate five audit concepts: exactly one winner, two finalists, and two rejected. Give each a distinct structural fingerprint, hidden insight, honest score, reason, and independent solution summary. The winner must have one unique answer appearing exactly once among five plausible A-E options. Keep the insight hidden from the player prompt.
+Generate five audit concepts: exactly one winner, two finalists, and two rejected. Give each a distinct structural fingerprint, hidden insight, honest score, one-sentence reason, and at most two short solution steps. The winner must have one unique answer appearing exactly once among five plausible A-E options. Keep the insight hidden from the player prompt.
 
-The diagram must carry essential information. Create a self-contained landscape SVG with viewBox="0 0 900 520", xmlns="http://www.w3.org/2000/svg", a warm-white background, explicit fills and strokes, crisp dark lines, restrained #c6001c and #284f9e accents, and large legible essential labels. Use only SVG shapes, paths, lines and text. No scripts, stylesheets, links, external assets, foreignObject, branding, answer, decorative scenery, or announced trick. Internally inspect it against the solved mathematics before setting visualReview.pass.
+The diagram must carry essential information. Create a self-contained landscape SVG under 5000 characters with viewBox="0 0 900 520", xmlns="http://www.w3.org/2000/svg", a warm-white background, explicit fills and strokes, crisp dark lines, restrained #c6001c and #284f9e accents, and large legible essential labels. Use only SVG shapes, paths, lines and text. No scripts, stylesheets, links, external assets, foreignObject, branding, answer, decorative scenery, or announced trick. Internally inspect it against the solved mathematics before setting visualReview.pass.
 
 Never imitate or reproduce any supplied or known paper's wording, numbers, diagram, characters, sequence, or branding. Use only abstract competition-design principles. Avoid: ${banList.join(", ")}.
 
@@ -104,8 +104,8 @@ Do not repeat these recent structural fingerprints: ${recentFingerprints.join(" 
     headers: { authorization: `Bearer ${OPENAI_API_KEY}`, "content-type": "application/json" },
     body: JSON.stringify({
       model: TEXT_MODEL,
-      reasoning: { effort: "medium" },
-      max_output_tokens: 16000,
+      reasoning: { effort: "low" },
+      max_output_tokens: 8000,
       input: [
         { role: "system", content: [{ type: "input_text", text: system }] },
         { role: "user", content: [{ type: "input_text", text: prompt }] },
