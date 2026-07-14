@@ -23,9 +23,9 @@ async function forge(){
   if(state.controller)return;
   savePrefs();const requestSeed=seed();state.controller=new AbortController();const cleanup=startLoading();el["generator-status"].classList.remove("is-error");el["generator-status"].textContent="Five ideas are entering the forge.";
   try{
-    const response=await fetch("/.netlify/functions/puzzleforge-generate",{method:"POST",headers:{"content-type":"application/json"},body:JSON.stringify({level:level(),category:el.category.value,seed:requestSeed,recentFingerprints:state.history.slice(-8).map(h=>h.fingerprint)}),signal:state.controller.signal});
+    const response=await fetch("https://puzzleforge-vercel-api.vercel.app/api/generate",{method:"POST",headers:{"content-type":"application/json"},body:JSON.stringify({level:level(),category:el.category.value,seed:requestSeed,recentFingerprints:state.history.slice(-8).map(h=>h.fingerprint)}),signal:state.controller.signal});
     const detail=await response.json().catch(()=>({}));
-    if(!response.ok)throw new Error(detail.code==="AI_NOT_CONFIGURED"?"AI generation is not configured yet. Add OPENAI_API_KEY in Netlify, then redeploy.":detail.error||`Generation failed (${response.status})`);
+    if(!response.ok)throw new Error(detail.code==="AI_NOT_CONFIGURED"?"AI generation is not configured on the PuzzleForge service yet.":detail.error||`Generation failed (${response.status})`);
     if(detail.source!=="ai"||!detail.diagramDataUri)throw new Error("The AI review did not return a complete illustrated challenge. Please try again.");
     stages.forEach(s=>{s.classList.remove("is-active");s.classList.add("is-done")});renderQuestion(detail);el["generator-status"].textContent=`Selected after independent review · ${detail.qualityScore}/100`;
   }catch(error){
