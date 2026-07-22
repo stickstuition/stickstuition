@@ -44,7 +44,7 @@
           </div>
 
           <div class="lp-play-area">
-            <p class="lp-instruction" id="lp-instruction">Type the next digit of pi.</p>
+            <p class="lp-instruction" id="lp-instruction">Type the next digit of pi. It checks automatically.</p>
             <label class="lp-answer-label" for="lp-answer">Next digit</label>
             <input class="lp-answer" id="lp-answer" data-answer type="text" inputmode="numeric" pattern="[0-9]*" maxlength="1" autocomplete="off" enterkeyhint="next" aria-describedby="lp-instruction">
             <p class="lp-feedback" data-feedback aria-live="polite">Start with the first digit after the decimal point.</p>
@@ -71,6 +71,7 @@
 
     <footer class="lp-footer"><a href="../../maths-games.html">← Back to all games</a><span>Sticks Tuition · Make Maths Stick</span></footer>
     <script src="../../site.js"></script>
-    <script type="module" src="./learn-pi-game.js"></script>
+    <script src="./learn-pi-core.js"></script>
+    <script src="./learn-pi-game.js"></script>
   </body>
 </html>

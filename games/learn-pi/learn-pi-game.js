@@ -1,4 +1,4 @@
-import { PI_DIGITS, createRound, submitDigit } from "./learn-pi-core.js";
+const { PI_DIGITS, createRound, submitDigit } = window.LearnPiCore;
 
 const BEST_KEY = "sticks-learn-pi-best";
 
@@ -138,6 +138,12 @@ document.querySelectorAll("[data-learn-pi]").forEach((game) => {
   }
 
   answer.addEventListener("keydown", (event) => {
+    if (event.key === "Enter") {
+      event.preventDefault();
+      const digit = answer.value.replace(/\D/g, "").slice(0, 1);
+      if (digit && !inputLocked) handleDigit(digit);
+      return;
+    }
     if (event.ctrlKey || event.metaKey || event.altKey || ["Tab", "Backspace", "Delete", "ArrowLeft", "ArrowRight", "Home", "End"].includes(event.key)) return;
     if (!/^[0-9]$/.test(event.key)) event.preventDefault();
   });

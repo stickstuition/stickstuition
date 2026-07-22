@@ -1,4 +1,5 @@
-export const PI_DIGITS =
+(function exposeLearnPiCore(root) {
+const PI_DIGITS =
   "1415926535897932384626433832795028841971693993751058209749445923078164062862089986280348253421170679" +
   "8214808651328230664709384460955058223172535940812848111745028410270193852110555964462294895493038196" +
   "4428810975665933446128475648233786783165271201909145648566923460348610454326648213393607260249141273" +
@@ -12,12 +13,12 @@ export const PI_DIGITS =
   "3809525720106548586327886593615338182796823030195203530185296899577362259941389124972177528347913151" +
   "5574857242454150695950829533116861727855889075098381754637464939319255060400927701671139009848824012";
 
-export function createRound(best = 0) {
+function createRound(best = 0) {
   const safeBest = Number.isFinite(best) && best > 0 ? Math.floor(best) : 0;
   return { score: 0, lives: 3, best: safeBest, status: "playing" };
 }
 
-export function submitDigit(state, digit) {
+function submitDigit(state, digit) {
   if (state.status !== "playing" || !/^[0-9]$/.test(digit)) {
     return { state, outcome: "ignored", correctDigit: PI_DIGITS[state.score] };
   }
@@ -44,3 +45,12 @@ export function submitDigit(state, digit) {
     correctDigit,
   };
 }
+
+const api = Object.freeze({ PI_DIGITS, createRound, submitDigit });
+
+if (typeof module === "object" && module.exports) {
+  module.exports = api;
+} else {
+  root.LearnPiCore = api;
+}
+})(typeof globalThis === "object" ? globalThis : this);

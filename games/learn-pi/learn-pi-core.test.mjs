@@ -1,6 +1,8 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { PI_DIGITS, createRound, submitDigit } from "./learn-pi-core.js";
+import core from "./learn-pi-core.js";
+
+const { PI_DIGITS, createRound, submitDigit } = core;
 
 test("includes an accurate local sequence of at least 1,000 pi digits", () => {
   assert.ok(PI_DIGITS.length >= 1000);
