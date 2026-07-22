@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#121524">
+    <title>Learn Pi | Sticks Tuition GameLab</title>
+    <meta name="description" content="Type the digits of pi from memory and see how long you can keep going.">
+    <link rel="icon" type="image/png" href="../../logos/C6001C.png">
+    <link rel="stylesheet" href="../../styles.css">
+    <link rel="stylesheet" href="./learn-pi.css">
+  </head>
+  <body class="learn-pi-body">
+    <header class="site-header">
+      <div class="nav-shell">
+        <a class="brand" href="../../index.html"><span class="brand-mark">ST</span><span>STICKS TUITION<small>Make Maths Stick</small></span></a>
+        <button class="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false" data-menu-toggle><span></span><span></span><span></span></button>
+        <nav class="nav-links" aria-label="Site"><a href="../../index.html">Home</a><a href="../../our-lessons.html">Our Lessons</a><a class="games-link" href="../../maths-games.html" aria-current="page">Game Lab</a><a href="../../pricing-and-packages.html">Pricing</a><a href="../../login.html">Login</a></nav>
+        <a class="nav-cta" href="../../maths-games.html">All games</a>
+      </div>
+    </header>
+
+    <main class="learn-pi" data-learn-pi>
+      <section class="lp-hero" aria-labelledby="lp-title">
+        <div class="lp-hero-copy">
+          <p class="lp-kicker">Sticks Tuition GameLab</p>
+          <h1 id="lp-title">Learn <span>Pi</span></h1>
+          <p>How many digits can you remember? You have three lives to keep the sequence going.</p>
+        </div>
+        <div class="lp-pi-mark" aria-hidden="true">π</div>
+      </section>
+
+      <section class="lp-game-shell">
+        <div class="lp-stats" aria-label="Game status">
+          <div class="lp-stat"><span>Digits Correct</span><strong data-score aria-label="Digits correct: 0">0</strong></div>
+          <div class="lp-stat"><span>Personal Best</span><strong data-best aria-label="Personal best: 0">0</strong></div>
+          <div class="lp-stat lp-lives-stat"><span>Lives Remaining</span><strong class="lp-hearts" data-lives aria-label="3 lives remaining"><span aria-hidden="true">♥ ♥ ♥</span></strong></div>
+        </div>
+
+        <div class="lp-board">
+          <div class="lp-sequence-wrap">
+            <div class="lp-sequence-heading"><span>Your pi sequence</span><small data-sequence-count>0 digits after the decimal</small></div>
+            <div class="lp-sequence" data-sequence aria-label="Pi equals 3 point"><span class="lp-prefix">π = 3.</span><span data-pi-digits></span><span class="lp-cursor" aria-hidden="true"></span></div>
+          </div>
+
+          <div class="lp-play-area">
+            <p class="lp-instruction" id="lp-instruction">Type the next digit of pi.</p>
+            <label class="lp-answer-label" for="lp-answer">Next digit</label>
+            <input class="lp-answer" id="lp-answer" data-answer type="text" inputmode="numeric" pattern="[0-9]*" maxlength="1" autocomplete="off" enterkeyhint="next" aria-describedby="lp-instruction">
+            <p class="lp-feedback" data-feedback aria-live="polite">Start with the first digit after the decimal point.</p>
+
+            <div class="lp-keypad" aria-label="Number pad">
+              <button type="button" data-digit="1">1</button><button type="button" data-digit="2">2</button><button type="button" data-digit="3">3</button><button type="button" data-digit="4">4</button><button type="button" data-digit="5">5</button>
+              <button type="button" data-digit="6">6</button><button type="button" data-digit="7">7</button><button type="button" data-digit="8">8</button><button type="button" data-digit="9">9</button><button type="button" data-digit="0">0</button>
+            </div>
+          </div>
+
+          <button class="lp-restart" type="button" data-restart aria-label="Restart Learn Pi game">Restart</button>
+        </div>
+
+        <section class="lp-game-over" data-game-over role="status" aria-labelledby="lp-game-over-title" aria-describedby="lp-game-over-message lp-next-digit" hidden>
+          <p class="lp-over-kicker">Round complete</p>
+          <h2 id="lp-game-over-title">Great memory!</h2>
+          <p id="lp-game-over-message" data-game-over-message>You reached 0 digits of pi.</p>
+          <p id="lp-next-digit" class="lp-next-digit">The next digit was <strong data-next-digit>1</strong>.</p>
+          <div class="lp-final-sequence"><span>Your completed pi string</span><p><strong>π = 3.</strong><span data-final-digits></span></p></div>
+          <button class="lp-try-again" type="button" data-try-again aria-label="Try Learn Pi again">Try Again</button>
+        </section>
+      </section>
+    </main>
+
+    <footer class="lp-footer"><a href="../../maths-games.html">← Back to all games</a><span>Sticks Tuition · Make Maths Stick</span></footer>
+    <script src="../../site.js"></script>
+    <script type="module" src="./learn-pi-game.js"></script>
+  </body>
+</html>
