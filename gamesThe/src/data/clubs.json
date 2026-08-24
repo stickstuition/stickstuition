@@ -1,0 +1,182 @@
+[
+  {
+    "id": 1,
+    "code": 3,
+    "name": "Arsenal",
+    "shortName": "ARS",
+    "crest": "/clubs/arsenal.svg",
+    "primary": "#e30613",
+    "secondary": "#063672"
+  },
+  {
+    "id": 2,
+    "code": 7,
+    "name": "Aston Villa",
+    "shortName": "AVL",
+    "crest": "/clubs/aston-villa.svg",
+    "primary": "#670e36",
+    "secondary": "#95bfe5"
+  },
+  {
+    "id": 3,
+    "code": 91,
+    "name": "Bournemouth",
+    "shortName": "BOU",
+    "crest": "/clubs/bournemouth.svg",
+    "primary": "#d71920",
+    "secondary": "#111111"
+  },
+  {
+    "id": 4,
+    "code": 94,
+    "name": "Brentford",
+    "shortName": "BRE",
+    "crest": "/clubs/brentford.svg",
+    "primary": "#e30613",
+    "secondary": "#ffffff"
+  },
+  {
+    "id": 5,
+    "code": 36,
+    "name": "Brighton",
+    "shortName": "BHA",
+    "crest": "/clubs/brighton.svg",
+    "primary": "#0057b8",
+    "secondary": "#ffffff"
+  },
+  {
+    "id": 6,
+    "code": 8,
+    "name": "Chelsea",
+    "shortName": "CHE",
+    "crest": "/clubs/chelsea.svg",
+    "primary": "#034694",
+    "secondary": "#ffffff"
+  },
+  {
+    "id": 7,
+    "code": 9,
+    "name": "Coventry City",
+    "shortName": "COV",
+    "crest": "/clubs/coventry-city.svg",
+    "primary": "#69b9e8",
+    "secondary": "#192d5b"
+  },
+  {
+    "id": 8,
+    "code": 31,
+    "name": "Crystal Palace",
+    "shortName": "CRY",
+    "crest": "/clubs/crystal-palace.svg",
+    "primary": "#1b458f",
+    "secondary": "#c4122e"
+  },
+  {
+    "id": 9,
+    "code": 11,
+    "name": "Everton",
+    "shortName": "EVE",
+    "crest": "/clubs/everton.svg",
+    "primary": "#003399",
+    "secondary": "#ffffff"
+  },
+  {
+    "id": 10,
+    "code": 54,
+    "name": "Fulham",
+    "shortName": "FUL",
+    "crest": "/clubs/fulham.svg",
+    "primary": "#111111",
+    "secondary": "#ffffff"
+  },
+  {
+    "id": 11,
+    "code": 88,
+    "name": "Hull City",
+    "shortName": "HUL",
+    "crest": "/clubs/hull-city.svg",
+    "primary": "#f5a12d",
+    "secondary": "#111111"
+  },
+  {
+    "id": 12,
+    "code": 40,
+    "name": "Ipswich Town",
+    "shortName": "IPS",
+    "crest": "/clubs/ipswich-town.svg",
+    "primary": "#0044a8",
+    "secondary": "#ffffff"
+  },
+  {
+    "id": 13,
+    "code": 2,
+    "name": "Leeds",
+    "shortName": "LEE",
+    "crest": "/clubs/leeds.svg",
+    "primary": "#ffcd00",
+    "secondary": "#1d428a"
+  },
+  {
+    "id": 14,
+    "code": 14,
+    "name": "Liverpool",
+    "shortName": "LIV",
+    "crest": "/clubs/liverpool.svg",
+    "primary": "#c8102e",
+    "secondary": "#00b2a9"
+  },
+  {
+    "id": 15,
+    "code": 43,
+    "name": "Man City",
+    "shortName": "MCI",
+    "crest": "/clubs/man-city.svg",
+    "primary": "#6cabdd",
+    "secondary": "#1c2c5b"
+  },
+  {
+    "id": 16,
+    "code": 1,
+    "name": "Man Utd",
+    "shortName": "MUN",
+    "crest": "/clubs/man-utd.svg",
+    "primary": "#da291c",
+    "secondary": "#fbe122"
+  },
+  {
+    "id": 17,
+    "code": 4,
+    "name": "Newcastle",
+    "shortName": "NEW",
+    "crest": "/clubs/newcastle.svg",
+    "primary": "#111111",
+    "secondary": "#ffffff"
+  },
+  {
+    "id": 18,
+    "code": 17,
+    "name": "Nott'm Forest",
+    "shortName": "NFO",
+    "crest": "/clubs/nott-m-forest.svg",
+    "primary": "#dd0000",
+    "secondary": "#ffffff"
+  },
+  {
+    "id": 19,
+    "code": 6,
+    "name": "Spurs",
+    "shortName": "TOT",
+    "crest": "/clubs/spurs.svg",
+    "primary": "#132257",
+    "secondary": "#ffffff"
+  },
+  {
+    "id": 20,
+    "code": 56,
+    "name": "Sunderland",
+    "shortName": "SUN",
+    "crest": "/clubs/sunderland.svg",
+    "primary": "#eb172b",
+    "secondary": "#ffffff"
+  }
+]
