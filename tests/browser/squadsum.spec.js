@@ -29,7 +29,7 @@ test.afterEach(async ({ page }) => {
 });
 
 test("loads local assets, starts classroom mode, plays a question, and survives refresh", async ({ page }) => {
-  const response = await page.goto("/gamesThe/", { waitUntil: "networkidle" });
+  const response = await page.goto("/squadsum/", { waitUntil: "networkidle" });
   expect(response).not.toBeNull();
   expect(response.status()).toBe(200);
   await expect(page).toHaveTitle("SQUADSUM | Sticks Tuition");
@@ -38,13 +38,13 @@ test("loads local assets, starts classroom mode, plays a question, and survives 
   await page.getByRole("button", { name: /CLASSROOM MODE/ }).click();
   await expect(page.getByRole("heading", { name: "Which players should appear?" })).toBeVisible();
   await expect(page.locator(".club-tile")).toHaveCount(20);
-  await expect(page.locator('.club-tile img[src^="/gamesThe/clubs/"]').first()).toBeVisible();
+  await expect(page.locator('.club-tile img[src^="/squadsum/clubs/"]').first()).toBeVisible();
 
   await page.getByRole("button", { name: /START GAME/ }).click();
   const answerInput = page.getByRole("textbox", { name: /Enter the name/ });
   await expect(answerInput).toBeFocused();
-  await expect(page.locator('.player-card__portrait > img[src^="/gamesThe/players/"]').first()).toBeVisible();
-  await expect(page.locator('.question-club img[src^="/gamesThe/clubs/"]')).toBeVisible();
+  await expect(page.locator('.player-card__portrait > img[src^="/squadsum/players/"]').first()).toBeVisible();
+  await expect(page.locator('.question-club img[src^="/squadsum/clubs/"]')).toBeVisible();
 
   await answerInput.fill("not a footballer");
   await page.getByRole("button", { name: "SUBMIT" }).click();

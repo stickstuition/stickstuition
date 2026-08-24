@@ -42,7 +42,7 @@ await cp(path.join(root, "games"), path.join(out, "games"), {
   },
 });
 
-await cp(path.join(root, "gamesThe", "build"), path.join(out, "gamesThe"), { recursive: true });
-await cp(path.join(root, "gamesThe", "public"), path.join(out, "gamesThe"), { recursive: true });
+await cp(path.join(root, "squadsum", "build"), path.join(out, "squadsum"), { recursive: true });
+await cp(path.join(root, "squadsum", "public"), path.join(out, "squadsum"), { recursive: true });
 
 console.log(`Prepared static site in ${path.relative(root, out)}/`);

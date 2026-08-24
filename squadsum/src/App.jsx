@@ -11,7 +11,7 @@ import rawPlayers from "./data/players.json";
 import { getSavedSound, playSound, saveSound } from "./lib/sound";
 
 const SETTINGS_KEY = "squadsum:settings";
-const GAME_BASE = "/gamesThe";
+const GAME_BASE = "/squadsum";
 
 const gameAsset = (assetPath) => `${GAME_BASE}${assetPath}`;
 const clubs = rawClubs.map((club) => ({ ...club, crest: gameAsset(club.crest) }));

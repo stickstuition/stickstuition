@@ -1,6 +1,6 @@
 # SQUADSUM on Sticks Tuition
 
-This directory contains the standalone SQUADSUM source, player data, player images, club crests, and the checked-in browser build served at `/gamesThe/`.
+This directory contains the standalone SQUADSUM source, player data, player images, club crests, and the checked-in browser build served at `/squadsum/`.
 
 The sound effects are generated locally with the Web Audio API, so the game does not fetch audio from another host.
 
