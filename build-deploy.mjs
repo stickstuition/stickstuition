@@ -10,6 +10,7 @@ const copyItems = [
   "our-lessons.html",
   "pricing-and-packages.html",
   "maths-games.html",
+  "maths-games",
   "login.html",
   "get-started.html",
   "styles.css",

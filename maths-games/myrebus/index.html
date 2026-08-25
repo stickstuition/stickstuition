@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#11162b">
+    <meta name="description" content="Create six visual word puzzles based on your students' interests with MY REBUS from Sticks Tuition Game Lab.">
+    <title>MY REBUS | Sticks Tuition Game Lab</title>
+    <link rel="icon" type="image/png" href="../../logos/C6001C.png">
+    <link rel="stylesheet" href="./myrebus.css">
+  </head>
+  <body>
+    <header class="mr-site-header">
+      <a class="mr-site-brand" href="/" aria-label="Sticks Tuition home">
+        <span class="mr-site-mark">ST</span>
+        <span>STICKS TUITION<small>Make Maths Stick</small></span>
+      </a>
+      <a class="mr-game-lab-link" href="/maths-games.html"><span aria-hidden="true">←</span> Game Lab</a>
+    </header>
+
+    <main class="my-rebus" data-my-rebus>
+      <section class="mr-screen mr-landing" data-screen="landing" aria-labelledby="mr-title">
+        <div class="mr-landing-card">
+          <div class="mr-picture-equation" aria-hidden="true">
+            <div><img src="./assets/clues/1f9c8.svg" alt=""><span>+</span><img src="./assets/clues/1fab0.svg" alt=""><b>= ?</b></div>
+          </div>
+          <p class="mr-kicker">Sticks Tuition Game Lab</p>
+          <h1 class="mr-wordmark" id="mr-title"><span>MY</span> REBUS</h1>
+          <p class="mr-tagline">A rebus starter built around your class.</p>
+          <button class="mr-button mr-button-primary mr-create" type="button" data-open-categories>Create a rebus board <span aria-hidden="true">→</span></button>
+          <p class="mr-landing-note">Pick the class interests. We’ll bring six picture puzzles.</p>
+        </div>
+      </section>
+
+      <section class="mr-screen mr-category-screen" data-screen="categories" hidden aria-labelledby="category-title">
+        <div class="mr-category-shell">
+          <header class="mr-category-header">
+            <button class="mr-text-button" type="button" data-back-home><span aria-hidden="true">←</span> Back</button>
+            <div>
+              <p class="mr-kicker">Create a board</p>
+              <h1 id="category-title">What is your class into?</h1>
+              <p>Choose one or more categories and we’ll build six rebuses.</p>
+            </div>
+          </header>
+          <div class="mr-category-grid" data-category-grid role="group" aria-label="Rebus categories"></div>
+          <footer class="mr-category-actions">
+            <p data-selection-summary aria-live="polite">Choose at least one category</p>
+            <button class="mr-button mr-button-primary" type="button" data-create-board disabled>Create 6 rebuses <span aria-hidden="true">→</span></button>
+          </footer>
+        </div>
+      </section>
+
+      <section class="mr-screen mr-loading" data-screen="loading" hidden aria-live="polite">
+        <div class="mr-loader" aria-hidden="true"><span></span><span></span><span></span></div>
+        <h1>Building your rebus board…</h1>
+        <p>Choosing six clear picture puzzles for the class.</p>
+      </section>
+
+      <section class="mr-screen mr-board-screen" data-screen="board" hidden aria-labelledby="board-title">
+        <div class="mr-board-shell">
+          <header class="mr-board-header">
+            <div class="mr-board-brand">
+              <h1 class="mr-wordmark mr-wordmark-small" id="board-title"><span>MY</span> REBUS</h1>
+              <div class="mr-board-categories" data-board-categories></div>
+            </div>
+            <div class="mr-board-status" data-board-status aria-live="polite">0 / 6 complete</div>
+            <div class="mr-board-actions">
+              <button class="mr-button mr-button-yellow" type="button" data-new-board>New board</button>
+              <button class="mr-button mr-button-secondary" type="button" data-change-categories>Change categories</button>
+              <button class="mr-text-button" type="button" data-reset-answers>Reset answers</button>
+            </div>
+          </header>
+          <div class="mr-complete-banner" data-complete-banner hidden>Board complete <span aria-hidden="true">✓</span></div>
+          <div class="mr-board-grid" data-board-grid></div>
+        </div>
+      </section>
+    </main>
+
+    <template id="rebus-card-template">
+      <article class="mr-card" data-card>
+        <header class="mr-card-header"><span data-card-number></span><span class="mr-category-pill" data-card-category></span></header>
+        <div class="mr-clue-row" data-clues></div>
+        <div class="mr-card-answer" data-answer-panel hidden>
+          <strong data-answer-state></strong>
+          <span data-answer-equation></span>
+        </div>
+        <form class="mr-answer-form" data-answer-form novalidate>
+          <label data-answer-label><span class="sr-only">Type the answer</span><input type="text" autocomplete="off" spellcheck="false" placeholder="Type answer…" data-answer-input></label>
+          <button type="submit" class="mr-button mr-check-button">Check</button>
+        </form>
+        <div class="mr-card-tools" data-card-tools>
+          <button class="mr-text-button" type="button" data-hint-button>Hint</button>
+          <button class="mr-text-button mr-reveal-button" type="button" data-reveal-button hidden>Show answer</button>
+          <span class="mr-feedback" data-feedback aria-live="assertive"></span>
+        </div>
+        <p class="mr-hint" data-hint hidden></p>
+      </article>
+    </template>
+
+    <script type="module" src="./myrebus-app.js"></script>
+  </body>
+</html>
