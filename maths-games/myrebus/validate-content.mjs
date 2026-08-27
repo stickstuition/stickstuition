@@ -4,6 +4,9 @@ import { fileURLToPath } from "node:url";
 import { categories, rebuses } from "./rebus-content.js";
 
 const root = path.dirname(fileURLToPath(import.meta.url));
+const expectedPerCategory = 10;
+const expectedTotal = 200;
+const expectedDifficulty = [100, 80, 20];
 const errors = [];
 const ids = new Set();
 let missingAssets = 0;
@@ -31,8 +34,8 @@ for (const rebus of rebuses) {
 console.log("MY REBUS CONTENT AUDIT\n");
 for (const category of categories) {
   const count = rebuses.filter((rebus) => rebus.category === category.id).length;
-  console.log(`${category.name}: ${count} ${count === 5 ? "✓" : "✗"}`);
-  if (count !== 5) errors.push(`${category.name} has ${count} rebuses; expected 5.`);
+  console.log(`${category.name}: ${count} ${count === expectedPerCategory ? "✓" : "✗"}`);
+  if (count !== expectedPerCategory) errors.push(`${category.name} has ${count} rebuses; expected ${expectedPerCategory}.`);
 }
 const difficulty = [1, 2, 3].map((level) => rebuses.filter((rebus) => rebus.difficulty === level).length);
 console.log(`\nTotal rebuses: ${rebuses.length}`);
@@ -41,8 +44,8 @@ console.log(`Missing assets: ${missingAssets}`);
 console.log(`Duplicate IDs: ${rebuses.length - ids.size}`);
 console.log(`Difficulty 1 / 2 / 3: ${difficulty.join(" / ")}`);
 
-if (rebuses.length !== 100) errors.push(`Expected 100 rebuses, found ${rebuses.length}.`);
-if (difficulty.join(",") !== "50,40,10") errors.push(`Difficulty split should be 50,40,10; found ${difficulty.join(",")}.`);
+if (rebuses.length !== expectedTotal) errors.push(`Expected ${expectedTotal} rebuses, found ${rebuses.length}.`);
+if (difficulty.join(",") !== expectedDifficulty.join(",")) errors.push(`Difficulty split should be ${expectedDifficulty.join(",")}; found ${difficulty.join(",")}.`);
 if (errors.length) {
   console.error(`\nCONTENT ERRORS (${errors.length})\n${errors.join("\n")}`);
   process.exitCode = 1;

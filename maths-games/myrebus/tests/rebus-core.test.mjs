@@ -11,11 +11,11 @@ test("answer normalisation forgives case, punctuation, spaces, apostrophes and h
   assert.equal(answerMatches("gold coast", rebuses.find((item) => item.answer === "Gold Coast")), true);
 });
 
-test("one category gives five category puzzles and one unique wildcard", () => {
+test("one category gives six unique puzzles from that category", () => {
   const board = generateRebusBoard({ selectedCategories: ["cities"], random });
   assert.equal(board.length, 6);
   assert.equal(new Set(board.map((item) => item.id)).size, 6);
-  assert.equal(board.filter((item) => item.category === "cities").length, 5);
+  assert.equal(board.filter((item) => item.category === "cities").length, 6);
 });
 
 test("two, three, four and five categories receive the required fair allocation", () => {

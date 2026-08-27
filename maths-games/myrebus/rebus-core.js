@@ -26,7 +26,7 @@ const categoryCounts = (selectedIds, random) => {
   if (ids.length === 4) return ids.map((id, index) => [id, index < 2 ? 2 : 1]);
   if (ids.length === 3) return ids.map((id) => [id, 2]);
   if (ids.length === 2) return ids.map((id) => [id, 3]);
-  return ids.map((id) => [id, 5]);
+  return ids.map((id) => [id, 6]);
 };
 
 export function generateRebusBoard({
